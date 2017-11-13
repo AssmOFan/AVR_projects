@@ -88,12 +88,11 @@ void	Blink_LED_WORK(void);
 int main(void)
 {
 	Init();													// Инициализация портов и периферии
-	ResetSIMCOM();											// Ресетим модуль SIMCOM		
 	ppk_mode = eeprom_read_byte(&ppk_mode_save);			// Восстанавливаем состояние ППК из EEPROM до разрешения прерваний, для атомарности
 	sei();
 
 	pin_state = JUMPER_PINS;								// Читаем состояние всего порта c Джампером программирования
-	if (!(pin_state & (1<<JUMPER_PIN))) Programming();		// Если Джампер программирования в положении ПРОГ (вывод JUMPER_PIN на земле), переходим в режим "ПРОГРАММИРОВАНИЕ"
+//	if (!(pin_state & (1<<JUMPER_PIN))) Programming();		// Если Джампер программирования в положении ПРОГ (вывод JUMPER_PIN на земле), переходим в режим "ПРОГРАММИРОВАНИЕ"
 
 	ReadNumbers();											// Читаем записанные телефонные номера из EEPROM в ОЗУ
 												
@@ -567,24 +566,25 @@ void CheckSIMCOM(void)
 		parsing_fault = NUM_OF_ATTEMPT;						// Обновим счетчик ошибок парсинга
 		switch (simcom_mode)								// Переключим состояние автомата SwitchSIMCOM_mode для отправки следующей команды
 		{
-			case 1: simcom_mode = 2; break;
-			case 2: simcom_mode = 3; break;
+			case 1: break;
+			case 2: simcom_mode = 3; break;					// Модуль SIMCOM перезапущен, начинаем отправку и парсинг Ат-команд
 			case 3: simcom_mode = 4; break;
 			case 4: simcom_mode = 5; break;
 			case 5: simcom_mode = 6; break;
 			case 6: simcom_mode = 7; break;
 			case 7: simcom_mode = 8; break;
-			case 8:
+			case 8: simcom_mode = 9; break;
+			case 9:
 			{
 				simcom_init_mode = 1;						// Модуль SIMCOM прошел полную инициализацию и может совершать звонки и слать SMS
-				simcom_mode = 6;							// Опять проверяем состояние модуля (и так по кругу гоняем состояния 5-6-7)
+				simcom_mode = 7;							// Опять проверяем состояние модуля (и так по кругу гоняем состояния 7-8-9)
 				break;
 			}
-			case 9: simcom_mode = 10; break;
-			case 10:
+			case 10: simcom_mode = 11; break;
+			case 11:
 			{
 				ACSR |= 1<<ACI|1<<ACIE;						// Разрешим прерывания от компаратора для повторной отправки SMS о пропаже 220В	
-				simcom_mode = 5;							// Перелючаем автомат отправки АТ-команд на отправку 1-й команды циклического опроса модуля (AT+CPAS)
+				simcom_mode = 7;							// Перелючаем автомат отправки АТ-команд на отправку 1-й команды циклического опроса модуля (AT+CPAS)
 				break;
 			}
 			default: simcom_mode = 1;
@@ -594,10 +594,10 @@ void CheckSIMCOM(void)
 
 	if ((parsing_result == BAD)&&(parsing_delay == 65535))	// Если парсинг закончился неуспешно, и истекло время парсинга
 	{
-		if ((simcom_mode == 9)||(simcom_mode == 10))		// И мы не получили курсор приглашения ввода тела SMS, либо ОК после отправки тела SMS
+		if ((simcom_mode == 10)||(simcom_mode == 11))		// И мы не получили курсор приглашения ввода тела SMS, либо ОК после отправки тела SMS
 		{
 			ACSR |= 1<<ACI|1<<ACIE;							// Отправка SMS о пропаже 220В не удалась. Повтор делать не будем, но разрешаем прерывания компаратора, возможно будут еще пропажи сети 220В и их можно будет передать
-			simcom_mode = 5;								// Перелючаем автомат отправки АТ-команд на отправку 1-й команды циклического опроса модуля (AT+CPAS)
+			simcom_mode = 7;								// Перелючаем автомат отправки АТ-команд на отправку 1-й команды циклического опроса модуля (AT+CPAS)
 		}
 
 		else
@@ -605,7 +605,6 @@ void CheckSIMCOM(void)
 			parsing_fault--;
 			if (parsing_fault == 0)							// Если исчерпали попытки парсинга
 			{
-				ResetSIMCOM();								// Ресетим модуль
 				simcom_init_mode = 0;						// Сбрасываем состояние инициализации модуля SIMCOM
 				simcom_mode = 1;							// Переводим автомат в начальный режим - делаем переинициализацию модуля SIMCOM
 				parsing_fault = NUM_OF_ATTEMPT;				// Обновим счетчик ошибок парсинга
@@ -621,7 +620,7 @@ void SwitchSIMCOM_mode(void)
 															// Если надо отправить SMS, изменяем выбраное ранее состояние автомата
 	if ((flags & (1<<sms_flag))&&(simcom_init_mode == 1))	// Если установлен признак необходимости отправки SMS и модуль SIMCOM прошел полную инициализацию
 	{
-		simcom_mode = 9;									// Переключим автомат отправки АТ-команд в режим отправки SMS
+		simcom_mode = 10;									// Переключим автомат отправки АТ-команд в режим отправки SMS
 		ATOMIC_BLOCK(ATOMIC_FORCEON)
 		{
 			flags &= ~(1<<sms_flag);						//  Сразу запретим повторное переключение автомата в режим отправки SMS
@@ -632,53 +631,65 @@ void SwitchSIMCOM_mode(void)
 	{
 		case 1:
 		{
+			SIMCOM_RESET_PORT &= ~(1<<SIMCOM_RESET_PIN);	// Садим SIMCOM_RESET на землю
+			_delay_ms(SIM800L_RESET_TIME);					// Задержка на Reset модуля SIMCOM
+			SIMCOM_RESET_PORT |= 1<<SIMCOM_RESET_PIN;		// Отпускаем SIMCOM_RESET
+			ATOMIC_BLOCK(ATOMIC_FORCEON)
+			{
+				parsing_delay = WAIT_SIMCOM_READY;			// Воспользуемся таймером парсинга, все равно до перезапуска модяля по UART не используеться
+				simcom_mode = 2;
+			}			
+			break;
+		}
+		case 2:
+		{
 			SendStr_P(AT);									// Шлем АТ
 			ActivateParsing(AT_OK,AT_WAIT_TIME);			// Активируем парсинг ответа в обработчике USART_RX_vect
 			break;
 		}
-		case 2:
+		case 3:
 		{			
 			SendStr_P(ATE0);								// Отключаем эхо
 			ActivateParsing(ATE0_OK,AT_WAIT_TIME);			// Активируем парсинг ответа в обработчике USART_RX_vect
 			break;
 		}
-		case 3:
+		case 4:
 		{			
 			SendStr_P(AT_IPR);								// Задаем скорость обмена с модулем
 			ActivateParsing(OK_,AT_WAIT_TIME);				// Активируем парсинг ответа в обработчике USART_RX_vect
 			break;
 		}
-		case 4:
+		case 5:
 		{			
 			SendStr_P(AT_GSMBUSY_1);						// Запрет всех входящих звонков
 			ActivateParsing(OK_,AT_WAIT_TIME);				// Активируем парсинг ответа в обработчике USART_RX_vect
 			break;
 		}
-		case 5:
+		case 6:
 		{			
 			SendStr_P(AT_CMGF);								// Задаем текстовый формат SMS
 			ActivateParsing(OK_,AT_WAIT_TIME);				// Активируем парсинг ответа в обработчике USART_RX_vect
 			break;
 		}
-		case 6:
+		case 7:
 		{			
 			SendStr_P(AT_CPAS);								// Делаем запрос на состояние модуля SIMCOM
 			ActivateParsing(CPAS_OK,AT_WAIT_TIME);			// Активируем парсинг ответа в обработчике USART_RX_vect
 			break;
 		}
-		case 7:
+		case 8:
 		{			
 			SendStr_P(AT_CREG);								// Делаем запрос на состояние регистрации в сети
 			ActivateParsing(CREG_OK,AT_WAIT_TIME);			// Активируем парсинг ответа в обработчике USART_RX_vect
 			break;
 		}
-		case 8:
+		case 9:
 		{			
 			SendStr_P(AT_CCALR);							// Делаем запрос на возможность совершать звонки
 			ActivateParsing(CCALR_OK,AT_WAIT_TIME);			// Активируем парсинг ответа в обработчике USART_RX_vect
 			break;	
 		}
-		case 9:
+		case 10:
 		{			
 			SendStr_P(AT_CMGS);								// Делаем запрос на отправку SMS о пропаже сети 220В						
 			SendStr(Abonent_SMS);
@@ -686,13 +697,12 @@ void SwitchSIMCOM_mode(void)
 			ActivateParsing(POINTER,AT_WAIT_TIME);			// Активируем парсинг курсора приглашения для отправки тела SMS
 			break;
 		}
-		case 10:
+		case 11:
 		{			
 			SendStr_P(NO_220);								// Отправляем тело SMS о пропаже сети 220В
 			ActivateParsing(OK_,AT_WAIT_TIME);				// Активируем парсинг отчета о успешной отправке SMS в обработчике USART_RX_vect
 			break;
 		}
-
 		default: simcom_mode = 1;
 	}
 }
@@ -863,15 +873,6 @@ void ReadNumbers(void)
 	eeprom_read_block(number1,ee_number1,14);				// Прочесть строку Number_1 из EEPROM, в строку Number1
 	eeprom_read_block(number2,ee_number2,14);				// Прочесть строку Number_2 из EEPROM, в строку Number2
 	eeprom_read_block(number3,ee_number3,14);				// Прочесть строку Number_3 из EEPROM, в строку Number3
-}
-//=====================================================================================================================================================
-// RESET модуля SIMCOM
-void ResetSIMCOM(void)
-{	
-	SIMCOM_RESET_PORT &= ~(1<<SIMCOM_RESET_PIN);			// Садим SIMCOM_RESET на землю
-	_delay_ms(SIM800L_RESET_TIME);							// Задержка на Reset модуля SIMCOM
-	SIMCOM_RESET_PORT |= 1<<SIMCOM_RESET_PIN;				// Отпускаем
-	_delay_ms(WAIT_SIMCOM_READY);							// Задержка на инициализацию модуля SIMCOM
 }
 //=====================================================================================================================================================
 // Отправка строки из флеша в UART
