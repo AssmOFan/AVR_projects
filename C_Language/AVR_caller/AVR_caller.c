@@ -22,8 +22,9 @@ volatile	unsigned	int		in_out_delay = 0;			// Задержка на вход/выход
 volatile	unsigned	int		led_delay = 0;				// Задержка до смены состояния светодиодов LED_WORK или LED_PROG
 volatile	unsigned	int		siren_delay = 0;			// Задержка на звучание сирены
 volatile	unsigned	int		out_delay = 0;				// Задержка на выключение выходов после активации
+//volatile	unsigned	int		block_alarm_delay = 0;
 volatile	unsigned	char	parsing_result = BAD;		// Результат парсинга строки (0-парсинг продолжаеться, 1-парсинг успешно закончен, 2-ошибка парсинга или превышено время парсинга)
-volatile	unsigned	char	ppk_mode;					// Режим работы прибора
+volatile	unsigned	char	ppk_mode = GUARD_OFF;		// Режим работы прибора
 volatile	unsigned	char	flags = 0;
 #define 	sms_flag			0
 
@@ -59,7 +60,7 @@ const	char POINTER[]	PROGMEM = "> ";
 const	char BUSY[]		PROGMEM = "\r\nBUSY\r\n";
 
 // Заводим строки под тел. номера в EEPROM. Обязательно вне main
-unsigned char EEMEM ppk_mode_save = 0;					// Резервная копия состояние ППК в EEPROM. Вычитываеться при каждом старте системы.
+unsigned char EEMEM ppk_mode_save = GUARD_OFF;				// Резервная копия состояние ППК в EEPROM. Вычитываеться при каждом старте системы.
 unsigned char EEMEM ee_number1[buffer_max] = "+380996755968";// 1 номер в EEPROM
 unsigned char EEMEM ee_number2[buffer_max] = "+380962581099";// 2 номер в EEPROM
 unsigned char EEMEM ee_number3[buffer_max] = "+380996755968";// 3 номер в EEPROM
@@ -91,27 +92,23 @@ int main(void)
 	ppk_mode = eeprom_read_byte(&ppk_mode_save);			// Восстанавливаем состояние ППК из EEPROM до разрешения прерваний, для атомарности
 	sei();
 
-	pin_state = JUMPER_PINS;								// Читаем состояние всего порта c Джампером программирования
-//	if (!(pin_state & (1<<JUMPER_PIN))) Programming();		// Если Джампер программирования в положении ПРОГ (вывод JUMPER_PIN на земле), переходим в режим "ПРОГРАММИРОВАНИЕ"
+	if (ppk_mode == GUARD_OFF)								// Если ППК снят с охраны								
+	{
+		pin_state = JUMPER_PINS;							// Читаем состояние всего порта c Джампером программирования
+		if (!(pin_state & (1<<JUMPER_PIN))) Programming();	// Если Джампер программирования в положении ПРОГ (вывод JUMPER_PIN на земле), переходим в режим "ПРОГРАММИРОВАНИЕ"
+	}
 
 	ReadNumbers();											// Читаем записанные телефонные номера из EEPROM в ОЗУ
-												
+
 	if (ppk_mode != GUARD_OFF)								// Если НЕ в режиме "СНЯТО С ОХРАНЫ"
 	{
-#if defined (__AVR_ATmega8__)
-	GIFR = 1<<INTF1|1<<INTF0;								// Сбросим флаги возможно возникавших ранее внешних прерываний
-	GICR = 1<<INT1|1<<INT0;									// Разрешим прерывания INT1 и INT0
-#endif
-#if defined (__AVR_ATtiny2313__)||(__AVR_ATtiny2313A__)
-	EIFR = 1<<INTF1|1<<INTF0;								// Сбросим флаги возможно возникавших ранее внешних прерываний
-	GIMSK = 1<<INT1|1<<INT0;								// Разрешим прерывания INT1 и INT0
-#endif
-
-#if defined (DEBUG)
-	LED_PORT &= ~(1<<LED_WORK);								// ТОЛЬКО ДЛЯ ОТЛАДКИ
-#else
-	LED_PORT |= 1<<LED_WORK;								// Включим светодиод охраны
-#endif
+		GIFR = 1<<INTF1|1<<INTF0;							// Сбросим флаги возможно возникавших ранее внешних прерываний
+		GICR = 1<<INT1|1<<INT0;								// Разрешим прерывания INT1 и INT0
+	#if defined (DEBUG)
+		LED_PORT &= ~(1<<LED_WORK);							// ТОЛЬКО ДЛЯ ОТЛАДКИ
+	#else
+		LED_PORT |= 1<<LED_WORK;							// Включим светодиод охраны
+	#endif
 	}
 // Главный цикл =======================================================================================================================================
 	while (1)
@@ -145,30 +142,13 @@ int main(void)
 				ppk_mode = ALARM_SIREN_COMPL;				// Сирена была включена на нужное время, меняем состояние ППК
 				eeprom_update_byte(&ppk_mode_save, ALARM_SIREN_COMPL);// Обновляем состояние ППК в EEPROM
 			}
-			
-		#if defined (__AVR_ATmega8__)
 			GIFR = 1<<INTF1|1<<INTF0;						// Сбросим флаги возникавших ранее прерываний
-			GICR = 1<<INT1|1<<INT0;							// Разрешим прерывания INT1 и INT0
-		#endif
-		#if defined (__AVR_ATtiny2313__)||(__AVR_ATtiny2313A__)
-			EIFR = 1<<INTF1|1<<INTF0;						// Сбросим флаги возникавших ранее прерываний
-			GIMSK = 1<<INT1|1<<INT0;						// Разрешим прерывания INT1 и INT0
-		#endif				
+			GICR = 1<<INT1|1<<INT0;							// Разрешим прерывания INT1 и INT0				
 		}
 //-----------------------------------------------------------------------------------------------------------------------------------------------------			
 		if ((ppk_mode == ALARM_SIREN_COMPL)&&(simcom_init_mode == 1))// Если была включена сирена, и модуль SIMCOM находиться в рабочем режиме, начинаем звонить
 		{
 			Ring();											// Звоним
-//*
-		#if defined (__AVR_ATmega8__)
-			GIFR = 1<<INTF1|1<<INTF0;						// Сбросим флаги возникавших ранее прерываний
-			GICR = 1<<INT1|1<<INT0;							// Разрешим прерывания INT1 и INT0
-		#endif
-		#if defined (__AVR_ATtiny2313__)||(__AVR_ATtiny2313A__)
-			EIFR = 1<<INTF1|1<<INTF0;						// Сбросим флаги возникавших ранее прерываний
-			GIMSK = 1<<INT1|1<<INT0;						// Разрешим прерывания INT1 и INT0
-		#endif
-//*/
 		}
 //-----------------------------------------------------------------------------------------------------------------------------------------------------			
 		if (((ppk_mode != GUARD_OFF)&&(ppk_mode != GUARD_ON))&&(led_delay == 0))// Если режим "ТРЕВОГА" или "ЗАДЕРЖКА"
@@ -179,14 +159,8 @@ int main(void)
 		if ((ppk_mode == DELAY_OUT)&&(in_out_delay == 0))	// Если ППК находиться в состоянии "ЗАДЕРЖКА НА ВЫХОД" и задержка истекла
 		{
 				ppk_mode = GUARD_ON;						// Активируем режим "ПОД ОХРАНОЙ"
-			#if defined (__AVR_ATmega8__)
 				GIFR = 1<<INTF1|1<<INTF0;					// Сбросим флаги возможно возникавших ранее прерываний
 				GICR = 1<<INT1|1<<INT0;						// Разрешим прерывания INT1 и INT0
-			#endif
-			#if defined (__AVR_ATtiny2313__)||(__AVR_ATtiny2313A__)
-				EIFR = 1<<INTF1|1<<INTF0;					// Сбросим флаги возможно возникавших ранее прерываний
-				GIMSK = 1<<INT1|1<<INT0;					// Разрешим прерывания INT1 и INT0
-			#endif
 				ATOMIC_BLOCK(ATOMIC_FORCEON)
 				{
 					led_delay = 0;							// Прекращаем мигать LED_WORK
@@ -208,15 +182,7 @@ int main(void)
 	}
 }
 //=====================================================================================================================================================
-// Прерывание по приходу байта в буффер UART
-#if defined (__AVR_ATmega8__)
-ISR (USART_RXC_vect)
-#endif
-
-#if defined (__AVR_ATtiny2313__)||(__AVR_ATtiny2313A__)
-ISR (USART_RX_vect)
-#endif
-
+ISR (USART_RXC_vect)										// Прерывание по приходу байта в буффер UART
 {
 	if (ppk_mode == PROG)									// Если прибор в режиме "ПРОГРАММИРОВАНИЕ" (записи телефонных номеров)
 	{
@@ -245,15 +211,7 @@ ISR (USART_RX_vect)
 	}
 }
 //=====================================================================================================================================================
-// Прерывание по совпадению Timer0/Timer1
-#if defined (__AVR_ATmega8__)
-ISR (TIMER1_COMPA_vect)										// Используем в качестве системного (с периодом 1 мс) Timer1
-#endif
-
-#if defined (__AVR_ATtiny2313__)||(__AVR_ATtiny2313A__)
-ISR (TIMER0_COMPA_vect)										// Используем в качестве системного (с периодом 1 мс) самый простой Timer0
-#endif
-
+ISR (TIMER1_COMPA_vect)										// Прерывание по совпадению Timer1
 {
 	if (parsing_delay != 65535)								// Если подсчет времени парсинга не запрещен (записью максимального значения в счетчик)
 	{		
@@ -284,11 +242,11 @@ ISR (TIMER0_COMPA_vect)										// Используем в качестве системного (с периодом
 	if (in_out_delay != 0) in_out_delay--;					// Отсчет задержки вход/выход, если она есть
 	if (siren_delay != 0) siren_delay--;					// Отсчет времени звучания сирены
 	if (out_delay != 0) out_delay--;						// Отсчет времени активации выходов
-	if (led_delay != 0) led_delay--;						// Отсчет времени мигания светодиодов			
+	if (led_delay != 0) led_delay--;						// Отсчет времени мигания светодиодов
+//	if (block_alarm_delay != 0) block_alarm_delay--;		// Отсчет времени запрета повторной фиксации тревоги			
 }
 //=====================================================================================================================================================
-// Прерывание по INT0
-ISR (INT0_vect)
+ISR (INT0_vect)												// Прерывание по INT0
 {
 	if (ppk_mode == GUARD_ON)								// Если ППК в режиме "ПОД ОХРАНОЙ" (тривог до этого момента не было)
 	{
@@ -296,16 +254,11 @@ ISR (INT0_vect)
 		in_out_delay = IN_DELAY;
 	} 
 	else ppk_mode = ALARM_ACTIVE;							// Иначе сразу формируем очередную тревогу	
-#if defined (__AVR_ATmega8__)
 	GICR = 0<<INT1|0<<INT0;									// Запретим прерывания INT1 и INT0
-#endif
-#if defined (__AVR_ATtiny2313__)||(__AVR_ATtiny2313A__)
-	GIMSK = 0<<INT1|0<<INT0;								// Запретим прерывания INT1 и INT0
-#endif
+//	block_alarm_delay = BLOCK_ALARM_TIME;					// Установим время повторного разрешения прерывания
 }
 //=====================================================================================================================================================
-// Прерывание по INT1
-ISR (INT1_vect)
+ISR (INT1_vect)												// Прерывание по INT1
 {
 	if (ppk_mode == GUARD_ON)								// Если ППК в режиме "ПОД ОХРАНОЙ" (тривог до этого момента не было)
 	{
@@ -313,16 +266,11 @@ ISR (INT1_vect)
 		in_out_delay = IN_DELAY;
 	} 
 	else ppk_mode = ALARM_ACTIVE;							// Иначе сразу формируем очередную тревогу
-#if defined (__AVR_ATmega8__)
 	GICR = 0<<INT1|0<<INT0;									// Запретим прерывания INT1 и INT0
-#endif
-#if defined (__AVR_ATtiny2313__)||(__AVR_ATtiny2313A__)
-	GIMSK = 0<<INT1|0<<INT0;								// Запретим прерывания INT1 и INT0
-#endif
+//	block_alarm_delay = BLOCK_ALARM_TIME;					// Установим время повторного разрешения прерывания
 }
 //=====================================================================================================================================================
-// Прерывание компаратора
-ISR (ANA_COMP_vect)											// Прерывание возникает при пропаже сети 220В
+ISR (ANA_COMP_vect)											// Прерывание компаратора, возникает при пропаже сети 220В
 {
 	flags |= 1<<sms_flag;									// Установим флаг необходимости отправки SMS
 	ACSR &= ~(1<<ACIE);										// Запретим прерывания от компаратора для однократной отправки SMS
@@ -484,7 +432,24 @@ void Ring(void)
 			case 15:
 			{
 				if (parsing_result != IN_PROCESS)
-				ring_mode = 16;
+				{
+					ppk_mode = GUARD_OFF;					// Активируем переход в режим "СНЯТО С ОХРАНЫ"						
+					GICR = 0<<INT1|0<<INT0;					// Запретим прерывания INT1 и INT0
+					ATOMIC_BLOCK(ATOMIC_FORCEON)
+					{
+						siren_delay = 0;					// Убираем время звучания сирены, сама сирена выключиться в главном цикле
+						out_delay = 0;						// Убираем время активности выходов, сами выходы выключаться в главном цикле						
+						led_delay = 0;						// Прекращаем мигать светодиодом LED_WORK (ОХРАНА), если он мигал. Это проще чем допольнительная проверка
+						eeprom_update_byte(&ppk_mode_save, GUARD_OFF);// Обновим состояние ППК в EEPROM						
+					}
+				#if defined (DEBUG)
+					LED_PORT |= 1<<LED_WORK;				// ТОЛЬКО ДЛЯ ОТЛАДКИ
+				#else					
+					LED_PORT &= ~(1<<LED_WORK);				// Гасим светодиод ОХРАНА
+				#endif
+					
+					ring_mode = 16;
+				}
 				break;
 			}
 			case 16: break;
@@ -518,7 +483,7 @@ void CheckButton(unsigned int button_counter_delay)			// Опрашиваем кнопку поста
 					ppk_mode = DELAY_OUT;					// Активируем режим "ЗАДЕРЖКА НА ВЫХОД"
 					ATOMIC_BLOCK(ATOMIC_FORCEON)
 					{
-						eeprom_update_byte(&ppk_mode_save, GUARD_ON);// В EEPROM пишем состояние "ПОД ОХРАНОЙ", чтобы при перезагрузке ППК во время задержки на выход получить охраняемый объект
+						eeprom_update_byte(&ppk_mode_save, DELAY_OUT);// В EEPROM пишем состояние "ПОД ОХРАНОЙ", чтобы при перезагрузке ППК во время задержки на выход получить охраняемый объект
 						in_out_delay = OUT_DELAY;			// Назначим задержку на выход, внутри запрета прерываний, для атомарности
 					}
 				#if defined (DEBUG)
@@ -531,12 +496,7 @@ void CheckButton(unsigned int button_counter_delay)			// Опрашиваем кнопку поста
 				else										// Иначе текущий режим "ПОД ОХРАНОЙ" либо "ТРЕВОГА"
 				{			
 					ppk_mode = GUARD_OFF;					// Активируем переход в режим "СНЯТО С ОХРАНЫ"						
-				#if defined (__AVR_ATmega8__)
 					GICR = 0<<INT1|0<<INT0;					// Запретим прерывания INT1 и INT0
-				#endif
-				#if defined (__AVR_ATtiny2313__)||(__AVR_ATtiny2313A__)
-					GIMSK = 0<<INT1|0<<INT0;				// Запретим прерывания INT1 и INT0
-				#endif
 					ATOMIC_BLOCK(ATOMIC_FORCEON)
 					{
 						siren_delay = 0;					// Убираем время звучания сирены, сама сирена выключиться в главном цикле
@@ -549,10 +509,11 @@ void CheckButton(unsigned int button_counter_delay)			// Опрашиваем кнопку поста
 				#else					
 					LED_PORT &= ~(1<<LED_WORK);				// Гасим светодиод ОХРАНА
 				#endif
-				}
-		
+				}		
+
 				debounce_delay = 1000;						// Запрещаем реакцию на нажатие кнопки постановки/снятия на 1 сек, для исключения влияния дребезга
 			}
+
 			check_button_counter = button_counter_delay;	// Обновляем счетчик опроса кнопки постановки/снятия
 		}
 	}
@@ -915,23 +876,23 @@ void Blink_LED_WORK(void)
 // Выключение сирены и выходов, если пришло время
 void Siren_Outs_OFF(void) 
 {
-	if (siren_delay == 0)								// Если нет отсчета время звучания сирены
+	if (siren_delay == 0)									// Если нет отсчета время звучания сирены
 	{
 	#if defined (DEBUG)
-		OUT_PORT |= 1<<SIREN;							// ТОЛЬКО ДЛЯ ОТЛАДКИ
+		OUT_PORT |= 1<<SIREN;								// ТОЛЬКО ДЛЯ ОТЛАДКИ
 	#else
-		OUT_PORT &= ~(1<<SIREN);						// Выключим сирену
+		OUT_PORT &= ~(1<<SIREN);							// Выключим сирену
 	#endif
 	}
 
-	if (out_delay == 0)									// Если нет отсчета время активности выходов
+	if (out_delay == 0)										// Если нет отсчета время активности выходов
 	{
 	#if defined (DEBUG)
-		OUT_PORT |= 1<<OUT_1;							// ТОЛЬКО ДЛЯ ОТЛАДКИ
+		OUT_PORT |= 1<<OUT_1;								// ТОЛЬКО ДЛЯ ОТЛАДКИ
 	#else			
-		OUT_PORT &= ~(1<<OUT_1);						// Выключим выходы OUT_1,			
+		OUT_PORT &= ~(1<<OUT_1);							// Выключим выходы OUT_1,			
 	#endif
-		OUT_PORT |= 1<<OUT_2;							// и OUT_2 (инверсная логика работы)
+		OUT_PORT |= 1<<OUT_2;								// и OUT_2 (инверсная логика работы)
 	}
 }
 //=====================================================================================================================================================
@@ -940,16 +901,14 @@ void Init(void)
 {
 // Инициализация портов
 	SIMCOM_RESET_DDR |= 1<<SIMCOM_RESET_PIN;				// SIMCOM_RESET на вывод
-	DDRB |= 1<<LED_PROG|1<<LED_WORK|1<<SIREN|1<<OUT_2|1<<OUT_1;// Светодиоды, сирену, выходы - на вывод
-//	DDRD &= ~(1<<JUMPER_PIN|1<<DATCHIK_2|1<<DATCHIK_1);		// Джампер входа в режим программирования, DATCHIK_2, DATCHIK_1 на вход	
-//	DDRB &= ~(1<<BUTTON_PIN);								// Кнопка постановки/снятия на вход 
+	DDRB |= 1<<LED_PROG|1<<LED_WORK|1<<OUT_2|1<<OUT_1|1<<SIREN;// Сирену, выходы, и светодиоды - на вывод
 	
 #if defined (DEBUG)
 	PORTD |= 1<<JUMPER_PIN|1<<DATCHIK_2|1<<DATCHIK_1;		// ТОЛЬКО ДЛЯ ОТЛАДКИ
 #else
-	PORTD |= 1<<JUMPER_PIN|1<<DATCHIK_1;					// Включаем подтяжку для Джампера входа в режим программирования и DATCHIK_1
+	PORTD |= 1<<JUMPER_PIN|1<<DATCHIK_1;					// Включаем подтяжку для Джампера входа в режим программирования и DATCHIK_1 ( DATCHIK_2 не надо !!! )
 #endif
-	PORTB |= 1<<BUTTON_PIN|1<<OUT_2;						// Включаем подтяжку для Кнопки постановки/снятия и OUT_2 (выключиться при тревоге)
+	PORTB |= 1<<BUTTON_PIN|1<<OUT_2;						// Включаем подтяжку для Кнопки постановки/снятия, и активируем OUT_2 (выключиться при тревоге)
 
 #if defined (DEBUG)
 	LED_PORT |= 1<<LED_WORK|1<<LED_PROG;					// ТОЛЬКО ДЛЯ ОТЛАДКИ
@@ -1004,10 +963,8 @@ void Init(void)
 	MCUCR |= 1<<ISC11|1<<ISC10|1<<ISC01;					// INT1 - прерывание по переднему фронту (DATCHIK_2), INT0 - прерывание по спаду (DATCHIK_1)				
 #endif
 
-// Для ATmega8 настроим Аналоговый компаратор
-#if defined (__AVR_ATmega8__)
-	ACSR |= 1<<ACBG|1<<ACIE|1<<ACIS1|1<<ACIS0;				// Подключаем внутренний ИОН, разрешаем прерывание от компаратора, условие возникновения прерывания - переход с 0 на 1
-#endif
+// Настроим Аналоговый компаратор
+	ACSR |= 1<<ACBG|1<<ACIE|1<<ACIS1|1<<ACIS0;				// Подключаем внутренний ИОН, разрешаем прерывание от компаратора, условие возникновения прерывания - переход с 0 на 1. Реакция - вывод PD7 садиться на землю.
 }
 //=====================================================================================================================================================
 // Прерывание по опустошению буффера передатчика UART

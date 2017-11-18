@@ -1,8 +1,8 @@
 #include <avr/io.h>
-#include <util/delay.h>
 #include <avr/interrupt.h>
 #include <avr/pgmspace.h>
 #include <avr/eeprom.h>
+#include <util/delay.h>
 #include <util/atomic.h>
 
 #define baudrate 9600L
@@ -17,22 +17,22 @@
 #define DATCHIK_1	2						// PD2 - INT0
 #define DATCHIK_2	3						// PD3 - INT1
 
-#define JUMPER_PINS	PIND
-#define JUMPER_PIN	5
-
-#define BUTTON_PINS	PINB
-#define BUTTON_PIN	0
+#define OUT_DDR 	DDRB
+#define OUT_PORT 	PORTB
+#define SIREN		0
+#define OUT_1		1
+#define OUT_2		2
 
 #define LED_DDR 	DDRB
 #define LED_PORT 	PORTB
-#define LED_WORK	5
+#define LED_WORK	3
 #define LED_PROG	4
 
-#define OUT_DDR 	DDRB
-#define OUT_PORT 	PORTB
-#define SIREN		3
-#define OUT_2		2
-#define OUT_1		1
+#define BUTTON_PINS	PINB
+#define BUTTON_PIN	5
+
+#define JUMPER_PINS	PIND
+#define JUMPER_PIN	5
 
 // Ðוזטלû נאבמעû ןנטבמנא
 #define GUARD_OFF			0				// 00000000		"ÑÍ‗ÒÎ Ñ ÎÕÐÀÍÛ"
