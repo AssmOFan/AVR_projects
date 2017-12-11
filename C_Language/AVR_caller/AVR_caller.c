@@ -18,11 +18,10 @@ static		unsigned	char	simcom_init_mode = 0;		// Состояния инициализации модуля S
 static		unsigned	int 	check_button_counter;		// Счетчик пропущеных циклов опроса кнопки постановки/снятия из функции опроса кнопки
 volatile	unsigned	int		debounce_delay = 0;			// Задержка запрета опроса кнопки постановки/снятия
 volatile	unsigned	int		parsing_delay = 0;			// Задержка на время парсинга
-volatile	unsigned	int		in_out_delay = 0;			// Задержка на вход/выход
+volatile	unsigned	int		exit_delay = 0;			// Задержка на вход/выход
 volatile	unsigned	int		led_delay = 0;				// Задержка до смены состояния светодиодов LED_WORK или LED_PROG
 volatile	unsigned	int		siren_delay = 0;			// Задержка на звучание сирены
 volatile	unsigned	int		out_delay = 0;				// Задержка на выключение выходов после активации
-//volatile	unsigned	int		block_alarm_delay = 0;
 volatile	unsigned	char	parsing_result = BAD;		// Результат парсинга строки (0-парсинг продолжаеться, 1-парсинг успешно закончен, 2-ошибка парсинга или превышено время парсинга)
 volatile	unsigned	char	ppk_mode = GUARD_OFF;		// Режим работы прибора
 volatile	unsigned	char	flags = 0;
@@ -34,6 +33,7 @@ const	char *volatile	parsing_pointer;					// Указатель на строку во флеше, с кот
 const	char AT[] 		PROGMEM = "AT\r";
 const	char ATE0[] 	PROGMEM = "ATE0\r";					// Отключаем эхо
 const	char AT_IPR[]	PROGMEM = "AT+IPR=9600\r";			// Настраиваем скорость обмена
+const	char AT_CLCC[]	PROGMEM	= "AT+CLCC=0\r";			// Переключаем на сокращенный ответ при входящем звонке
 const	char AT_CMGF[]	PROGMEM = "AT+CMGF=1\r";			// Текстовый режим СМС
 const	char AT_CLIP[]	PROGMEM = "AT+CLIP=1\r";			// Включаем АОН
 const	char AT_CPAS[]	PROGMEM = "AT+CPAS\r";				// Смотрим состояние модуля
@@ -42,7 +42,7 @@ const	char AT_CCALR[]	PROGMEM = "AT+CCALR?\r";			// Проверяем возможность соверш
 const	char ATD[]		PROGMEM = "ATD";					// Звоним
 const	char RING_END[]	PROGMEM = ";\r";
 const	char AT_CMGS[]	PROGMEM = "AT+CMGS=\"";				// Отправляем СМС
-const	char AT_CMGS_2[]PROGMEM = "\"";
+const	char AT_CMGS_2[]PROGMEM = "\"\r";
 const	char NO_220[]	PROGMEM = "HET 220B\x1A";
 const	char ATH[]		PROGMEM = "ATH\r";					// Отбиваем вызов
 const	char AT_GSMBUSY_1[]	PROGMEM = "AT+GSMBUSY=1\r";		// Запрет всех входящих звонков
@@ -51,7 +51,7 @@ const	char AT_GSMBUSY_0[]	PROGMEM = "AT+GSMBUSY=0\r";		// Разрешение всех входящ
 // Заводим строки ответов на AT команды во флеше. Обязательно вне main
 const	char AT_OK[]	PROGMEM = "AT\r\r\nOK\r\n";
 const	char ATE0_OK[]	PROGMEM = "ATE0\r\r\nOK\r\n";
-const	char OK_[]		PROGMEM = "\r\nOK\r\n";
+const	char _OK[]		PROGMEM = "\r\nOK\r\n";
 const	char CPAS_OK[]	PROGMEM = "\r\n+CPAS: 0\r\n\r\nOK\r\n";
 const	char CREG_OK[]	PROGMEM = "\r\n+CREG: 0,1\r\n\r\nOK\r\n";
 const	char CCALR_OK[]	PROGMEM = "\r\n+CCALR: 1\r\n\r\nOK\r\n";
@@ -61,9 +61,9 @@ const	char BUSY[]		PROGMEM = "\r\nBUSY\r\n";
 
 // Заводим строки под тел. номера в EEPROM. Обязательно вне main
 unsigned char EEMEM ppk_mode_save = GUARD_OFF;				// Резервная копия состояние ППК в EEPROM. Вычитываеться при каждом старте системы.
-unsigned char EEMEM ee_number1[buffer_max] = "+380996755968";// 1 номер в EEPROM
-unsigned char EEMEM ee_number2[buffer_max] = "+380962581099";// 2 номер в EEPROM
-unsigned char EEMEM ee_number3[buffer_max] = "+380996755968";// 3 номер в EEPROM
+unsigned char EEMEM ee_number1[buffer_max] = "+380962581099";// 1 номер в EEPROM
+unsigned char EEMEM ee_number2[buffer_max] = "+380996755968";// 2 номер в EEPROM
+unsigned char EEMEM ee_number3[buffer_max] = "+380962581099";// 3 номер в EEPROM
 
 //=====================================================================================================================================================
 // Обьявляем прототипы функций
@@ -91,6 +91,7 @@ int main(void)
 	Init();													// Инициализация портов и периферии
 	ppk_mode = eeprom_read_byte(&ppk_mode_save);			// Восстанавливаем состояние ППК из EEPROM до разрешения прерваний, для атомарности
 	sei();
+	wdt_enable(WDTO_2S);									// Включаем сторожевой таймер со сбросом через 2 секунды
 
 	if (ppk_mode == GUARD_OFF)								// Если ППК снят с охраны								
 	{
@@ -98,6 +99,7 @@ int main(void)
 		if (!(pin_state & (1<<JUMPER_PIN))) Programming();	// Если Джампер программирования в положении ПРОГ (вывод JUMPER_PIN на земле), переходим в режим "ПРОГРАММИРОВАНИЕ"
 	}
 
+	wdt_reset();
 	ReadNumbers();											// Читаем записанные телефонные номера из EEPROM в ОЗУ
 
 	if (ppk_mode != GUARD_OFF)								// Если НЕ в режиме "СНЯТО С ОХРАНЫ"
@@ -110,14 +112,16 @@ int main(void)
 		LED_PORT |= 1<<LED_WORK;							// Включим светодиод охраны
 	#endif
 	}
-// Главный цикл =======================================================================================================================================
+
+//=====================================================================================================================================================
+// Главный цикл
 	while (1)
 	{
 		CheckButton(5000);									// Проверяем кнопку постановки/снятия каждый 5000-й проход главного цикла
 		CheckSIMCOM();										// Проверяем состояние модуля, регистрацию в сети, и прочее
 		Siren_Outs_OFF();									// Проверяем сирену и выходы, если пора - выключаем
 //-----------------------------------------------------------------------------------------------------------------------------------------------------			
-		if ((ppk_mode == DELAY_IN)&&(in_out_delay == 0))	// Если ППК находиться в состоянии "ЗАДЕРЖКА НА ВХОД" и задержка истекла
+		if ((ppk_mode == DELAY_IN)&&(exit_delay == 0))	// Если ППК находиться в состоянии "ЗАДЕРЖКА НА ВХОД" и задержка истекла
 		{
 			ATOMIC_BLOCK(ATOMIC_FORCEON)
 			{
@@ -156,7 +160,7 @@ int main(void)
 			Blink_LED_WORK();								// Мигаем LED_WORK
 		}
 //-----------------------------------------------------------------------------------------------------------------------------------------------------			
-		if ((ppk_mode == DELAY_OUT)&&(in_out_delay == 0))	// Если ППК находиться в состоянии "ЗАДЕРЖКА НА ВЫХОД" и задержка истекла
+		if ((ppk_mode == DELAY_OUT)&&(exit_delay == 0))	// Если ППК находиться в состоянии "ЗАДЕРЖКА НА ВЫХОД" и задержка истекла
 		{
 				ppk_mode = GUARD_ON;						// Активируем режим "ПОД ОХРАНОЙ"
 				GIFR = 1<<INTF1|1<<INTF0;					// Сбросим флаги возможно возникавших ранее прерываний
@@ -172,7 +176,7 @@ int main(void)
 			#endif
 		}
 //-----------------------------------------------------------------------------------------------------------------------------------------------------			
-		if ((ppk_mode == DELAY_IN)&&(in_out_delay == IN_DELAY))// Если ППК находиться в состоянии "ЗАДЕРЖКА НА ВХОД" и она только началась
+		if ((ppk_mode == DELAY_IN)&&(exit_delay == IN_DELAY))// Если ППК находиться в состоянии "ЗАДЕРЖКА НА ВХОД" и она только началась
 		{
 			ATOMIC_BLOCK(ATOMIC_FORCEON)
 			{
@@ -239,11 +243,10 @@ ISR (TIMER1_COMPA_vect)										// Прерывание по совпадению Timer1
 	}
 */	
 	if (debounce_delay != 0) debounce_delay--;				// Отсчет времени запрета опроса кнопки постановки/снятия после предыдущего нажатия
-	if (in_out_delay != 0) in_out_delay--;					// Отсчет задержки вход/выход, если она есть
+	if (exit_delay != 0) exit_delay--;						// Отсчет задержки вход/выход, если она есть
 	if (siren_delay != 0) siren_delay--;					// Отсчет времени звучания сирены
 	if (out_delay != 0) out_delay--;						// Отсчет времени активации выходов
 	if (led_delay != 0) led_delay--;						// Отсчет времени мигания светодиодов
-//	if (block_alarm_delay != 0) block_alarm_delay--;		// Отсчет времени запрета повторной фиксации тревоги			
 }
 //=====================================================================================================================================================
 ISR (INT0_vect)												// Прерывание по INT0
@@ -251,11 +254,10 @@ ISR (INT0_vect)												// Прерывание по INT0
 	if (ppk_mode == GUARD_ON)								// Если ППК в режиме "ПОД ОХРАНОЙ" (тривог до этого момента не было)
 	{
 		ppk_mode = DELAY_IN;								// Переводим ППК в состояние задержка на вход
-		in_out_delay = IN_DELAY;
+		exit_delay = IN_DELAY;
 	} 
 	else ppk_mode = ALARM_ACTIVE;							// Иначе сразу формируем очередную тревогу	
 	GICR = 0<<INT1|0<<INT0;									// Запретим прерывания INT1 и INT0
-//	block_alarm_delay = BLOCK_ALARM_TIME;					// Установим время повторного разрешения прерывания
 }
 //=====================================================================================================================================================
 ISR (INT1_vect)												// Прерывание по INT1
@@ -263,11 +265,10 @@ ISR (INT1_vect)												// Прерывание по INT1
 	if (ppk_mode == GUARD_ON)								// Если ППК в режиме "ПОД ОХРАНОЙ" (тривог до этого момента не было)
 	{
 		ppk_mode = DELAY_IN;								// Переводим ППК в состояние задержка на вход
-		in_out_delay = IN_DELAY;
+		exit_delay = IN_DELAY;
 	} 
 	else ppk_mode = ALARM_ACTIVE;							// Иначе сразу формируем очередную тревогу
 	GICR = 0<<INT1|0<<INT0;									// Запретим прерывания INT1 и INT0
-//	block_alarm_delay = BLOCK_ALARM_TIME;					// Установим время повторного разрешения прерывания
 }
 //=====================================================================================================================================================
 ISR (ANA_COMP_vect)											// Прерывание компаратора, возникает при пропаже сети 220В
@@ -285,6 +286,7 @@ void Ring(void)
 
 	while (ring_mode != 16)									// Пока автомат не перейдет в состояние "Попытки дозвона на все номера осуществлены"
 	{
+		wdt_reset();
 		Siren_Outs_OFF();									// Проверяем сирену и выходы, если пора - выключаем
 
 		if (led_delay == 0) Blink_LED_WORK();				// Мигаем LED_WORK
@@ -322,7 +324,7 @@ void Ring(void)
 				if (parsing_result != IN_PROCESS)			// Независимо от ответа модуля
 				{
 					SendStr_P(ATH);							// Ложим трубку					
-					ActivateParsing(OK_,AT_WAIT_TIME);
+					ActivateParsing(_OK,AT_WAIT_TIME);
 					ring_mode = 4;							// Переводим автомат в состояние "Ожидание отбоя вызова"
 				}
 				break;
@@ -360,7 +362,7 @@ void Ring(void)
 				if (parsing_result != IN_PROCESS)			// Независимо от ответа модуля
 				{
 					SendStr_P(ATH);							// Ложим трубку					
-					ActivateParsing(OK_,AT_WAIT_TIME);
+					ActivateParsing(_OK,AT_WAIT_TIME);
 					ring_mode = 8;							// Переводим автомат в состояние "Ожидание отбоя вызова"
 				}
 				break;
@@ -398,7 +400,7 @@ void Ring(void)
 				if (parsing_result != IN_PROCESS)			// Независимо от ответа модуля
 				{
 					SendStr_P(ATH);							// Ложим трубку					
-					ActivateParsing(OK_,AT_WAIT_TIME);
+					ActivateParsing(_OK,AT_WAIT_TIME);
 					ring_mode = 12;							// Переводим автомат в состояние "Ожидание отбоя вызова"
 				}
 				break;
@@ -422,10 +424,11 @@ void Ring(void)
 				ring_mode = 16;								// Переводим автомат в состояние "Попытки дозвона на все номера осуществлены"
 				break;
 			}
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 			case 14:
 			{
 				SendStr_P(ATH);
-				ActivateParsing(OK_,AT_WAIT_TIME);
+				ActivateParsing(_OK,AT_WAIT_TIME);
 				ring_mode = 15;
 				break;
 			}
@@ -433,21 +436,11 @@ void Ring(void)
 			{
 				if (parsing_result != IN_PROCESS)
 				{
-					ppk_mode = GUARD_OFF;					// Активируем переход в режим "СНЯТО С ОХРАНЫ"						
-					GICR = 0<<INT1|0<<INT0;					// Запретим прерывания INT1 и INT0
-					ATOMIC_BLOCK(ATOMIC_FORCEON)
-					{
-						siren_delay = 0;					// Убираем время звучания сирены, сама сирена выключиться в главном цикле
-						out_delay = 0;						// Убираем время активности выходов, сами выходы выключаться в главном цикле						
-						led_delay = 0;						// Прекращаем мигать светодиодом LED_WORK (ОХРАНА), если он мигал. Это проще чем допольнительная проверка
-						eeprom_update_byte(&ppk_mode_save, GUARD_OFF);// Обновим состояние ППК в EEPROM						
-					}
 				#if defined (DEBUG)
 					LED_PORT |= 1<<LED_WORK;				// ТОЛЬКО ДЛЯ ОТЛАДКИ
 				#else					
 					LED_PORT &= ~(1<<LED_WORK);				// Гасим светодиод ОХРАНА
 				#endif
-					
 					ring_mode = 16;
 				}
 				break;
@@ -464,7 +457,7 @@ void Ring_on_Number(char *number)							// В качестве параметра передаеться указ
 	SendStr_P(ATD);											// Звоним абоненту
 	SendStr(number);
 	SendStr_P(RING_END);
-	ActivateParsing(OK_,RING_WAIT_TIME);					// Активируем ожидание ответа
+	ActivateParsing(_OK,RING_WAIT_TIME);					// Активируем ожидание ответа
 }
 //=====================================================================================================================================================
 // Функция проверки кнопки постановки/снятия
@@ -484,7 +477,7 @@ void CheckButton(unsigned int button_counter_delay)			// Опрашиваем кнопку поста
 					ATOMIC_BLOCK(ATOMIC_FORCEON)
 					{
 						eeprom_update_byte(&ppk_mode_save, DELAY_OUT);// В EEPROM пишем состояние "ПОД ОХРАНОЙ", чтобы при перезагрузке ППК во время задержки на выход получить охраняемый объект
-						in_out_delay = OUT_DELAY;			// Назначим задержку на выход, внутри запрета прерываний, для атомарности
+						exit_delay = OUT_DELAY;			// Назначим задержку на выход, внутри запрета прерываний, для атомарности
 					}
 				#if defined (DEBUG)
 					LED_PORT &= ~(1<<LED_WORK);				// ТОЛЬКО ДЛЯ ОТЛАДКИ
@@ -499,16 +492,16 @@ void CheckButton(unsigned int button_counter_delay)			// Опрашиваем кнопку поста
 					GICR = 0<<INT1|0<<INT0;					// Запретим прерывания INT1 и INT0
 					ATOMIC_BLOCK(ATOMIC_FORCEON)
 					{
+						eeprom_update_byte(&ppk_mode_save, GUARD_OFF);// Обновим состояние ППК в EEPROM
 						siren_delay = 0;					// Убираем время звучания сирены, сама сирена выключиться в главном цикле
 						out_delay = 0;						// Убираем время активности выходов, сами выходы выключаться в главном цикле						
-						led_delay = 0;						// Прекращаем мигать светодиодом LED_WORK (ОХРАНА), если он мигал. Это проще чем допольнительная проверка
-						eeprom_update_byte(&ppk_mode_save, GUARD_OFF);// Обновим состояние ППК в EEPROM						
-					}
-				#if defined (DEBUG)
-					LED_PORT |= 1<<LED_WORK;				// ТОЛЬКО ДЛЯ ОТЛАДКИ
-				#else					
-					LED_PORT &= ~(1<<LED_WORK);				// Гасим светодиод ОХРАНА
-				#endif
+						led_delay = 0;						// Прекращаем мигать светодиодом LED_WORK (ОХРАНА), если он мигал. Это проще чем допольнительная проверка						
+					}					
+					#if defined (DEBUG)
+						LED_PORT |= 1<<LED_WORK;			// ТОЛЬКО ДЛЯ ОТЛАДКИ
+					#else					
+						LED_PORT &= ~(1<<LED_WORK);			// Гасим светодиод ОХРАНА
+					#endif
 				}		
 
 				debounce_delay = 1000;						// Запрещаем реакцию на нажатие кнопки постановки/снятия на 1 сек, для исключения влияния дребезга
@@ -521,7 +514,9 @@ void CheckButton(unsigned int button_counter_delay)			// Опрашиваем кнопку поста
 //=====================================================================================================================================================
 // Функция опроса SIMCOM. Содержит модуль анализа ответов. При неправильном ответе на 5 запросов подряд - перезапустит модуль SIMCOM и произведет его полную переинициализацию
 void CheckSIMCOM(void)									
-{								
+{
+	wdt_reset();
+								
 	if ((parsing_result == OK)&&(parsing_delay == 65535))	// Если предыдущий парсинг закончился успешно, и истекло время парсинга (можно слать следующую АТ-команду)
 	{
 		parsing_fault = NUM_OF_ATTEMPT;						// Обновим счетчик ошибок парсинга
@@ -617,19 +612,19 @@ void SwitchSIMCOM_mode(void)
 		case 4:
 		{			
 			SendStr_P(AT_IPR);								// Задаем скорость обмена с модулем
-			ActivateParsing(OK_,AT_WAIT_TIME);				// Активируем парсинг ответа в обработчике USART_RX_vect
+			ActivateParsing(_OK,AT_WAIT_TIME);				// Активируем парсинг ответа в обработчике USART_RX_vect
 			break;
 		}
 		case 5:
 		{			
 			SendStr_P(AT_GSMBUSY_1);						// Запрет всех входящих звонков
-			ActivateParsing(OK_,AT_WAIT_TIME);				// Активируем парсинг ответа в обработчике USART_RX_vect
+			ActivateParsing(_OK,AT_WAIT_TIME);				// Активируем парсинг ответа в обработчике USART_RX_vect
 			break;
 		}
 		case 6:
 		{			
 			SendStr_P(AT_CMGF);								// Задаем текстовый формат SMS
-			ActivateParsing(OK_,AT_WAIT_TIME);				// Активируем парсинг ответа в обработчике USART_RX_vect
+			ActivateParsing(_OK,AT_WAIT_TIME);				// Активируем парсинг ответа в обработчике USART_RX_vect
 			break;
 		}
 		case 7:
@@ -661,7 +656,7 @@ void SwitchSIMCOM_mode(void)
 		case 11:
 		{			
 			SendStr_P(NO_220);								// Отправляем тело SMS о пропаже сети 220В
-			ActivateParsing(OK_,AT_WAIT_TIME);				// Активируем парсинг отчета о успешной отправке SMS в обработчике USART_RX_vect
+			ActivateParsing(_OK,AT_WAIT_TIME);				// Активируем парсинг отчета о успешной отправке SMS в обработчике USART_RX_vect
 			break;
 		}
 		default: simcom_mode = 1;
@@ -681,17 +676,32 @@ void Programming(void)
 	{
 		CheckSIMCOM();										// Проверяем состояние модуля, регистрацию в сети, и прочее
 	}
-	_delay_ms(2000);
+
+	wdt_reset();
+	_delay_ms(1500);
+	wdt_reset();
 	SendStr_P(AT_GSMBUSY_0);								// Разрешение всех входящих звонков
-	_delay_ms(2000);
+	wdt_reset();
+	_delay_ms(1500);
+	wdt_reset();
 	SendStr_P(AT_CLIP);										// Включаем АОН
-	_delay_ms(2000);
+	wdt_reset();
+	_delay_ms(1500);
+	wdt_reset();
+	SendStr_P(AT_CLCC);										// Переключаем на сокращенный ответ при входящем звонке
+	wdt_reset();
+	_delay_ms(1500);
+	wdt_reset();
 	
 	Switch_Programming_mode();								// Вызываем конечный автомат режима программирования
-
-	_delay_ms(2000);
+	
+	wdt_reset();
+	_delay_ms(1500);
+	wdt_reset();
 	SendStr_P(AT_GSMBUSY_1);								// Запрет всех входящих звонков
-	_delay_ms(2000);
+	wdt_reset();
+	_delay_ms(1500);
+	wdt_reset();
 
 	ATOMIC_BLOCK(ATOMIC_FORCEON)							// Если произошел выход из автомата, значит есть 3 номера в ОЗУ. Копируем их из ОЗУ в EEPROM
 	{
@@ -712,7 +722,10 @@ void Programming(void)
 	#endif
 	
 	pin_state = JUMPER_PINS;								// Читаем состояние всего порта c Джампером программирования
-	while(!(pin_state & (1<<JUMPER_PIN))){}					// Ждем возвращения Джампера программирования в положение "РАБ"		
+	while(!(pin_state & (1<<JUMPER_PIN)))
+	{
+		wdt_reset();
+	}														// Ждем возвращения Джампера программирования в положение "РАБ"		
 }
 //=====================================================================================================================================================
 // Конечный автомат записи номеров дозвона. В зависимости от значения programming_mode, ожидает входящего звонка, либо записывает номер звонящего в ОЗУ
@@ -721,7 +734,8 @@ void Switch_Programming_mode(void)
 	parsing_result = BAD;
 
 	while (programming_mode != 7)							// Пока не запишем 3 звонящих номера
-	{		
+	{
+		wdt_reset();		
 		switch (programming_mode)							// Гоняем конечный автомат записи номеров дозвона
 		{
 			case 1:
@@ -732,7 +746,7 @@ void Switch_Programming_mode(void)
 			case 2:
 			{			
 				SaveNumber_2_RAM(number1, 3);				// Сохраняем номер 1-го абонента в ОЗУ, если он принят
-				_delay_ms(2000);
+				_delay_ms(1500);
 				break;
 			}
 			case 3:
@@ -743,7 +757,7 @@ void Switch_Programming_mode(void)
 			case 4:
 			{
 				SaveNumber_2_RAM(number2, 5);				// Сохраняем номер 2-го абонента в ОЗУ, если он принят
-				_delay_ms(2000);
+				_delay_ms(1500);
 				break;
 			}
 			case 5:
@@ -810,8 +824,7 @@ void ActivateParsing(const char *string, unsigned int _parsing_delay)// На входе
 	parsing_pointer = string;								// Копируем указатель на 1 сивол строки, которую будем парсить в глобальную переменную 
 	ATOMIC_BLOCK(ATOMIC_FORCEON){parsing_delay = _parsing_delay;}// Задаем максимальное время парсинга строки. Сам парсинг может закончиться и раньше
 	temp = UDR;												// Читаем приемник, чтобы сбросить флаг прерывания от всякого мусора, который там был до этого	
-	UCSRB |= 1<<RXCIE;										// Разрешаем прерывание по приходу байта - парсинг начался
-									
+	UCSRB |= 1<<RXCIE;										// Разрешаем прерывание по приходу байта - парсинг начался							
 /*
 	while (parsing_result == IN_PROCESS)					// Ждем успешного окончания, либо ошибки парсинга
 	{
@@ -841,8 +854,8 @@ void SendStr_P(const char *string)							// На входе указатель на символ строки
 {
 	while (pgm_read_byte(string) != '\0')					// Пока байт строки не 0 (конец строки)
 	{
-		SendByte(pgm_read_byte(string));					// Мы продолжаем слать строку
-		string ++;											// Не забывая увеличивать указатель, выбирая следующий символ строки
+		SendByte(pgm_read_byte(string++));					// Мы продолжаем слать строку, не забывая увеличивать указатель, выбирая следующий символ строки
+//		string ++;											// Не забывая увеличивать указатель, выбирая следующий символ строки
 	}
 }
 //=====================================================================================================================================================
@@ -851,8 +864,8 @@ void SendStr(char *string)									// На входе указатель на символ строки
 {
 	while (*string != '\0')									// Пока байт строки не 0 (конец строки)
 	{
-		SendByte(*string);									// Мы продолжаем слать строку
-		string ++;											// Не забывая увеличивать указатель, выбирая следующий символ строки
+		SendByte(*string++);								// Мы продолжаем слать строку, не забывая увеличивать указатель, выбирая следующий символ строки
+//		string ++;											// Не забывая увеличивать указатель, выбирая следующий символ строки
 	}
 }
 //=====================================================================================================================================================
