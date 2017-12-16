@@ -11,7 +11,7 @@ static					char	number1[buffer_max];		// Строка 1 тел. номера в формате "+38 0XX
 static					char	number2[buffer_max];		// Строка 2 тел. номера в формате "+38 0XX XXX XX XX" + 1 для окончания строки
 static					char	number3[buffer_max];		// Строка 3 тел. номера в формате "+38 0XX XXX XX XX" + 1 для окончания строки
 static		unsigned	char	pin_state;					// Переменная для сохранения состояние ножек какого-либо порта
-static		unsigned	char	programming_mode = 1;		// Состояния конечного автомата программирования номеров дозвона
+static		unsigned	char	programming_mode = 0;		// Состояния конечного автомата программирования номеров дозвона
 static		unsigned	char	parsing_fault = NUM_OF_ATTEMPT+1;// Счетчик ошибок парсинга
 static		unsigned	char	simcom_mode = 1;			// Состояния конечного автомата отправки АТ-команд
 static		unsigned	char	simcom_init_mode = 0;		// Состояния инициализации модуля SIMCOM (0 - не готов звонить и слать SMS, 1 - готов звонить и слать SMS) 
@@ -45,7 +45,6 @@ const	char AT_CMGS[]	PROGMEM = "AT+CMGS=\"";				// Отправляем СМС
 const	char AT_CMGS_2[]PROGMEM = "\"\r";
 const	char NO_220[]	PROGMEM = "HET 220B\x1A";
 const	char RETURN_220[]PROGMEM ="ECTb 220B\x1A";
-
 const	char ATH[]		PROGMEM = "ATH\r";					// Отбиваем вызов
 const	char AT_GSMBUSY_1[]	PROGMEM = "AT+GSMBUSY=1\r";		// Запрет всех входящих звонков
 const	char AT_GSMBUSY_0[]	PROGMEM = "AT+GSMBUSY=0\r";		// Разрешение всех входящих звонков
@@ -63,9 +62,13 @@ const	char BUSY[]		PROGMEM = "\r\nBUSY\r\n";
 
 // Заводим строки под тел. номера в EEPROM. Обязательно вне main
 unsigned char EEMEM ppk_mode_save = GUARD_OFF;				// Резервная копия состояние ППК в EEPROM. Вычитываеться при каждом старте системы.
-unsigned char EEMEM ee_number1[buffer_max] = "+380962581099";// 1 номер в EEPROM
-unsigned char EEMEM ee_number2[buffer_max] = "+380996755968";// 2 номер в EEPROM
-unsigned char EEMEM ee_number3[buffer_max] = "+380962581099";// 3 номер в EEPROM
+//unsigned char EEMEM ee_number1[buffer_max] = "+380962581099";// 1 номер в EEPROM
+//unsigned char EEMEM ee_number2[buffer_max] = "+380996755968";// 2 номер в EEPROM
+//unsigned char EEMEM ee_number3[buffer_max] = "+380962581099";// 3 номер в EEPROM
+
+unsigned char EEMEM ee_number1[buffer_max] = "             ";// 1 номер в EEPROM
+unsigned char EEMEM ee_number2[buffer_max] = "             ";// 2 номер в EEPROM
+unsigned char EEMEM ee_number3[buffer_max] = "             ";// 3 номер в EEPROM
 
 //=====================================================================================================================================================
 // Обьявляем прототипы функций
@@ -100,6 +103,7 @@ int main(void)
 		pin_state = JUMPER_PINS;							// Читаем состояние всего порта c Джампером программирования
 		if (!(pin_state & (1<<JUMPER_PIN))) Programming();	// Если Джампер программирования в положении ПРОГ (вывод JUMPER_PIN на земле), переходим в режим "ПРОГРАММИРОВАНИЕ"
 	}
+	programming_mode = 0;
 
 	wdt_reset();
 	ReadNumbers();											// Читаем записанные телефонные номера из EEPROM в ОЗУ
@@ -525,25 +529,35 @@ void CheckSIMCOM(void)
 		parsing_fault = NUM_OF_ATTEMPT;						// Обновим счетчик ошибок парсинга
 		switch (simcom_mode)								// Переключим состояние автомата SwitchSIMCOM_mode для отправки следующей команды
 		{
-			case 1: break;
-			case 2: simcom_mode = 3; break;					// Модуль SIMCOM перезапущен, начинаем отправку и парсинг Ат-команд
-			case 3: simcom_mode = 4; break;
-			case 4: simcom_mode = 5; break;
-			case 5: simcom_mode = 6; break;
-			case 6: simcom_mode = 7; break;
-			case 7: simcom_mode = 8; break;
-			case 8: simcom_mode = 9; break;
-			case 9:
+			case 1: break;									// Если только зашли в автомат, перезапускаем модуль
+			case 2: simcom_mode = 3; break;					// Если получили ответ на АТ, шлем ATE0
+			case 3: simcom_mode = 4; break;					// Если получили ответ на АТЕ0, шлем AT+IPR
+			case 4: simcom_mode = 5; break;					// Если получили ответ на AT+IPR, шлем AT+CMGF
+			case 5: simcom_mode = 6; break;					// Если получили ответ на AT+CMGF, шлем AT+GSMBUSY=1
+			case 6: simcom_mode = 7; break;					// Если получили ответ на AT+GSMBUSY=1, шлем AT+CPAS
+			case 7: simcom_mode = 8; break;					// Если получили ответ на AT+CPAS, шлем AT+CREG
+			case 8: simcom_mode = 9; break;					// Если получили ответ на AT+CREG, шлем AT+CCALR
+			case 9:											// Если получили ответ на AT+CCALR
 			{
 				simcom_init_mode = 1;						// Модуль SIMCOM прошел полную инициализацию и может совершать звонки и слать SMS
-				simcom_mode = 7;							// Опять проверяем состояние модуля (и так по кругу гоняем состояния 7-8-9)
+				if (programming_mode == 1)					// Если ППК в режиме программирования, продолжаем спец. инициализацию
+					 simcom_mode = 12;						// Шлем AT+CLCC=0
+				else simcom_mode = 7;						// Иначе опять шлем AT+CPAS (и так по кругу гоняем состояния 7-8-9)
 				break;
 			}
-			case 10: simcom_mode = 11; break;
-			case 11:
+			case 10: simcom_mode = 11; break;				// Если получили курсор приема тела SMS, отправляем тело SMS
+			case 11:										// Если успешно отправили SMS
 			{
 				ACSR |= 1<<ACI|1<<ACIE;						// Разрешим прерывания от компаратора для повторной отправки SMS о пропаже 220В	
 				simcom_mode = 7;							// Перелючаем автомат отправки АТ-команд на отправку 1-й команды циклического опроса модуля (AT+CPAS)
+				break;
+			}
+			case 12: simcom_mode = 13; break;				// Если получили ответ на AT+CLCC=0, шлем AT+CLIP
+			case 13: simcom_mode = 14; break;				// Если получили ответ на AT+CLIP, шлем AT+GSMBUSY=0
+			case 14:										// Если получили ответ на AT+GSMBUSY=0
+			{
+				simcom_init_mode = 2;						// Модуль SIMCOM готов принимать и обрабатывать входящие звонки 
+				simcom_mode = 15;							// Ничего не шлем
 				break;
 			}
 			default: simcom_mode = 1;
@@ -575,8 +589,7 @@ void CheckSIMCOM(void)
 //=====================================================================================================================================================
 // Конечный автомат выбора отправляемой АТ-команды. В зависимости от значения simcom_mode, посылает определенную AT-команду
 void SwitchSIMCOM_mode(void)														
-{
-															// Если надо отправить SMS, изменяем выбраное ранее состояние автомата
+{															// Если надо отправить SMS, изменяем выбраное ранее состояние автомата
 	if ((flags & (1<<sms_flag))&&(simcom_init_mode == 1))	// Если установлен признак необходимости отправки SMS и модуль SIMCOM прошел полную инициализацию
 	{
 		simcom_mode = 10;									// Переключим автомат отправки АТ-команд в режим отправки SMS
@@ -619,14 +632,14 @@ void SwitchSIMCOM_mode(void)
 			break;
 		}
 		case 5:
-		{			
-			SendStr_P(AT_GSMBUSY_1);						// Запрет всех входящих звонков
-			ActivateParsing(_OK,AT_WAIT_TIME);				// Активируем парсинг ответа в обработчике USART_RX_vect
+		{
+			SendStr_P(AT_CMGF);								// Задаем текстовый формат SMS
+			ActivateParsing(_OK,AT_WAIT_TIME);				// Активируем парсинг ответа в обработчике USART_RX_vect			
 			break;
 		}
 		case 6:
 		{			
-			SendStr_P(AT_CMGF);								// Задаем текстовый формат SMS
+			SendStr_P(AT_GSMBUSY_1);						// Запрет всех входящих звонков
 			ActivateParsing(_OK,AT_WAIT_TIME);				// Активируем парсинг ответа в обработчике USART_RX_vect
 			break;
 		}
@@ -664,6 +677,29 @@ void SwitchSIMCOM_mode(void)
 			ActivateParsing(_OK,AT_WAIT_TIME);				// Активируем парсинг отчета о успешной отправке SMS в обработчике USART_RX_vect
 			break;
 		}
+		case 12:
+		{
+			SendStr_P(AT_CLCC);								// Переключаем на сокращенный ответ при входящем звонке
+			ActivateParsing(_OK,AT_WAIT_TIME);				// Активируем парсинг ответа в обработчике USART_RX_vect
+			break;
+		}
+		case 13:
+		{
+			SendStr_P(AT_CLIP);								// Включаем АОН
+			ActivateParsing(_OK,AT_WAIT_TIME);				// Активируем парсинг ответа в обработчике USART_RX_vect
+			break;
+		}
+		case 14:
+		{
+			SendStr_P(AT_GSMBUSY_0);						// Разрешение всех входящих звонков
+			ActivateParsing(_OK,AT_WAIT_TIME);				// Активируем парсинг ответа в обработчике USART_RX_vect
+			break;
+		}
+		case 15:
+		{
+			simcom_mode = 6;								// Выставляем автомат в состояние запрета всех входящих звонков, чтобы после процедуры программирования сразу запретить входящие звонки
+			break;
+		}		
 		default: simcom_mode = 1;
 	}
 }
@@ -676,7 +712,7 @@ void Programming(void)
 #else
 	LED_PORT |= 1<<LED_PROG;								// Включим светодиод программирования
 #endif
-
+/*
 	while (simcom_init_mode != 1)							// Пока модуль SIMCOM не пройдет полную инициализацию
 	{
 		CheckSIMCOM();										// Проверяем состояние модуля, регистрацию в сети, и прочее
@@ -697,9 +733,9 @@ void Programming(void)
 	wdt_reset();
 	_delay_ms(1500);
 	wdt_reset();
-	
+
 	Switch_Programming_mode();								// Вызываем конечный автомат режима программирования
-	
+
 	wdt_reset();
 	_delay_ms(1500);
 	wdt_reset();
@@ -707,6 +743,15 @@ void Programming(void)
 	wdt_reset();
 	_delay_ms(1500);
 	wdt_reset();
+*/
+	programming_mode = 1;
+
+	while (simcom_init_mode != 2)							// Пока модуль SIMCOM не настроится на прием входящих звонков
+	{
+		CheckSIMCOM();										// Выполняем команды автомата
+	}
+
+	Switch_Programming_mode();								// Вызываем конечный автомат режима программирования
 
 	ATOMIC_BLOCK(ATOMIC_FORCEON)							// Если произошел выход из автомата, значит есть 3 номера в ОЗУ. Копируем их из ОЗУ в EEPROM
 	{
@@ -751,7 +796,7 @@ void Switch_Programming_mode(void)
 			case 2:
 			{			
 				SaveNumber_2_RAM(number1, 3);				// Сохраняем номер 1-го абонента в ОЗУ, если он принят
-				_delay_ms(1500);
+				_delay_ms(500);
 				break;
 			}
 			case 3:
@@ -762,7 +807,7 @@ void Switch_Programming_mode(void)
 			case 4:
 			{
 				SaveNumber_2_RAM(number2, 5);				// Сохраняем номер 2-го абонента в ОЗУ, если он принят
-				_delay_ms(1500);
+				_delay_ms(500);
 				break;
 			}
 			case 5:
@@ -773,6 +818,7 @@ void Switch_Programming_mode(void)
 			case 6:
 			{			
 				SaveNumber_2_RAM(number3, 7);				// Сохраняем номер 3-го абонента в ОЗУ, если он принят
+				_delay_ms(500);
 				break;
 			}
 			default: programming_mode = 1; break;
@@ -785,7 +831,7 @@ void Wait_RING(unsigned int _led_delay, unsigned char next_programming_mode)// В
 {
 	if (parsing_result == BAD)								// Если входящего звонка нет
 	{
-		ActivateParsing(RING,WAIT_INCOMING_CALL_TIME);		// Активируем ожидание 1-го звонка в течении 65 сек
+		ActivateParsing(RING,WAIT_INCOMING_CALL_TIME);		// Активируем ожидание входящего звонка в течении Х секунд, потом перезупеск
 	}
 	if (parsing_result == OK)								// Если распознан входящий звонок
 	{							
@@ -860,7 +906,6 @@ void SendStr_P(const char *string)							// На входе указатель на символ строки
 	while (pgm_read_byte(string) != '\0')					// Пока байт строки не 0 (конец строки)
 	{
 		SendByte(pgm_read_byte(string++));					// Мы продолжаем слать строку, не забывая увеличивать указатель, выбирая следующий символ строки
-//		string ++;											// Не забывая увеличивать указатель, выбирая следующий символ строки
 	}
 }
 //=====================================================================================================================================================
@@ -870,7 +915,6 @@ void SendStr(char *string)									// На входе указатель на символ строки
 	while (*string != '\0')									// Пока байт строки не 0 (конец строки)
 	{
 		SendByte(*string++);								// Мы продолжаем слать строку, не забывая увеличивать указатель, выбирая следующий символ строки
-//		string ++;											// Не забывая увеличивать указатель, выбирая следующий символ строки
 	}
 }
 //=====================================================================================================================================================
@@ -982,9 +1026,9 @@ void Init(void)
 #endif
 
 // Настроим Аналоговый компаратор
-	if (pin_state & (1<<PD7))								// Если на момент инициализации на пине высокий уровень, значит есть сеть 220В, поэтому				
-	ACSR |= 1<<ACBG|1<<ACIE|1<<ACIS1|1<<ACIS0;				// Подключаем внутренний ИОН, разрешаем прерывание от компаратора, условие возникновения прерывания - переход выхода компаратора с 0 на 1 (вывод PD7 садиться на землю).
-	else ACSR |= 1<<ACBG|1<<ACIE|1<<ACIS1;					// Подключаем внутренний ИОН, разрешаем прерывание от компаратора, условие возникновения прерывания - переход выхода компаратора с 1 на 0 (вывод PD7 подтягивается к питанию).
+	if (!(pin_state & (1<<PD7)))							// Если на момент инициализации на пине низкий уровень, значит нет сети 220В,				
+	ACSR |= 1<<ACBG|1<<ACIE|1<<ACIS1|1<<ACIS0;				// поэтому подключаем внутренний ИОН, разрешаем прерывание от компаратора, условие возникновения прерывания - переход выхода компаратора с 0 на 1.
+	else ACSR |= 1<<ACBG|1<<ACIE|1<<ACIS1;					// иначе есть сеть 220В, поэтому подключаем внутренний ИОН, разрешаем прерывание от компаратора, условие возникновения прерывания - переход выхода компаратора с 1 на 0.
 }
 //=====================================================================================================================================================
 // Прерывание по опустошению буффера передатчика UART

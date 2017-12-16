@@ -130,7 +130,7 @@ LOAD c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0xd02
+.text           0x00000000      0xcb0
  *(.vectors)
  .vectors       0x00000000       0x26 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4/crtm8.o
                 0x00000000                __vector_default
@@ -138,70 +138,70 @@ LOAD c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr
  *(.vectors)
  *(.progmem.gcc*)
  .progmem.gcc_sw_table
-                0x00000026       0x48 AVR_caller.o
+                0x00000026       0x56 AVR_caller.o
  *(.progmem*)
- .progmem.data  0x0000006e      0x118 AVR_caller.o
-                0x0000006e                AT
-                0x00000072                ATE0
-                0x00000078                AT_IPR
-                0x00000085                AT_CLCC
-                0x00000090                AT_CMGF
-                0x0000009b                AT_CLIP
-                0x000000a6                AT_CPAS
-                0x000000af                AT_CREG
-                0x000000b9                AT_CCALR
-                0x000000c4                ATD
-                0x000000c8                RING_END
-                0x000000cb                AT_CMGS
-                0x000000d5                AT_CMGS_2
-                0x000000d8                NO_220
-                0x000000e2                RETURN_220
-                0x000000ed                ATH
-                0x000000f2                AT_GSMBUSY_1
-                0x00000100                AT_GSMBUSY_0
-                0x0000010e                AT_OK
-                0x00000118                ATE0_OK
-                0x00000124                _OK
-                0x0000012b                CPAS_OK
-                0x0000013e                CREG_OK
-                0x00000153                CCALR_OK
-                0x00000167                RING
-                0x0000017a                POINTER
-                0x0000017d                BUSY
-                0x00000186                . = ALIGN (0x2)
-                0x00000186                __trampolines_start = .
+ .progmem.data  0x0000007c      0x118 AVR_caller.o
+                0x0000007c                AT
+                0x00000080                ATE0
+                0x00000086                AT_IPR
+                0x00000093                AT_CLCC
+                0x0000009e                AT_CMGF
+                0x000000a9                AT_CLIP
+                0x000000b4                AT_CPAS
+                0x000000bd                AT_CREG
+                0x000000c7                AT_CCALR
+                0x000000d2                ATD
+                0x000000d6                RING_END
+                0x000000d9                AT_CMGS
+                0x000000e3                AT_CMGS_2
+                0x000000e6                NO_220
+                0x000000f0                RETURN_220
+                0x000000fb                ATH
+                0x00000100                AT_GSMBUSY_1
+                0x0000010e                AT_GSMBUSY_0
+                0x0000011c                AT_OK
+                0x00000126                ATE0_OK
+                0x00000132                _OK
+                0x00000139                CPAS_OK
+                0x0000014c                CREG_OK
+                0x00000161                CCALR_OK
+                0x00000175                RING
+                0x00000188                POINTER
+                0x0000018b                BUSY
+                0x00000194                . = ALIGN (0x2)
+                0x00000194                __trampolines_start = .
  *(.trampolines)
- .trampolines   0x00000186        0x0 linker stubs
+ .trampolines   0x00000194        0x0 linker stubs
  *(.trampolines*)
-                0x00000186                __trampolines_end = .
+                0x00000194                __trampolines_end = .
  *(.jumptables)
  *(.jumptables*)
  *(.lowtext)
  *(.lowtext*)
-                0x00000186                __ctors_start = .
+                0x00000194                __ctors_start = .
  *(.ctors)
-                0x00000186                __ctors_end = .
-                0x00000186                __dtors_start = .
+                0x00000194                __ctors_end = .
+                0x00000194                __dtors_start = .
  *(.dtors)
-                0x00000186                __dtors_end = .
+                0x00000194                __dtors_end = .
  SORT(*)(.ctors)
  SORT(*)(.dtors)
  *(.init0)
- .init0         0x00000186        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4/crtm8.o
-                0x00000186                __init
+ .init0         0x00000194        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4/crtm8.o
+                0x00000194                __init
  *(.init0)
  *(.init1)
  *(.init1)
  *(.init2)
- .init2         0x00000186        0xc c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4/crtm8.o
+ .init2         0x00000194        0xc c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4/crtm8.o
  *(.init2)
  *(.init3)
  *(.init3)
  *(.init4)
- .init4         0x00000192       0x16 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_copy_data.o)
-                0x00000192                __do_copy_data
- .init4         0x000001a8       0x10 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_clear_bss.o)
-                0x000001a8                __do_clear_bss
+ .init4         0x000001a0       0x16 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_copy_data.o)
+                0x000001a0                __do_copy_data
+ .init4         0x000001b6       0x10 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_clear_bss.o)
+                0x000001b6                __do_clear_bss
  *(.init4)
  *(.init5)
  *(.init5)
@@ -212,79 +212,79 @@ LOAD c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x000001b8        0x4 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4/crtm8.o
+ .init9         0x000001c6        0x4 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4/crtm8.o
  *(.init9)
  *(.text)
- .text          0x000001bc        0x2 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4/crtm8.o
-                0x000001bc                __vector_12
-                0x000001bc                __bad_interrupt
-                0x000001bc                __vector_3
-                0x000001bc                __vector_13
-                0x000001bc                __vector_17
-                0x000001bc                __vector_7
-                0x000001bc                __vector_5
-                0x000001bc                __vector_4
-                0x000001bc                __vector_9
-                0x000001bc                __vector_15
-                0x000001bc                __vector_8
-                0x000001bc                __vector_14
-                0x000001bc                __vector_10
-                0x000001bc                __vector_18
- .text          0x000001be      0xad0 AVR_caller.o
-                0x000001be                __vector_11
-                0x00000258                __vector_6
-                0x0000034c                __vector_1
-                0x0000038c                __vector_2
-                0x000003cc                __vector_16
-                0x000003fc                CheckButton
-                0x000004a0                ActivateParsing
-                0x000004be                Wait_RING
-                0x00000516                ReadNumbers
-                0x00000542                SendByte
-                0x0000054a                SendStr
-                0x00000570                SendStr_P
-                0x00000590                SaveNumber_2_RAM
-                0x000005f6                Switch_Programming_mode
-                0x0000067c                SwitchSIMCOM_mode
-                0x00000772                CheckSIMCOM
-                0x00000834                Programming
-                0x00000930                Ring_on_Number
-                0x00000956                Blink_LED_WORK
-                0x00000970                Siren_Outs_OFF
-                0x00000990                Ring
-                0x00000af0                Init
-                0x00000b48                main
- .text          0x00000c8e        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_exit.o)
- .text          0x00000c8e        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_copy_data.o)
- .text          0x00000c8e        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_clear_bss.o)
- .text          0x00000c8e        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eerd_block_atmega8.o)
- .text          0x00000c8e        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eerd_byte_atmega8.o)
- .text          0x00000c8e        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eeupd_block_atmega8.o)
- .text          0x00000c8e        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eeupd_byte_atmega8.o)
-                0x00000c8e                . = ALIGN (0x2)
+ .text          0x000001ca        0x2 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4/crtm8.o
+                0x000001ca                __vector_12
+                0x000001ca                __bad_interrupt
+                0x000001ca                __vector_3
+                0x000001ca                __vector_13
+                0x000001ca                __vector_17
+                0x000001ca                __vector_7
+                0x000001ca                __vector_5
+                0x000001ca                __vector_4
+                0x000001ca                __vector_9
+                0x000001ca                __vector_15
+                0x000001ca                __vector_8
+                0x000001ca                __vector_14
+                0x000001ca                __vector_10
+                0x000001ca                __vector_18
+ .text          0x000001cc      0xa70 AVR_caller.o
+                0x000001cc                __vector_11
+                0x00000266                __vector_6
+                0x0000035a                __vector_1
+                0x0000039a                __vector_2
+                0x000003da                __vector_16
+                0x0000040a                CheckButton
+                0x000004ae                ActivateParsing
+                0x000004cc                Wait_RING
+                0x00000524                ReadNumbers
+                0x00000550                SendByte
+                0x00000558                SendStr
+                0x0000057e                SendStr_P
+                0x0000059e                SaveNumber_2_RAM
+                0x00000604                Switch_Programming_mode
+                0x00000688                SwitchSIMCOM_mode
+                0x00000794                CheckSIMCOM
+                0x00000874                Programming
+                0x000008da                Ring_on_Number
+                0x00000900                Blink_LED_WORK
+                0x0000091a                Siren_Outs_OFF
+                0x0000093a                Ring
+                0x00000a9a                Init
+                0x00000af2                main
+ .text          0x00000c3c        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_exit.o)
+ .text          0x00000c3c        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_copy_data.o)
+ .text          0x00000c3c        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_clear_bss.o)
+ .text          0x00000c3c        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eerd_block_atmega8.o)
+ .text          0x00000c3c        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eerd_byte_atmega8.o)
+ .text          0x00000c3c        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eeupd_block_atmega8.o)
+ .text          0x00000c3c        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eeupd_byte_atmega8.o)
+                0x00000c3c                . = ALIGN (0x2)
  *(.text.*)
- .text.libgcc   0x00000c8e        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_exit.o)
- .text.libgcc   0x00000c8e        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_copy_data.o)
- .text.libgcc   0x00000c8e        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x00000c3c        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_exit.o)
+ .text.libgcc   0x00000c3c        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_copy_data.o)
+ .text.libgcc   0x00000c3c        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_clear_bss.o)
  .text.avr-libc
-                0x00000c8e       0x20 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eerd_block_atmega8.o)
-                0x00000c8e                __eerd_block_m8
-                0x00000c92                __eerd_blraw_m8
+                0x00000c3c       0x20 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eerd_block_atmega8.o)
+                0x00000c3c                __eerd_block_m8
+                0x00000c40                __eerd_blraw_m8
  .text.avr-libc
-                0x00000cae       0x10 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eerd_byte_atmega8.o)
-                0x00000cae                __eerd_byte_m8
+                0x00000c5c       0x10 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eerd_byte_atmega8.o)
+                0x00000c5c                __eerd_byte_m8
  .text.avr-libc
-                0x00000cbe       0x1e c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eeupd_block_atmega8.o)
-                0x00000cbe                __eeupd_block_m8
+                0x00000c6c       0x1e c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eeupd_block_atmega8.o)
+                0x00000c6c                __eeupd_block_m8
  .text.avr-libc
-                0x00000cdc       0x22 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eeupd_byte_atmega8.o)
-                0x00000cdc                __eeupd_byte_m8
-                0x00000cde                __eeupd_r18_m8
-                0x00000cfe                . = ALIGN (0x2)
+                0x00000c8a       0x22 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eeupd_byte_atmega8.o)
+                0x00000c8a                __eeupd_byte_m8
+                0x00000c8c                __eeupd_r18_m8
+                0x00000cac                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000cfe        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_exit.o)
-                0x00000cfe                _exit
-                0x00000cfe                exit
+ .fini9         0x00000cac        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_exit.o)
+                0x00000cac                _exit
+                0x00000cac                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -303,36 +303,37 @@ LOAD c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000cfe        0x4 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_exit.o)
+ .fini0         0x00000cac        0x4 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000d02                _etext = .
+                0x00000cb0                _etext = .
 
-.data           0x00800060        0x4 load address 0x00000d02
+.data           0x00800060        0x4 load address 0x00000cb0
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4/crtm8.o
- .data          0x00800060        0x4 AVR_caller.o
+ .data          0x00800060        0x3 AVR_caller.o
                 0x00800060                parsing_result
- .data          0x00800064        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_exit.o)
- .data          0x00800064        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_copy_data.o)
- .data          0x00800064        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_clear_bss.o)
- .data          0x00800064        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eerd_block_atmega8.o)
- .data          0x00800064        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eerd_byte_atmega8.o)
- .data          0x00800064        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eeupd_block_atmega8.o)
- .data          0x00800064        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eeupd_byte_atmega8.o)
+ .data          0x00800063        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_exit.o)
+ .data          0x00800063        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_copy_data.o)
+ .data          0x00800063        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_clear_bss.o)
+ .data          0x00800063        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eerd_block_atmega8.o)
+ .data          0x00800063        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eerd_byte_atmega8.o)
+ .data          0x00800063        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eeupd_block_atmega8.o)
+ .data          0x00800063        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eeupd_byte_atmega8.o)
  *(.data*)
  *(.rodata)
  *(.rodata*)
  *(.gnu.linkonce.d*)
                 0x00800064                . = ALIGN (0x2)
+ *fill*         0x00800063        0x1 00
                 0x00800064                _edata = .
                 0x00800064                PROVIDE (__data_end, .)
 
-.bss            0x00800064       0x4d
+.bss            0x00800064       0x4e
                 0x00800064                PROVIDE (__bss_start, .)
  *(.bss)
  .bss           0x00800064        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4/crtm8.o
- .bss           0x00800064       0x3d AVR_caller.o
+ .bss           0x00800064       0x3e AVR_caller.o
                 0x00800064                buffer_index
                 0x00800065                debounce_delay
                 0x00800067                parsing_delay
@@ -342,28 +343,28 @@ LOAD c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr
                 0x0080006f                out_delay
                 0x00800071                ppk_mode
                 0x00800072                flags
- .bss           0x008000a1        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_exit.o)
- .bss           0x008000a1        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_copy_data.o)
- .bss           0x008000a1        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_clear_bss.o)
- .bss           0x008000a1        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eerd_block_atmega8.o)
- .bss           0x008000a1        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eerd_byte_atmega8.o)
- .bss           0x008000a1        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eeupd_block_atmega8.o)
- .bss           0x008000a1        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eeupd_byte_atmega8.o)
+ .bss           0x008000a2        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_exit.o)
+ .bss           0x008000a2        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_copy_data.o)
+ .bss           0x008000a2        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_clear_bss.o)
+ .bss           0x008000a2        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eerd_block_atmega8.o)
+ .bss           0x008000a2        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eerd_byte_atmega8.o)
+ .bss           0x008000a2        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eeupd_block_atmega8.o)
+ .bss           0x008000a2        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4\libc.a(eeupd_byte_atmega8.o)
  *(.bss*)
  *(COMMON)
- COMMON         0x008000a1       0x10 AVR_caller.o
-                0x008000a1                parsing_pointer
-                0x008000a3                buffer
-                0x008000b1                PROVIDE (__bss_end, .)
-                0x00000d02                __data_load_start = LOADADDR (.data)
-                0x00000d06                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x008000a2       0x10 AVR_caller.o
+                0x008000a2                parsing_pointer
+                0x008000a4                buffer
+                0x008000b2                PROVIDE (__bss_end, .)
+                0x00000cb0                __data_load_start = LOADADDR (.data)
+                0x00000cb4                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008000b1        0x0
-                0x008000b1                PROVIDE (__noinit_start, .)
+.noinit         0x008000b2        0x0
+                0x008000b2                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x008000b1                PROVIDE (__noinit_end, .)
-                0x008000b1                _end = .
-                0x008000b1                PROVIDE (__heap_start, .)
+                0x008000b2                PROVIDE (__noinit_end, .)
+                0x008000b2                _end = .
+                0x008000b2                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000       0x2b
  *(.eeprom*)
@@ -440,18 +441,18 @@ LOAD c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr
  .debug_pubnames
                 0x00000000      0x3b4 AVR_caller.o
 
-.debug_info     0x00000000     0x12ac
+.debug_info     0x00000000     0x1127
  *(.debug_info)
- .debug_info    0x00000000     0x12ac AVR_caller.o
+ .debug_info    0x00000000     0x1127 AVR_caller.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev   0x00000000      0x2a7
+.debug_abbrev   0x00000000      0x28c
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x2a7 AVR_caller.o
+ .debug_abbrev  0x00000000      0x28c AVR_caller.o
 
-.debug_line     0x00000000      0xfef
+.debug_line     0x00000000      0xf5b
  *(.debug_line)
- .debug_line    0x00000000      0xfef AVR_caller.o
+ .debug_line    0x00000000      0xf5b AVR_caller.o
 
 .debug_frame    0x00000000      0x180
  *(.debug_frame)

@@ -3,2632 +3,2599 @@ AVR_caller.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000d02  00000000  00000000  000000b4  2**1
+  0 .text         00000cb0  00000000  00000000  000000b4  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000004  00800060  00000d02  00000db6  2**0
+  1 .data         00000004  00800060  00000cb0  00000d64  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          0000004d  00800064  00800064  00000dba  2**0
+  2 .bss          0000004e  00800064  00800064  00000d68  2**0
                   ALLOC
-  3 .eeprom       0000002b  00810000  00810000  00000dba  2**0
+  3 .eeprom       0000002b  00810000  00810000  00000d68  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  4 .stab         00000a50  00000000  00000000  00000de8  2**2
+  4 .stab         00000a50  00000000  00000000  00000d94  2**2
                   CONTENTS, READONLY, DEBUGGING
-  5 .stabstr      0000026f  00000000  00000000  00001838  2**0
+  5 .stabstr      0000026f  00000000  00000000  000017e4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_aranges 00000020  00000000  00000000  00001aa7  2**0
+  6 .debug_aranges 00000020  00000000  00000000  00001a53  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_pubnames 000003b4  00000000  00000000  00001ac7  2**0
+  7 .debug_pubnames 000003b4  00000000  00000000  00001a73  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_info   000012ac  00000000  00000000  00001e7b  2**0
+  8 .debug_info   00001127  00000000  00000000  00001e27  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_abbrev 000002a7  00000000  00000000  00003127  2**0
+  9 .debug_abbrev 0000028c  00000000  00000000  00002f4e  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_line   00000fef  00000000  00000000  000033ce  2**0
+ 10 .debug_line   00000f5b  00000000  00000000  000031da  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_frame  00000180  00000000  00000000  000043c0  2**2
+ 11 .debug_frame  00000180  00000000  00000000  00004138  2**2
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_str    0000045e  00000000  00000000  00004540  2**0
+ 12 .debug_str    0000045e  00000000  00000000  000042b8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_loc    00000633  00000000  00000000  0000499e  2**0
+ 13 .debug_loc    00000633  00000000  00000000  00004716  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_pubtypes 00000038  00000000  00000000  00004fd1  2**0
+ 14 .debug_pubtypes 00000038  00000000  00000000  00004d49  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_ranges 00000030  00000000  00000000  00005009  2**0
+ 15 .debug_ranges 00000030  00000000  00000000  00004d81  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
-   0:	c2 c0       	rjmp	.+388    	; 0x186 <__ctors_end>
-   2:	a4 c1       	rjmp	.+840    	; 0x34c <__vector_1>
-   4:	c3 c1       	rjmp	.+902    	; 0x38c <__vector_2>
-   6:	da c0       	rjmp	.+436    	; 0x1bc <__bad_interrupt>
-   8:	d9 c0       	rjmp	.+434    	; 0x1bc <__bad_interrupt>
-   a:	d8 c0       	rjmp	.+432    	; 0x1bc <__bad_interrupt>
-   c:	25 c1       	rjmp	.+586    	; 0x258 <__vector_6>
-   e:	d6 c0       	rjmp	.+428    	; 0x1bc <__bad_interrupt>
-  10:	d5 c0       	rjmp	.+426    	; 0x1bc <__bad_interrupt>
-  12:	d4 c0       	rjmp	.+424    	; 0x1bc <__bad_interrupt>
-  14:	d3 c0       	rjmp	.+422    	; 0x1bc <__bad_interrupt>
-  16:	d3 c0       	rjmp	.+422    	; 0x1be <__vector_11>
-  18:	d1 c0       	rjmp	.+418    	; 0x1bc <__bad_interrupt>
-  1a:	d0 c0       	rjmp	.+416    	; 0x1bc <__bad_interrupt>
-  1c:	cf c0       	rjmp	.+414    	; 0x1bc <__bad_interrupt>
-  1e:	ce c0       	rjmp	.+412    	; 0x1bc <__bad_interrupt>
-  20:	d5 c1       	rjmp	.+938    	; 0x3cc <__vector_16>
-  22:	cc c0       	rjmp	.+408    	; 0x1bc <__bad_interrupt>
-  24:	cb c0       	rjmp	.+406    	; 0x1bc <__bad_interrupt>
-  26:	49 c3       	rjmp	.+1682   	; 0x6ba <SwitchSIMCOM_mode+0x3e>
-  28:	5f c3       	rjmp	.+1726   	; 0x6e8 <SwitchSIMCOM_mode+0x6c>
-  2a:	64 c3       	rjmp	.+1736   	; 0x6f4 <SwitchSIMCOM_mode+0x78>
-  2c:	69 c3       	rjmp	.+1746   	; 0x700 <SwitchSIMCOM_mode+0x84>
-  2e:	6b c3       	rjmp	.+1750   	; 0x706 <SwitchSIMCOM_mode+0x8a>
-  30:	6d c3       	rjmp	.+1754   	; 0x70c <SwitchSIMCOM_mode+0x90>
-  32:	6f c3       	rjmp	.+1758   	; 0x712 <SwitchSIMCOM_mode+0x96>
-  34:	74 c3       	rjmp	.+1768   	; 0x71e <SwitchSIMCOM_mode+0xa2>
-  36:	79 c3       	rjmp	.+1778   	; 0x72a <SwitchSIMCOM_mode+0xae>
-  38:	7e c3       	rjmp	.+1788   	; 0x736 <SwitchSIMCOM_mode+0xba>
-  3a:	89 c3       	rjmp	.+1810   	; 0x74e <SwitchSIMCOM_mode+0xd2>
-  3c:	d1 c3       	rjmp	.+1954   	; 0x7e0 <CheckSIMCOM+0x6e>
-  3e:	b5 c3       	rjmp	.+1898   	; 0x7aa <CheckSIMCOM+0x38>
-  40:	b6 c3       	rjmp	.+1900   	; 0x7ae <CheckSIMCOM+0x3c>
-  42:	b9 c3       	rjmp	.+1906   	; 0x7b6 <CheckSIMCOM+0x44>
-  44:	ba c3       	rjmp	.+1908   	; 0x7ba <CheckSIMCOM+0x48>
-  46:	c8 c3       	rjmp	.+1936   	; 0x7d8 <CheckSIMCOM+0x66>
-  48:	ba c3       	rjmp	.+1908   	; 0x7be <CheckSIMCOM+0x4c>
-  4a:	bb c3       	rjmp	.+1910   	; 0x7c2 <CheckSIMCOM+0x50>
-  4c:	bc c3       	rjmp	.+1912   	; 0x7c6 <CheckSIMCOM+0x54>
-  4e:	bf c3       	rjmp	.+1918   	; 0x7ce <CheckSIMCOM+0x5c>
-  50:	c0 c3       	rjmp	.+1920   	; 0x7d2 <CheckSIMCOM+0x60>
-  52:	c8 c4       	rjmp	.+2448   	; 0x9e4 <Ring+0x54>
-  54:	ce c4       	rjmp	.+2460   	; 0x9f2 <Ring+0x62>
-  56:	db c4       	rjmp	.+2486   	; 0xa0e <Ring+0x7e>
-  58:	e0 c4       	rjmp	.+2496   	; 0xa1a <Ring+0x8a>
-  5a:	e4 c4       	rjmp	.+2504   	; 0xa24 <Ring+0x94>
-  5c:	e9 c4       	rjmp	.+2514   	; 0xa30 <Ring+0xa0>
-  5e:	f7 c4       	rjmp	.+2542   	; 0xa4e <Ring+0xbe>
-  60:	fc c4       	rjmp	.+2552   	; 0xa5a <Ring+0xca>
-  62:	00 c5       	rjmp	.+2560   	; 0xa64 <Ring+0xd4>
-  64:	0e c5       	rjmp	.+2588   	; 0xa82 <Ring+0xf2>
-  66:	1c c5       	rjmp	.+2616   	; 0xaa0 <Ring+0x110>
-  68:	20 c5       	rjmp	.+2624   	; 0xaaa <Ring+0x11a>
-  6a:	29 c5       	rjmp	.+2642   	; 0xabe <Ring+0x12e>
-  6c:	31 c5       	rjmp	.+2658   	; 0xad0 <Ring+0x140>
+   0:	c9 c0       	rjmp	.+402    	; 0x194 <__ctors_end>
+   2:	ab c1       	rjmp	.+854    	; 0x35a <__vector_1>
+   4:	ca c1       	rjmp	.+916    	; 0x39a <__vector_2>
+   6:	e1 c0       	rjmp	.+450    	; 0x1ca <__bad_interrupt>
+   8:	e0 c0       	rjmp	.+448    	; 0x1ca <__bad_interrupt>
+   a:	df c0       	rjmp	.+446    	; 0x1ca <__bad_interrupt>
+   c:	2c c1       	rjmp	.+600    	; 0x266 <__vector_6>
+   e:	dd c0       	rjmp	.+442    	; 0x1ca <__bad_interrupt>
+  10:	dc c0       	rjmp	.+440    	; 0x1ca <__bad_interrupt>
+  12:	db c0       	rjmp	.+438    	; 0x1ca <__bad_interrupt>
+  14:	da c0       	rjmp	.+436    	; 0x1ca <__bad_interrupt>
+  16:	da c0       	rjmp	.+436    	; 0x1cc <__vector_11>
+  18:	d8 c0       	rjmp	.+432    	; 0x1ca <__bad_interrupt>
+  1a:	d7 c0       	rjmp	.+430    	; 0x1ca <__bad_interrupt>
+  1c:	d6 c0       	rjmp	.+428    	; 0x1ca <__bad_interrupt>
+  1e:	d5 c0       	rjmp	.+426    	; 0x1ca <__bad_interrupt>
+  20:	dc c1       	rjmp	.+952    	; 0x3da <__vector_16>
+  22:	d3 c0       	rjmp	.+422    	; 0x1ca <__bad_interrupt>
+  24:	d2 c0       	rjmp	.+420    	; 0x1ca <__bad_interrupt>
+  26:	4f c3       	rjmp	.+1694   	; 0x6c6 <SwitchSIMCOM_mode+0x3e>
+  28:	65 c3       	rjmp	.+1738   	; 0x6f4 <SwitchSIMCOM_mode+0x6c>
+  2a:	6a c3       	rjmp	.+1748   	; 0x700 <SwitchSIMCOM_mode+0x78>
+  2c:	6f c3       	rjmp	.+1758   	; 0x70c <SwitchSIMCOM_mode+0x84>
+  2e:	71 c3       	rjmp	.+1762   	; 0x712 <SwitchSIMCOM_mode+0x8a>
+  30:	73 c3       	rjmp	.+1766   	; 0x718 <SwitchSIMCOM_mode+0x90>
+  32:	75 c3       	rjmp	.+1770   	; 0x71e <SwitchSIMCOM_mode+0x96>
+  34:	7a c3       	rjmp	.+1780   	; 0x72a <SwitchSIMCOM_mode+0xa2>
+  36:	7f c3       	rjmp	.+1790   	; 0x736 <SwitchSIMCOM_mode+0xae>
+  38:	84 c3       	rjmp	.+1800   	; 0x742 <SwitchSIMCOM_mode+0xba>
+  3a:	8f c3       	rjmp	.+1822   	; 0x75a <SwitchSIMCOM_mode+0xd2>
+  3c:	96 c3       	rjmp	.+1836   	; 0x76a <SwitchSIMCOM_mode+0xe2>
+  3e:	98 c3       	rjmp	.+1840   	; 0x770 <SwitchSIMCOM_mode+0xe8>
+  40:	9a c3       	rjmp	.+1844   	; 0x776 <SwitchSIMCOM_mode+0xee>
+  42:	a2 c3       	rjmp	.+1860   	; 0x788 <SwitchSIMCOM_mode+0x100>
+  44:	ed c3       	rjmp	.+2010   	; 0x820 <CheckSIMCOM+0x8c>
+  46:	c3 c3       	rjmp	.+1926   	; 0x7ce <CheckSIMCOM+0x3a>
+  48:	c4 c3       	rjmp	.+1928   	; 0x7d2 <CheckSIMCOM+0x3e>
+  4a:	c7 c3       	rjmp	.+1934   	; 0x7da <CheckSIMCOM+0x46>
+  4c:	c8 c3       	rjmp	.+1936   	; 0x7de <CheckSIMCOM+0x4a>
+  4e:	db c3       	rjmp	.+1974   	; 0x806 <CheckSIMCOM+0x72>
+  50:	c8 c3       	rjmp	.+1936   	; 0x7e2 <CheckSIMCOM+0x4e>
+  52:	c9 c3       	rjmp	.+1938   	; 0x7e6 <CheckSIMCOM+0x52>
+  54:	ca c3       	rjmp	.+1940   	; 0x7ea <CheckSIMCOM+0x56>
+  56:	d2 c3       	rjmp	.+1956   	; 0x7fc <CheckSIMCOM+0x68>
+  58:	d3 c3       	rjmp	.+1958   	; 0x800 <CheckSIMCOM+0x6c>
+  5a:	d7 c3       	rjmp	.+1966   	; 0x80a <CheckSIMCOM+0x76>
+  5c:	d8 c3       	rjmp	.+1968   	; 0x80e <CheckSIMCOM+0x7a>
+  5e:	d9 c3       	rjmp	.+1970   	; 0x812 <CheckSIMCOM+0x7e>
+  60:	96 c4       	rjmp	.+2348   	; 0x98e <Ring+0x54>
+  62:	9c c4       	rjmp	.+2360   	; 0x99c <Ring+0x62>
+  64:	a9 c4       	rjmp	.+2386   	; 0x9b8 <Ring+0x7e>
+  66:	ae c4       	rjmp	.+2396   	; 0x9c4 <Ring+0x8a>
+  68:	b2 c4       	rjmp	.+2404   	; 0x9ce <Ring+0x94>
+  6a:	b7 c4       	rjmp	.+2414   	; 0x9da <Ring+0xa0>
+  6c:	c5 c4       	rjmp	.+2442   	; 0x9f8 <Ring+0xbe>
+  6e:	ca c4       	rjmp	.+2452   	; 0xa04 <Ring+0xca>
+  70:	ce c4       	rjmp	.+2460   	; 0xa0e <Ring+0xd4>
+  72:	dc c4       	rjmp	.+2488   	; 0xa2c <Ring+0xf2>
+  74:	ea c4       	rjmp	.+2516   	; 0xa4a <Ring+0x110>
+  76:	ee c4       	rjmp	.+2524   	; 0xa54 <Ring+0x11a>
+  78:	f7 c4       	rjmp	.+2542   	; 0xa68 <Ring+0x12e>
+  7a:	ff c4       	rjmp	.+2558   	; 0xa7a <Ring+0x140>
 
-0000006e <AT>:
-  6e:	41 54 0d 00                                         AT..
+0000007c <AT>:
+  7c:	41 54 0d 00                                         AT..
 
-00000072 <ATE0>:
-  72:	41 54 45 30 0d 00                                   ATE0..
+00000080 <ATE0>:
+  80:	41 54 45 30 0d 00                                   ATE0..
 
-00000078 <AT_IPR>:
-  78:	41 54 2b 49 50 52 3d 39 36 30 30 0d 00              AT+IPR=9600..
+00000086 <AT_IPR>:
+  86:	41 54 2b 49 50 52 3d 39 36 30 30 0d 00              AT+IPR=9600..
 
-00000085 <AT_CLCC>:
-  85:	41 54 2b 43 4c 43 43 3d 30 0d 00                    AT+CLCC=0..
+00000093 <AT_CLCC>:
+  93:	41 54 2b 43 4c 43 43 3d 30 0d 00                    AT+CLCC=0..
 
-00000090 <AT_CMGF>:
-  90:	41 54 2b 43 4d 47 46 3d 31 0d 00                    AT+CMGF=1..
+0000009e <AT_CMGF>:
+  9e:	41 54 2b 43 4d 47 46 3d 31 0d 00                    AT+CMGF=1..
 
-0000009b <AT_CLIP>:
-  9b:	41 54 2b 43 4c 49 50 3d 31 0d 00                    AT+CLIP=1..
+000000a9 <AT_CLIP>:
+  a9:	41 54 2b 43 4c 49 50 3d 31 0d 00                    AT+CLIP=1..
 
-000000a6 <AT_CPAS>:
-  a6:	41 54 2b 43 50 41 53 0d 00                          AT+CPAS..
+000000b4 <AT_CPAS>:
+  b4:	41 54 2b 43 50 41 53 0d 00                          AT+CPAS..
 
-000000af <AT_CREG>:
-  af:	41 54 2b 43 52 45 47 3f 0d 00                       AT+CREG?..
+000000bd <AT_CREG>:
+  bd:	41 54 2b 43 52 45 47 3f 0d 00                       AT+CREG?..
 
-000000b9 <AT_CCALR>:
-  b9:	41 54 2b 43 43 41 4c 52 3f 0d 00                    AT+CCALR?..
+000000c7 <AT_CCALR>:
+  c7:	41 54 2b 43 43 41 4c 52 3f 0d 00                    AT+CCALR?..
 
-000000c4 <ATD>:
-  c4:	41 54 44 00                                         ATD.
+000000d2 <ATD>:
+  d2:	41 54 44 00                                         ATD.
 
-000000c8 <RING_END>:
-  c8:	3b 0d 00                                            ;..
+000000d6 <RING_END>:
+  d6:	3b 0d 00                                            ;..
 
-000000cb <AT_CMGS>:
-  cb:	41 54 2b 43 4d 47 53 3d 22 00                       AT+CMGS=".
+000000d9 <AT_CMGS>:
+  d9:	41 54 2b 43 4d 47 53 3d 22 00                       AT+CMGS=".
 
-000000d5 <AT_CMGS_2>:
-  d5:	22 0d 00                                            "..
+000000e3 <AT_CMGS_2>:
+  e3:	22 0d 00                                            "..
 
-000000d8 <NO_220>:
-  d8:	48 45 54 20 32 32 30 42 1a 00                       HET 220B..
+000000e6 <NO_220>:
+  e6:	48 45 54 20 32 32 30 42 1a 00                       HET 220B..
 
-000000e2 <RETURN_220>:
-  e2:	45 43 54 62 20 32 32 30 42 1a 00                    ECTb 220B..
+000000f0 <RETURN_220>:
+  f0:	45 43 54 62 20 32 32 30 42 1a 00                    ECTb 220B..
 
-000000ed <ATH>:
-  ed:	41 54 48 0d 00                                      ATH..
+000000fb <ATH>:
+  fb:	41 54 48 0d 00                                      ATH..
 
-000000f2 <AT_GSMBUSY_1>:
-  f2:	41 54 2b 47 53 4d 42 55 53 59 3d 31 0d 00           AT+GSMBUSY=1..
+00000100 <AT_GSMBUSY_1>:
+ 100:	41 54 2b 47 53 4d 42 55 53 59 3d 31 0d 00           AT+GSMBUSY=1..
 
-00000100 <AT_GSMBUSY_0>:
- 100:	41 54 2b 47 53 4d 42 55 53 59 3d 30 0d 00           AT+GSMBUSY=0..
+0000010e <AT_GSMBUSY_0>:
+ 10e:	41 54 2b 47 53 4d 42 55 53 59 3d 30 0d 00           AT+GSMBUSY=0..
 
-0000010e <AT_OK>:
- 10e:	41 54 0d 0d 0a 4f 4b 0d 0a 00                       AT...OK...
+0000011c <AT_OK>:
+ 11c:	41 54 0d 0d 0a 4f 4b 0d 0a 00                       AT...OK...
 
-00000118 <ATE0_OK>:
- 118:	41 54 45 30 0d 0d 0a 4f 4b 0d 0a 00                 ATE0...OK...
+00000126 <ATE0_OK>:
+ 126:	41 54 45 30 0d 0d 0a 4f 4b 0d 0a 00                 ATE0...OK...
 
-00000124 <_OK>:
- 124:	0d 0a 4f 4b 0d 0a 00                                ..OK...
+00000132 <_OK>:
+ 132:	0d 0a 4f 4b 0d 0a 00                                ..OK...
 
-0000012b <CPAS_OK>:
- 12b:	0d 0a 2b 43 50 41 53 3a 20 30 0d 0a 0d 0a 4f 4b     ..+CPAS: 0....OK
- 13b:	0d 0a 00                                            ...
+00000139 <CPAS_OK>:
+ 139:	0d 0a 2b 43 50 41 53 3a 20 30 0d 0a 0d 0a 4f 4b     ..+CPAS: 0....OK
+ 149:	0d 0a 00                                            ...
 
-0000013e <CREG_OK>:
- 13e:	0d 0a 2b 43 52 45 47 3a 20 30 2c 31 0d 0a 0d 0a     ..+CREG: 0,1....
- 14e:	4f 4b 0d 0a 00                                      OK...
+0000014c <CREG_OK>:
+ 14c:	0d 0a 2b 43 52 45 47 3a 20 30 2c 31 0d 0a 0d 0a     ..+CREG: 0,1....
+ 15c:	4f 4b 0d 0a 00                                      OK...
 
-00000153 <CCALR_OK>:
- 153:	0d 0a 2b 43 43 41 4c 52 3a 20 31 0d 0a 0d 0a 4f     ..+CCALR: 1....O
- 163:	4b 0d 0a 00                                         K...
+00000161 <CCALR_OK>:
+ 161:	0d 0a 2b 43 43 41 4c 52 3a 20 31 0d 0a 0d 0a 4f     ..+CCALR: 1....O
+ 171:	4b 0d 0a 00                                         K...
 
-00000167 <RING>:
- 167:	0d 0a 52 49 4e 47 0d 0a 0d 0a 2b 43 4c 49 50 3a     ..RING....+CLIP:
- 177:	20 22 00                                             ".
+00000175 <RING>:
+ 175:	0d 0a 52 49 4e 47 0d 0a 0d 0a 2b 43 4c 49 50 3a     ..RING....+CLIP:
+ 185:	20 22 00                                             ".
 
-0000017a <POINTER>:
- 17a:	3e 20 00                                            > .
+00000188 <POINTER>:
+ 188:	3e 20 00                                            > .
 
-0000017d <BUSY>:
- 17d:	0d 0a 42 55 53 59 0d 0a 00                          ..BUSY...
+0000018b <BUSY>:
+ 18b:	0d 0a 42 55 53 59 0d 0a 00                          ..BUSY...
 
-00000186 <__ctors_end>:
- 186:	11 24       	eor	r1, r1
- 188:	1f be       	out	0x3f, r1	; 63
- 18a:	cf e5       	ldi	r28, 0x5F	; 95
- 18c:	d4 e0       	ldi	r29, 0x04	; 4
- 18e:	de bf       	out	0x3e, r29	; 62
- 190:	cd bf       	out	0x3d, r28	; 61
+00000194 <__ctors_end>:
+ 194:	11 24       	eor	r1, r1
+ 196:	1f be       	out	0x3f, r1	; 63
+ 198:	cf e5       	ldi	r28, 0x5F	; 95
+ 19a:	d4 e0       	ldi	r29, 0x04	; 4
+ 19c:	de bf       	out	0x3e, r29	; 62
+ 19e:	cd bf       	out	0x3d, r28	; 61
 
-00000192 <__do_copy_data>:
- 192:	10 e0       	ldi	r17, 0x00	; 0
- 194:	a0 e6       	ldi	r26, 0x60	; 96
- 196:	b0 e0       	ldi	r27, 0x00	; 0
- 198:	e2 e0       	ldi	r30, 0x02	; 2
- 19a:	fd e0       	ldi	r31, 0x0D	; 13
- 19c:	02 c0       	rjmp	.+4      	; 0x1a2 <__do_copy_data+0x10>
- 19e:	05 90       	lpm	r0, Z+
- 1a0:	0d 92       	st	X+, r0
- 1a2:	a4 36       	cpi	r26, 0x64	; 100
- 1a4:	b1 07       	cpc	r27, r17
- 1a6:	d9 f7       	brne	.-10     	; 0x19e <__do_copy_data+0xc>
+000001a0 <__do_copy_data>:
+ 1a0:	10 e0       	ldi	r17, 0x00	; 0
+ 1a2:	a0 e6       	ldi	r26, 0x60	; 96
+ 1a4:	b0 e0       	ldi	r27, 0x00	; 0
+ 1a6:	e0 eb       	ldi	r30, 0xB0	; 176
+ 1a8:	fc e0       	ldi	r31, 0x0C	; 12
+ 1aa:	02 c0       	rjmp	.+4      	; 0x1b0 <__do_copy_data+0x10>
+ 1ac:	05 90       	lpm	r0, Z+
+ 1ae:	0d 92       	st	X+, r0
+ 1b0:	a4 36       	cpi	r26, 0x64	; 100
+ 1b2:	b1 07       	cpc	r27, r17
+ 1b4:	d9 f7       	brne	.-10     	; 0x1ac <__do_copy_data+0xc>
 
-000001a8 <__do_clear_bss>:
- 1a8:	10 e0       	ldi	r17, 0x00	; 0
- 1aa:	a4 e6       	ldi	r26, 0x64	; 100
- 1ac:	b0 e0       	ldi	r27, 0x00	; 0
- 1ae:	01 c0       	rjmp	.+2      	; 0x1b2 <.do_clear_bss_start>
+000001b6 <__do_clear_bss>:
+ 1b6:	10 e0       	ldi	r17, 0x00	; 0
+ 1b8:	a4 e6       	ldi	r26, 0x64	; 100
+ 1ba:	b0 e0       	ldi	r27, 0x00	; 0
+ 1bc:	01 c0       	rjmp	.+2      	; 0x1c0 <.do_clear_bss_start>
 
-000001b0 <.do_clear_bss_loop>:
- 1b0:	1d 92       	st	X+, r1
+000001be <.do_clear_bss_loop>:
+ 1be:	1d 92       	st	X+, r1
 
-000001b2 <.do_clear_bss_start>:
- 1b2:	a1 3b       	cpi	r26, 0xB1	; 177
- 1b4:	b1 07       	cpc	r27, r17
- 1b6:	e1 f7       	brne	.-8      	; 0x1b0 <.do_clear_bss_loop>
- 1b8:	c7 d4       	rcall	.+2446   	; 0xb48 <main>
- 1ba:	a1 c5       	rjmp	.+2882   	; 0xcfe <_exit>
+000001c0 <.do_clear_bss_start>:
+ 1c0:	a2 3b       	cpi	r26, 0xB2	; 178
+ 1c2:	b1 07       	cpc	r27, r17
+ 1c4:	e1 f7       	brne	.-8      	; 0x1be <.do_clear_bss_loop>
+ 1c6:	95 d4       	rcall	.+2346   	; 0xaf2 <main>
+ 1c8:	71 c5       	rjmp	.+2786   	; 0xcac <_exit>
 
-000001bc <__bad_interrupt>:
- 1bc:	21 cf       	rjmp	.-446    	; 0x0 <__vectors>
+000001ca <__bad_interrupt>:
+ 1ca:	1a cf       	rjmp	.-460    	; 0x0 <__vectors>
 
-000001be <__vector_11>:
+000001cc <__vector_11>:
 		}		
 	}
 }
 //=====================================================================================================================================================
 ISR (USART_RXC_vect)										// Прерывание по приходу байта в буффер UART
 {
- 1be:	1f 92       	push	r1
- 1c0:	0f 92       	push	r0
- 1c2:	0f b6       	in	r0, 0x3f	; 63
- 1c4:	0f 92       	push	r0
- 1c6:	11 24       	eor	r1, r1
- 1c8:	8f 93       	push	r24
- 1ca:	9f 93       	push	r25
- 1cc:	ef 93       	push	r30
- 1ce:	ff 93       	push	r31
+ 1cc:	1f 92       	push	r1
+ 1ce:	0f 92       	push	r0
+ 1d0:	0f b6       	in	r0, 0x3f	; 63
+ 1d2:	0f 92       	push	r0
+ 1d4:	11 24       	eor	r1, r1
+ 1d6:	8f 93       	push	r24
+ 1d8:	9f 93       	push	r25
+ 1da:	ef 93       	push	r30
+ 1dc:	ff 93       	push	r31
 	if (ppk_mode == PROG)									// Если прибор в режиме "ПРОГРАММИРОВАНИЕ" (записи телефонных номеров)
- 1d0:	80 91 71 00 	lds	r24, 0x0071
- 1d4:	80 34       	cpi	r24, 0x40	; 64
- 1d6:	b9 f4       	brne	.+46     	; 0x206 <__vector_11+0x48>
+ 1de:	80 91 71 00 	lds	r24, 0x0071
+ 1e2:	80 34       	cpi	r24, 0x40	; 64
+ 1e4:	b9 f4       	brne	.+46     	; 0x214 <__vector_11+0x48>
 	{
 		buffer[buffer_index] = UDR;							// Просто пишем данные (телефонный номер звонящего) в буффер		
- 1d8:	e0 91 64 00 	lds	r30, 0x0064
- 1dc:	f0 e0       	ldi	r31, 0x00	; 0
- 1de:	8c b1       	in	r24, 0x0c	; 12
- 1e0:	ed 55       	subi	r30, 0x5D	; 93
- 1e2:	ff 4f       	sbci	r31, 0xFF	; 255
- 1e4:	80 83       	st	Z, r24
+ 1e6:	e0 91 64 00 	lds	r30, 0x0064
+ 1ea:	f0 e0       	ldi	r31, 0x00	; 0
+ 1ec:	8c b1       	in	r24, 0x0c	; 12
+ 1ee:	ec 55       	subi	r30, 0x5C	; 92
+ 1f0:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1f2:	80 83       	st	Z, r24
 		buffer_index++;										// Увеличиваем индекс
- 1e6:	80 91 64 00 	lds	r24, 0x0064
- 1ea:	8f 5f       	subi	r24, 0xFF	; 255
- 1ec:	80 93 64 00 	sts	0x0064, r24
+ 1f4:	80 91 64 00 	lds	r24, 0x0064
+ 1f8:	8f 5f       	subi	r24, 0xFF	; 255
+ 1fa:	80 93 64 00 	sts	0x0064, r24
 		if (buffer_index == buffer_max-1)					// Если достигли конца буффера 
- 1f0:	80 91 64 00 	lds	r24, 0x0064
- 1f4:	8d 30       	cpi	r24, 0x0D	; 13
- 1f6:	39 f5       	brne	.+78     	; 0x246 <__vector_11+0x88>
+ 1fe:	80 91 64 00 	lds	r24, 0x0064
+ 202:	8d 30       	cpi	r24, 0x0D	; 13
+ 204:	39 f5       	brne	.+78     	; 0x254 <__vector_11+0x88>
 		{
 			buffer[buffer_index] = '\0';					// Запишем признак конца строки
- 1f8:	e0 91 64 00 	lds	r30, 0x0064
- 1fc:	f0 e0       	ldi	r31, 0x00	; 0
- 1fe:	ed 55       	subi	r30, 0x5D	; 93
- 200:	ff 4f       	sbci	r31, 0xFF	; 255
- 202:	10 82       	st	Z, r1
- 204:	1b c0       	rjmp	.+54     	; 0x23c <__vector_11+0x7e>
+ 206:	e0 91 64 00 	lds	r30, 0x0064
+ 20a:	f0 e0       	ldi	r31, 0x00	; 0
+ 20c:	ec 55       	subi	r30, 0x5C	; 92
+ 20e:	ff 4f       	sbci	r31, 0xFF	; 255
+ 210:	10 82       	st	Z, r1
+ 212:	1b c0       	rjmp	.+54     	; 0x24a <__vector_11+0x7e>
 		}			
 	}
 
 	else													// Если прибор парсит приходящие команды, парсим строку посимвольно
 	{
 		if (UDR == pgm_read_byte(parsing_pointer))			// Сравниваем принятый байт с символом из строки  
- 206:	8c b1       	in	r24, 0x0c	; 12
- 208:	e0 91 a1 00 	lds	r30, 0x00A1
- 20c:	f0 91 a2 00 	lds	r31, 0x00A2
- 210:	e4 91       	lpm	r30, Z+
- 212:	8e 17       	cp	r24, r30
- 214:	a9 f4       	brne	.+42     	; 0x240 <__vector_11+0x82>
+ 214:	8c b1       	in	r24, 0x0c	; 12
+ 216:	e0 91 a2 00 	lds	r30, 0x00A2
+ 21a:	f0 91 a3 00 	lds	r31, 0x00A3
+ 21e:	e4 91       	lpm	r30, Z+
+ 220:	8e 17       	cp	r24, r30
+ 222:	a9 f4       	brne	.+42     	; 0x24e <__vector_11+0x82>
 		{													// Если идентичны		
 			parsing_pointer++;								// Увеличиваем указатель, выбирая следующий символ строки
- 216:	80 91 a1 00 	lds	r24, 0x00A1
- 21a:	90 91 a2 00 	lds	r25, 0x00A2
- 21e:	01 96       	adiw	r24, 0x01	; 1
- 220:	90 93 a2 00 	sts	0x00A2, r25
- 224:	80 93 a1 00 	sts	0x00A1, r24
+ 224:	80 91 a2 00 	lds	r24, 0x00A2
+ 228:	90 91 a3 00 	lds	r25, 0x00A3
+ 22c:	01 96       	adiw	r24, 0x01	; 1
+ 22e:	90 93 a3 00 	sts	0x00A3, r25
+ 232:	80 93 a2 00 	sts	0x00A2, r24
 			if (pgm_read_byte(parsing_pointer) == '\0')		// Если следующий байт строки 0 (конец строки)
- 228:	e0 91 a1 00 	lds	r30, 0x00A1
- 22c:	f0 91 a2 00 	lds	r31, 0x00A2
- 230:	e4 91       	lpm	r30, Z+
- 232:	ee 23       	and	r30, r30
- 234:	41 f4       	brne	.+16     	; 0x246 <__vector_11+0x88>
+ 236:	e0 91 a2 00 	lds	r30, 0x00A2
+ 23a:	f0 91 a3 00 	lds	r31, 0x00A3
+ 23e:	e4 91       	lpm	r30, Z+
+ 240:	ee 23       	and	r30, r30
+ 242:	41 f4       	brne	.+16     	; 0x254 <__vector_11+0x88>
 			{			
 				parsing_result = OK;						// Устанавливаем признак успешного окончания парсинга
- 236:	81 e0       	ldi	r24, 0x01	; 1
- 238:	80 93 60 00 	sts	0x0060, r24
+ 244:	81 e0       	ldi	r24, 0x01	; 1
+ 246:	80 93 60 00 	sts	0x0060, r24
 				UCSRB &= ~(1<<RXCIE);						// Запрещаем прерывание по приходу байта - прием закончен			
- 23c:	57 98       	cbi	0x0a, 7	; 10
- 23e:	03 c0       	rjmp	.+6      	; 0x246 <__vector_11+0x88>
+ 24a:	57 98       	cbi	0x0a, 7	; 10
+ 24c:	03 c0       	rjmp	.+6      	; 0x254 <__vector_11+0x88>
 			}
 		}
 
 		else parsing_result = BAD;							// Если не идентичны - возвращаем признак ошибки парсинга. Не 0, чтобы сразу зафиксировать неудачный парсинг
- 240:	82 e0       	ldi	r24, 0x02	; 2
- 242:	80 93 60 00 	sts	0x0060, r24
+ 24e:	82 e0       	ldi	r24, 0x02	; 2
+ 250:	80 93 60 00 	sts	0x0060, r24
 	}
 }
- 246:	ff 91       	pop	r31
- 248:	ef 91       	pop	r30
- 24a:	9f 91       	pop	r25
- 24c:	8f 91       	pop	r24
- 24e:	0f 90       	pop	r0
- 250:	0f be       	out	0x3f, r0	; 63
- 252:	0f 90       	pop	r0
- 254:	1f 90       	pop	r1
- 256:	18 95       	reti
+ 254:	ff 91       	pop	r31
+ 256:	ef 91       	pop	r30
+ 258:	9f 91       	pop	r25
+ 25a:	8f 91       	pop	r24
+ 25c:	0f 90       	pop	r0
+ 25e:	0f be       	out	0x3f, r0	; 63
+ 260:	0f 90       	pop	r0
+ 262:	1f 90       	pop	r1
+ 264:	18 95       	reti
 
-00000258 <__vector_6>:
+00000266 <__vector_6>:
 //=====================================================================================================================================================
 ISR (TIMER1_COMPA_vect)										// Прерывание по совпадению Timer1
 {
- 258:	1f 92       	push	r1
- 25a:	0f 92       	push	r0
- 25c:	0f b6       	in	r0, 0x3f	; 63
- 25e:	0f 92       	push	r0
- 260:	11 24       	eor	r1, r1
- 262:	2f 93       	push	r18
- 264:	8f 93       	push	r24
- 266:	9f 93       	push	r25
+ 266:	1f 92       	push	r1
+ 268:	0f 92       	push	r0
+ 26a:	0f b6       	in	r0, 0x3f	; 63
+ 26c:	0f 92       	push	r0
+ 26e:	11 24       	eor	r1, r1
+ 270:	2f 93       	push	r18
+ 272:	8f 93       	push	r24
+ 274:	9f 93       	push	r25
 	if (parsing_delay != 65535)								// Если подсчет времени парсинга не запрещен (записью максимального значения в счетчик)
- 268:	80 91 67 00 	lds	r24, 0x0067
- 26c:	90 91 68 00 	lds	r25, 0x0068
- 270:	2f ef       	ldi	r18, 0xFF	; 255
- 272:	8f 3f       	cpi	r24, 0xFF	; 255
- 274:	92 07       	cpc	r25, r18
- 276:	b9 f0       	breq	.+46     	; 0x2a6 <__vector_6+0x4e>
+ 276:	80 91 67 00 	lds	r24, 0x0067
+ 27a:	90 91 68 00 	lds	r25, 0x0068
+ 27e:	2f ef       	ldi	r18, 0xFF	; 255
+ 280:	8f 3f       	cpi	r24, 0xFF	; 255
+ 282:	92 07       	cpc	r25, r18
+ 284:	b9 f0       	breq	.+46     	; 0x2b4 <__vector_6+0x4e>
 	{		
 		if (parsing_delay != 0) parsing_delay--;
- 278:	80 91 67 00 	lds	r24, 0x0067
- 27c:	90 91 68 00 	lds	r25, 0x0068
- 280:	00 97       	sbiw	r24, 0x00	; 0
- 282:	41 f4       	brne	.+16     	; 0x294 <__vector_6+0x3c>
+ 286:	80 91 67 00 	lds	r24, 0x0067
+ 28a:	90 91 68 00 	lds	r25, 0x0068
+ 28e:	00 97       	sbiw	r24, 0x00	; 0
+ 290:	41 f4       	brne	.+16     	; 0x2a2 <__vector_6+0x3c>
 		else
 		{
 			if (parsing_result != OK)						// Время парсинга исчерпано, если не был установлен признак успешного парсинга
- 284:	80 91 60 00 	lds	r24, 0x0060
- 288:	81 30       	cpi	r24, 0x01	; 1
- 28a:	21 f0       	breq	.+8      	; 0x294 <__vector_6+0x3c>
+ 292:	80 91 60 00 	lds	r24, 0x0060
+ 296:	81 30       	cpi	r24, 0x01	; 1
+ 298:	21 f0       	breq	.+8      	; 0x2a2 <__vector_6+0x3c>
 			{
 				parsing_result = BAD;						// Устанавливаем признак проваленого парсинга
- 28c:	82 e0       	ldi	r24, 0x02	; 2
- 28e:	80 93 60 00 	sts	0x0060, r24
+ 29a:	82 e0       	ldi	r24, 0x02	; 2
+ 29c:	80 93 60 00 	sts	0x0060, r24
 				UCSRB &= ~(1<<RXCIE);						// Запрещаем прерывание по приходу байта - чтобы не отвлекаться на всякую дрянь
- 292:	57 98       	cbi	0x0a, 7	; 10
+ 2a0:	57 98       	cbi	0x0a, 7	; 10
 			}
 			parsing_delay--;								// Запрещаем подсчет времени парсинга (записью максимального значения в счетчик)
- 294:	80 91 67 00 	lds	r24, 0x0067
- 298:	90 91 68 00 	lds	r25, 0x0068
- 29c:	01 97       	sbiw	r24, 0x01	; 1
- 29e:	90 93 68 00 	sts	0x0068, r25
- 2a2:	80 93 67 00 	sts	0x0067, r24
+ 2a2:	80 91 67 00 	lds	r24, 0x0067
+ 2a6:	90 91 68 00 	lds	r25, 0x0068
+ 2aa:	01 97       	sbiw	r24, 0x01	; 1
+ 2ac:	90 93 68 00 	sts	0x0068, r25
+ 2b0:	80 93 67 00 	sts	0x0067, r24
 			else LED_PORT ^= 1<<LED_WORK;
 			led_delay--;									// Запрещаем отсчет времени мигания светодиодов (записью максимального значения в счетчик)
 		}
 	}
 */	
 	if (debounce_delay != 0) debounce_delay--;				// Отсчет времени запрета опроса кнопки постановки/снятия после предыдущего нажатия
- 2a6:	80 91 65 00 	lds	r24, 0x0065
- 2aa:	90 91 66 00 	lds	r25, 0x0066
- 2ae:	00 97       	sbiw	r24, 0x00	; 0
- 2b0:	49 f0       	breq	.+18     	; 0x2c4 <__vector_6+0x6c>
- 2b2:	80 91 65 00 	lds	r24, 0x0065
- 2b6:	90 91 66 00 	lds	r25, 0x0066
- 2ba:	01 97       	sbiw	r24, 0x01	; 1
- 2bc:	90 93 66 00 	sts	0x0066, r25
- 2c0:	80 93 65 00 	sts	0x0065, r24
+ 2b4:	80 91 65 00 	lds	r24, 0x0065
+ 2b8:	90 91 66 00 	lds	r25, 0x0066
+ 2bc:	00 97       	sbiw	r24, 0x00	; 0
+ 2be:	49 f0       	breq	.+18     	; 0x2d2 <__vector_6+0x6c>
+ 2c0:	80 91 65 00 	lds	r24, 0x0065
+ 2c4:	90 91 66 00 	lds	r25, 0x0066
+ 2c8:	01 97       	sbiw	r24, 0x01	; 1
+ 2ca:	90 93 66 00 	sts	0x0066, r25
+ 2ce:	80 93 65 00 	sts	0x0065, r24
 	if (exit_delay != 0) exit_delay--;						// Отсчет задержки вход/выход, если она есть
- 2c4:	80 91 69 00 	lds	r24, 0x0069
- 2c8:	90 91 6a 00 	lds	r25, 0x006A
- 2cc:	00 97       	sbiw	r24, 0x00	; 0
- 2ce:	49 f0       	breq	.+18     	; 0x2e2 <__vector_6+0x8a>
- 2d0:	80 91 69 00 	lds	r24, 0x0069
- 2d4:	90 91 6a 00 	lds	r25, 0x006A
- 2d8:	01 97       	sbiw	r24, 0x01	; 1
- 2da:	90 93 6a 00 	sts	0x006A, r25
- 2de:	80 93 69 00 	sts	0x0069, r24
+ 2d2:	80 91 69 00 	lds	r24, 0x0069
+ 2d6:	90 91 6a 00 	lds	r25, 0x006A
+ 2da:	00 97       	sbiw	r24, 0x00	; 0
+ 2dc:	49 f0       	breq	.+18     	; 0x2f0 <__vector_6+0x8a>
+ 2de:	80 91 69 00 	lds	r24, 0x0069
+ 2e2:	90 91 6a 00 	lds	r25, 0x006A
+ 2e6:	01 97       	sbiw	r24, 0x01	; 1
+ 2e8:	90 93 6a 00 	sts	0x006A, r25
+ 2ec:	80 93 69 00 	sts	0x0069, r24
 	if (siren_delay != 0) siren_delay--;					// Отсчет времени звучания сирены
- 2e2:	80 91 6d 00 	lds	r24, 0x006D
- 2e6:	90 91 6e 00 	lds	r25, 0x006E
- 2ea:	00 97       	sbiw	r24, 0x00	; 0
- 2ec:	49 f0       	breq	.+18     	; 0x300 <__vector_6+0xa8>
- 2ee:	80 91 6d 00 	lds	r24, 0x006D
- 2f2:	90 91 6e 00 	lds	r25, 0x006E
- 2f6:	01 97       	sbiw	r24, 0x01	; 1
- 2f8:	90 93 6e 00 	sts	0x006E, r25
- 2fc:	80 93 6d 00 	sts	0x006D, r24
+ 2f0:	80 91 6d 00 	lds	r24, 0x006D
+ 2f4:	90 91 6e 00 	lds	r25, 0x006E
+ 2f8:	00 97       	sbiw	r24, 0x00	; 0
+ 2fa:	49 f0       	breq	.+18     	; 0x30e <__vector_6+0xa8>
+ 2fc:	80 91 6d 00 	lds	r24, 0x006D
+ 300:	90 91 6e 00 	lds	r25, 0x006E
+ 304:	01 97       	sbiw	r24, 0x01	; 1
+ 306:	90 93 6e 00 	sts	0x006E, r25
+ 30a:	80 93 6d 00 	sts	0x006D, r24
 	if (out_delay != 0) out_delay--;						// Отсчет времени активации выходов
- 300:	80 91 6f 00 	lds	r24, 0x006F
- 304:	90 91 70 00 	lds	r25, 0x0070
- 308:	00 97       	sbiw	r24, 0x00	; 0
- 30a:	49 f0       	breq	.+18     	; 0x31e <__vector_6+0xc6>
- 30c:	80 91 6f 00 	lds	r24, 0x006F
- 310:	90 91 70 00 	lds	r25, 0x0070
- 314:	01 97       	sbiw	r24, 0x01	; 1
- 316:	90 93 70 00 	sts	0x0070, r25
- 31a:	80 93 6f 00 	sts	0x006F, r24
+ 30e:	80 91 6f 00 	lds	r24, 0x006F
+ 312:	90 91 70 00 	lds	r25, 0x0070
+ 316:	00 97       	sbiw	r24, 0x00	; 0
+ 318:	49 f0       	breq	.+18     	; 0x32c <__vector_6+0xc6>
+ 31a:	80 91 6f 00 	lds	r24, 0x006F
+ 31e:	90 91 70 00 	lds	r25, 0x0070
+ 322:	01 97       	sbiw	r24, 0x01	; 1
+ 324:	90 93 70 00 	sts	0x0070, r25
+ 328:	80 93 6f 00 	sts	0x006F, r24
 	if (led_delay != 0) led_delay--;						// Отсчет времени мигания светодиодов
- 31e:	80 91 6b 00 	lds	r24, 0x006B
- 322:	90 91 6c 00 	lds	r25, 0x006C
- 326:	00 97       	sbiw	r24, 0x00	; 0
- 328:	49 f0       	breq	.+18     	; 0x33c <__vector_6+0xe4>
- 32a:	80 91 6b 00 	lds	r24, 0x006B
- 32e:	90 91 6c 00 	lds	r25, 0x006C
- 332:	01 97       	sbiw	r24, 0x01	; 1
- 334:	90 93 6c 00 	sts	0x006C, r25
- 338:	80 93 6b 00 	sts	0x006B, r24
+ 32c:	80 91 6b 00 	lds	r24, 0x006B
+ 330:	90 91 6c 00 	lds	r25, 0x006C
+ 334:	00 97       	sbiw	r24, 0x00	; 0
+ 336:	49 f0       	breq	.+18     	; 0x34a <__vector_6+0xe4>
+ 338:	80 91 6b 00 	lds	r24, 0x006B
+ 33c:	90 91 6c 00 	lds	r25, 0x006C
+ 340:	01 97       	sbiw	r24, 0x01	; 1
+ 342:	90 93 6c 00 	sts	0x006C, r25
+ 346:	80 93 6b 00 	sts	0x006B, r24
 }
- 33c:	9f 91       	pop	r25
- 33e:	8f 91       	pop	r24
- 340:	2f 91       	pop	r18
- 342:	0f 90       	pop	r0
- 344:	0f be       	out	0x3f, r0	; 63
- 346:	0f 90       	pop	r0
- 348:	1f 90       	pop	r1
- 34a:	18 95       	reti
+ 34a:	9f 91       	pop	r25
+ 34c:	8f 91       	pop	r24
+ 34e:	2f 91       	pop	r18
+ 350:	0f 90       	pop	r0
+ 352:	0f be       	out	0x3f, r0	; 63
+ 354:	0f 90       	pop	r0
+ 356:	1f 90       	pop	r1
+ 358:	18 95       	reti
 
-0000034c <__vector_1>:
+0000035a <__vector_1>:
 //=====================================================================================================================================================
 ISR (INT0_vect)												// Прерывание по INT0
 {
- 34c:	1f 92       	push	r1
- 34e:	0f 92       	push	r0
- 350:	0f b6       	in	r0, 0x3f	; 63
- 352:	0f 92       	push	r0
- 354:	11 24       	eor	r1, r1
- 356:	8f 93       	push	r24
- 358:	9f 93       	push	r25
+ 35a:	1f 92       	push	r1
+ 35c:	0f 92       	push	r0
+ 35e:	0f b6       	in	r0, 0x3f	; 63
+ 360:	0f 92       	push	r0
+ 362:	11 24       	eor	r1, r1
+ 364:	8f 93       	push	r24
+ 366:	9f 93       	push	r25
 	if (ppk_mode == GUARD_ON)								// Если ППК в режиме "ПОД ОХРАНОЙ" (тривог до этого момента не было)
- 35a:	80 91 71 00 	lds	r24, 0x0071
- 35e:	81 30       	cpi	r24, 0x01	; 1
- 360:	51 f4       	brne	.+20     	; 0x376 <__vector_1+0x2a>
+ 368:	80 91 71 00 	lds	r24, 0x0071
+ 36c:	81 30       	cpi	r24, 0x01	; 1
+ 36e:	51 f4       	brne	.+20     	; 0x384 <__vector_1+0x2a>
 	{
 		ppk_mode = DELAY_IN;								// Переводим ППК в состояние задержка на вход
- 362:	80 e2       	ldi	r24, 0x20	; 32
- 364:	80 93 71 00 	sts	0x0071, r24
+ 370:	80 e2       	ldi	r24, 0x20	; 32
+ 372:	80 93 71 00 	sts	0x0071, r24
 		exit_delay = IN_DELAY;
- 368:	80 e1       	ldi	r24, 0x10	; 16
- 36a:	97 e2       	ldi	r25, 0x27	; 39
- 36c:	90 93 6a 00 	sts	0x006A, r25
- 370:	80 93 69 00 	sts	0x0069, r24
- 374:	03 c0       	rjmp	.+6      	; 0x37c <__vector_1+0x30>
+ 376:	80 e1       	ldi	r24, 0x10	; 16
+ 378:	97 e2       	ldi	r25, 0x27	; 39
+ 37a:	90 93 6a 00 	sts	0x006A, r25
+ 37e:	80 93 69 00 	sts	0x0069, r24
+ 382:	03 c0       	rjmp	.+6      	; 0x38a <__vector_1+0x30>
 	} 
 	else ppk_mode = ALARM_ACTIVE;							// Иначе сразу формируем очередную тревогу	
- 376:	83 e0       	ldi	r24, 0x03	; 3
- 378:	80 93 71 00 	sts	0x0071, r24
+ 384:	83 e0       	ldi	r24, 0x03	; 3
+ 386:	80 93 71 00 	sts	0x0071, r24
 	GICR = 0<<INT1|0<<INT0;									// Запретим прерывания INT1 и INT0
- 37c:	1b be       	out	0x3b, r1	; 59
+ 38a:	1b be       	out	0x3b, r1	; 59
 }
- 37e:	9f 91       	pop	r25
- 380:	8f 91       	pop	r24
- 382:	0f 90       	pop	r0
- 384:	0f be       	out	0x3f, r0	; 63
- 386:	0f 90       	pop	r0
- 388:	1f 90       	pop	r1
- 38a:	18 95       	reti
+ 38c:	9f 91       	pop	r25
+ 38e:	8f 91       	pop	r24
+ 390:	0f 90       	pop	r0
+ 392:	0f be       	out	0x3f, r0	; 63
+ 394:	0f 90       	pop	r0
+ 396:	1f 90       	pop	r1
+ 398:	18 95       	reti
 
-0000038c <__vector_2>:
+0000039a <__vector_2>:
 //=====================================================================================================================================================
 ISR (INT1_vect)												// Прерывание по INT1
 {
- 38c:	1f 92       	push	r1
- 38e:	0f 92       	push	r0
- 390:	0f b6       	in	r0, 0x3f	; 63
- 392:	0f 92       	push	r0
- 394:	11 24       	eor	r1, r1
- 396:	8f 93       	push	r24
- 398:	9f 93       	push	r25
+ 39a:	1f 92       	push	r1
+ 39c:	0f 92       	push	r0
+ 39e:	0f b6       	in	r0, 0x3f	; 63
+ 3a0:	0f 92       	push	r0
+ 3a2:	11 24       	eor	r1, r1
+ 3a4:	8f 93       	push	r24
+ 3a6:	9f 93       	push	r25
 	if (ppk_mode == GUARD_ON)								// Если ППК в режиме "ПОД ОХРАНОЙ" (тривог до этого момента не было)
- 39a:	80 91 71 00 	lds	r24, 0x0071
- 39e:	81 30       	cpi	r24, 0x01	; 1
- 3a0:	51 f4       	brne	.+20     	; 0x3b6 <__vector_2+0x2a>
+ 3a8:	80 91 71 00 	lds	r24, 0x0071
+ 3ac:	81 30       	cpi	r24, 0x01	; 1
+ 3ae:	51 f4       	brne	.+20     	; 0x3c4 <__vector_2+0x2a>
 	{
 		ppk_mode = DELAY_IN;								// Переводим ППК в состояние задержка на вход
- 3a2:	80 e2       	ldi	r24, 0x20	; 32
- 3a4:	80 93 71 00 	sts	0x0071, r24
+ 3b0:	80 e2       	ldi	r24, 0x20	; 32
+ 3b2:	80 93 71 00 	sts	0x0071, r24
 		exit_delay = IN_DELAY;
- 3a8:	80 e1       	ldi	r24, 0x10	; 16
- 3aa:	97 e2       	ldi	r25, 0x27	; 39
- 3ac:	90 93 6a 00 	sts	0x006A, r25
- 3b0:	80 93 69 00 	sts	0x0069, r24
- 3b4:	03 c0       	rjmp	.+6      	; 0x3bc <__vector_2+0x30>
+ 3b6:	80 e1       	ldi	r24, 0x10	; 16
+ 3b8:	97 e2       	ldi	r25, 0x27	; 39
+ 3ba:	90 93 6a 00 	sts	0x006A, r25
+ 3be:	80 93 69 00 	sts	0x0069, r24
+ 3c2:	03 c0       	rjmp	.+6      	; 0x3ca <__vector_2+0x30>
 	} 
 	else ppk_mode = ALARM_ACTIVE;							// Иначе сразу формируем очередную тревогу
- 3b6:	83 e0       	ldi	r24, 0x03	; 3
- 3b8:	80 93 71 00 	sts	0x0071, r24
+ 3c4:	83 e0       	ldi	r24, 0x03	; 3
+ 3c6:	80 93 71 00 	sts	0x0071, r24
 	GICR = 0<<INT1|0<<INT0;									// Запретим прерывания INT1 и INT0
- 3bc:	1b be       	out	0x3b, r1	; 59
+ 3ca:	1b be       	out	0x3b, r1	; 59
 }
- 3be:	9f 91       	pop	r25
- 3c0:	8f 91       	pop	r24
- 3c2:	0f 90       	pop	r0
- 3c4:	0f be       	out	0x3f, r0	; 63
- 3c6:	0f 90       	pop	r0
- 3c8:	1f 90       	pop	r1
- 3ca:	18 95       	reti
+ 3cc:	9f 91       	pop	r25
+ 3ce:	8f 91       	pop	r24
+ 3d0:	0f 90       	pop	r0
+ 3d2:	0f be       	out	0x3f, r0	; 63
+ 3d4:	0f 90       	pop	r0
+ 3d6:	1f 90       	pop	r1
+ 3d8:	18 95       	reti
 
-000003cc <__vector_16>:
+000003da <__vector_16>:
 //=====================================================================================================================================================
 ISR (ANA_COMP_vect)											// Прерывание компаратора, возникает при пропаже сети 220В
 {
- 3cc:	1f 92       	push	r1
- 3ce:	0f 92       	push	r0
- 3d0:	0f b6       	in	r0, 0x3f	; 63
- 3d2:	0f 92       	push	r0
- 3d4:	11 24       	eor	r1, r1
- 3d6:	8f 93       	push	r24
- 3d8:	9f 93       	push	r25
+ 3da:	1f 92       	push	r1
+ 3dc:	0f 92       	push	r0
+ 3de:	0f b6       	in	r0, 0x3f	; 63
+ 3e0:	0f 92       	push	r0
+ 3e2:	11 24       	eor	r1, r1
+ 3e4:	8f 93       	push	r24
+ 3e6:	9f 93       	push	r25
 	flags |= 1<<sms_flag;									// Установим флаг необходимости отправки SMS
- 3da:	80 91 72 00 	lds	r24, 0x0072
- 3de:	81 60       	ori	r24, 0x01	; 1
- 3e0:	80 93 72 00 	sts	0x0072, r24
+ 3e8:	80 91 72 00 	lds	r24, 0x0072
+ 3ec:	81 60       	ori	r24, 0x01	; 1
+ 3ee:	80 93 72 00 	sts	0x0072, r24
 	ACSR &= ~(1<<ACIE);										// Запретим прерывания от компаратора для однократной отправки SMS
- 3e4:	43 98       	cbi	0x08, 3	; 8
+ 3f2:	43 98       	cbi	0x08, 3	; 8
 	ACSR ^= 1<<ACIS0;										// Меняем условие возникновения прерывания - если был переход с 0 на 1, делаем переход с 1 на 0 и наоборот
- 3e6:	88 b1       	in	r24, 0x08	; 8
- 3e8:	91 e0       	ldi	r25, 0x01	; 1
- 3ea:	89 27       	eor	r24, r25
- 3ec:	88 b9       	out	0x08, r24	; 8
+ 3f4:	88 b1       	in	r24, 0x08	; 8
+ 3f6:	91 e0       	ldi	r25, 0x01	; 1
+ 3f8:	89 27       	eor	r24, r25
+ 3fa:	88 b9       	out	0x08, r24	; 8
 }
- 3ee:	9f 91       	pop	r25
- 3f0:	8f 91       	pop	r24
- 3f2:	0f 90       	pop	r0
- 3f4:	0f be       	out	0x3f, r0	; 63
- 3f6:	0f 90       	pop	r0
- 3f8:	1f 90       	pop	r1
- 3fa:	18 95       	reti
+ 3fc:	9f 91       	pop	r25
+ 3fe:	8f 91       	pop	r24
+ 400:	0f 90       	pop	r0
+ 402:	0f be       	out	0x3f, r0	; 63
+ 404:	0f 90       	pop	r0
+ 406:	1f 90       	pop	r1
+ 408:	18 95       	reti
 
-000003fc <CheckButton>:
+0000040a <CheckButton>:
 	ActivateParsing(_OK,RING_WAIT_TIME);					// Активируем ожидание ответа
 }
 //=====================================================================================================================================================
 // Функция проверки кнопки постановки/снятия
 void CheckButton(unsigned int button_counter_delay)			// Опрашиваем кнопку постановки/снятия внутри функций, чтобы не нагружать таймер
 {															// В качестве параметра передаеться количество пропусков циклов (внутри функции, из которой был запущен опрос кнопки) до фактического опроса кнопки
- 3fc:	cf 93       	push	r28
- 3fe:	df 93       	push	r29
- 400:	ec 01       	movw	r28, r24
+ 40a:	cf 93       	push	r28
+ 40c:	df 93       	push	r29
+ 40e:	ec 01       	movw	r28, r24
 	if (debounce_delay == 0)								// Если нет запрета на опрос кнопки постановки/снятия
- 402:	80 91 65 00 	lds	r24, 0x0065
- 406:	90 91 66 00 	lds	r25, 0x0066
- 40a:	00 97       	sbiw	r24, 0x00	; 0
- 40c:	09 f0       	breq	.+2      	; 0x410 <CheckButton+0x14>
- 40e:	45 c0       	rjmp	.+138    	; 0x49a <__stack+0x3b>
+ 410:	80 91 65 00 	lds	r24, 0x0065
+ 414:	90 91 66 00 	lds	r25, 0x0066
+ 418:	00 97       	sbiw	r24, 0x00	; 0
+ 41a:	09 f0       	breq	.+2      	; 0x41e <CheckButton+0x14>
+ 41c:	45 c0       	rjmp	.+138    	; 0x4a8 <__stack+0x49>
 	{
 		check_button_counter--;							
- 410:	80 91 9f 00 	lds	r24, 0x009F
- 414:	90 91 a0 00 	lds	r25, 0x00A0
- 418:	01 97       	sbiw	r24, 0x01	; 1
- 41a:	90 93 a0 00 	sts	0x00A0, r25
- 41e:	80 93 9f 00 	sts	0x009F, r24
+ 41e:	80 91 a0 00 	lds	r24, 0x00A0
+ 422:	90 91 a1 00 	lds	r25, 0x00A1
+ 426:	01 97       	sbiw	r24, 0x01	; 1
+ 428:	90 93 a1 00 	sts	0x00A1, r25
+ 42c:	80 93 a0 00 	sts	0x00A0, r24
 		if (check_button_counter == 0)
- 422:	00 97       	sbiw	r24, 0x00	; 0
- 424:	d1 f5       	brne	.+116    	; 0x49a <__stack+0x3b>
+ 430:	00 97       	sbiw	r24, 0x00	; 0
+ 432:	d1 f5       	brne	.+116    	; 0x4a8 <__stack+0x49>
 		{
 			pin_state = BUTTON_PINS;						// Читаем состояние всего порта
- 426:	86 b3       	in	r24, 0x16	; 22
- 428:	80 93 73 00 	sts	0x0073, r24
+ 434:	86 b3       	in	r24, 0x16	; 22
+ 436:	80 93 73 00 	sts	0x0073, r24
 			if (!(pin_state & (1<<BUTTON_PIN)))				// Если кнопка постановки/снятия нажата, активируем переход в другой режим
- 42c:	85 fd       	sbrc	r24, 5
- 42e:	31 c0       	rjmp	.+98     	; 0x492 <__stack+0x33>
+ 43a:	85 fd       	sbrc	r24, 5
+ 43c:	31 c0       	rjmp	.+98     	; 0x4a0 <__stack+0x41>
 			{
 				if (ppk_mode == GUARD_OFF)					// Если текущий режим "СНЯТО С ОХРАНЫ"						
- 430:	80 91 71 00 	lds	r24, 0x0071
- 434:	88 23       	and	r24, r24
- 436:	89 f4       	brne	.+34     	; 0x45a <CheckButton+0x5e>
+ 43e:	80 91 71 00 	lds	r24, 0x0071
+ 442:	88 23       	and	r24, r24
+ 444:	89 f4       	brne	.+34     	; 0x468 <__stack+0x9>
 				{
 					ppk_mode = DELAY_OUT;					// Активируем режим "ЗАДЕРЖКА НА ВЫХОД"
- 438:	80 e1       	ldi	r24, 0x10	; 16
- 43a:	80 93 71 00 	sts	0x0071, r24
+ 446:	80 e1       	ldi	r24, 0x10	; 16
+ 448:	80 93 71 00 	sts	0x0071, r24
     return 1;
 }
 
 static __inline__ uint8_t __iCliRetVal(void)
 {
     cli();
- 43e:	f8 94       	cli
+ 44c:	f8 94       	cli
 					ATOMIC_BLOCK(ATOMIC_FORCEON)
 					{
 						eeprom_update_byte(&ppk_mode_save, DELAY_OUT);// В EEPROM пишем состояние "ПОД ОХРАНОЙ", чтобы при перезагрузке ППК во время задержки на выход получить охраняемый объект
- 440:	80 e0       	ldi	r24, 0x00	; 0
- 442:	90 e0       	ldi	r25, 0x00	; 0
- 444:	60 e1       	ldi	r22, 0x10	; 16
- 446:	4a d4       	rcall	.+2196   	; 0xcdc <__eeupd_byte_m8>
+ 44e:	80 e0       	ldi	r24, 0x00	; 0
+ 450:	90 e0       	ldi	r25, 0x00	; 0
+ 452:	60 e1       	ldi	r22, 0x10	; 16
+ 454:	1a d4       	rcall	.+2100   	; 0xc8a <__eeupd_byte_m8>
 						exit_delay = OUT_DELAY;			// Назначим задержку на выход, внутри запрета прерываний, для атомарности
- 448:	80 e1       	ldi	r24, 0x10	; 16
- 44a:	97 e2       	ldi	r25, 0x27	; 39
- 44c:	90 93 6a 00 	sts	0x006A, r25
- 450:	80 93 69 00 	sts	0x0069, r24
+ 456:	80 e1       	ldi	r24, 0x10	; 16
+ 458:	97 e2       	ldi	r25, 0x27	; 39
+ 45a:	90 93 6a 00 	sts	0x006A, r25
+ 45e:	80 93 69 00 	sts	0x0069, r24
     return 1;
 }
 
 static __inline__ void __iSeiParam(const uint8_t *__s)
 {
     sei();
- 454:	78 94       	sei
+ 462:	78 94       	sei
 					}
 				#if defined (DEBUG)
 					LED_PORT &= ~(1<<LED_WORK);				// ТОЛЬКО ДЛЯ ОТЛАДКИ
- 456:	c3 98       	cbi	0x18, 3	; 24
- 458:	16 c0       	rjmp	.+44     	; 0x486 <__stack+0x27>
+ 464:	c3 98       	cbi	0x18, 3	; 24
+ 466:	16 c0       	rjmp	.+44     	; 0x494 <__stack+0x35>
 				#endif
 				}
 
 				else										// Иначе текущий режим "ПОД ОХРАНОЙ" либо "ТРЕВОГА"
 				{			
 					ppk_mode = GUARD_OFF;					// Активируем переход в режим "СНЯТО С ОХРАНЫ"						
- 45a:	10 92 71 00 	sts	0x0071, r1
+ 468:	10 92 71 00 	sts	0x0071, r1
 					GICR = 0<<INT1|0<<INT0;					// Запретим прерывания INT1 и INT0
- 45e:	1b be       	out	0x3b, r1	; 59
+ 46c:	1b be       	out	0x3b, r1	; 59
     return 1;
 }
 
 static __inline__ uint8_t __iCliRetVal(void)
 {
     cli();
- 460:	f8 94       	cli
+ 46e:	f8 94       	cli
 					ATOMIC_BLOCK(ATOMIC_FORCEON)
 					{
 						eeprom_update_byte(&ppk_mode_save, GUARD_OFF);// Обновим состояние ППК в EEPROM
- 462:	80 e0       	ldi	r24, 0x00	; 0
- 464:	90 e0       	ldi	r25, 0x00	; 0
- 466:	60 e0       	ldi	r22, 0x00	; 0
- 468:	39 d4       	rcall	.+2162   	; 0xcdc <__eeupd_byte_m8>
+ 470:	80 e0       	ldi	r24, 0x00	; 0
+ 472:	90 e0       	ldi	r25, 0x00	; 0
+ 474:	60 e0       	ldi	r22, 0x00	; 0
+ 476:	09 d4       	rcall	.+2066   	; 0xc8a <__eeupd_byte_m8>
 						siren_delay = 0;					// Убираем время звучания сирены, сама сирена выключиться в главном цикле
- 46a:	10 92 6e 00 	sts	0x006E, r1
- 46e:	10 92 6d 00 	sts	0x006D, r1
+ 478:	10 92 6e 00 	sts	0x006E, r1
+ 47c:	10 92 6d 00 	sts	0x006D, r1
 						out_delay = 0;						// Убираем время активности выходов, сами выходы выключаться в главном цикле						
- 472:	10 92 70 00 	sts	0x0070, r1
- 476:	10 92 6f 00 	sts	0x006F, r1
+ 480:	10 92 70 00 	sts	0x0070, r1
+ 484:	10 92 6f 00 	sts	0x006F, r1
 						led_delay = 0;						// Прекращаем мигать светодиодом LED_WORK (ОХРАНА), если он мигал. Это проще чем допольнительная проверка						
- 47a:	10 92 6c 00 	sts	0x006C, r1
- 47e:	10 92 6b 00 	sts	0x006B, r1
+ 488:	10 92 6c 00 	sts	0x006C, r1
+ 48c:	10 92 6b 00 	sts	0x006B, r1
     return 1;
 }
 
 static __inline__ void __iSeiParam(const uint8_t *__s)
 {
     sei();
- 482:	78 94       	sei
+ 490:	78 94       	sei
 					}					
 					#if defined (DEBUG)
 						LED_PORT |= 1<<LED_WORK;			// ТОЛЬКО ДЛЯ ОТЛАДКИ
- 484:	c3 9a       	sbi	0x18, 3	; 24
+ 492:	c3 9a       	sbi	0x18, 3	; 24
 					#else					
 						LED_PORT &= ~(1<<LED_WORK);			// Гасим светодиод ОХРАНА
 					#endif
 				}		
 
 				debounce_delay = 1000;						// Запрещаем реакцию на нажатие кнопки постановки/снятия на 1 сек, для исключения влияния дребезга
- 486:	88 ee       	ldi	r24, 0xE8	; 232
- 488:	93 e0       	ldi	r25, 0x03	; 3
- 48a:	90 93 66 00 	sts	0x0066, r25
- 48e:	80 93 65 00 	sts	0x0065, r24
+ 494:	88 ee       	ldi	r24, 0xE8	; 232
+ 496:	93 e0       	ldi	r25, 0x03	; 3
+ 498:	90 93 66 00 	sts	0x0066, r25
+ 49c:	80 93 65 00 	sts	0x0065, r24
 			}
 
 			check_button_counter = button_counter_delay;	// Обновляем счетчик опроса кнопки постановки/снятия
- 492:	d0 93 a0 00 	sts	0x00A0, r29
- 496:	c0 93 9f 00 	sts	0x009F, r28
+ 4a0:	d0 93 a1 00 	sts	0x00A1, r29
+ 4a4:	c0 93 a0 00 	sts	0x00A0, r28
 		}
 	}
 }
- 49a:	df 91       	pop	r29
- 49c:	cf 91       	pop	r28
- 49e:	08 95       	ret
+ 4a8:	df 91       	pop	r29
+ 4aa:	cf 91       	pop	r28
+ 4ac:	08 95       	ret
 
-000004a0 <ActivateParsing>:
+000004ae <ActivateParsing>:
 // Активации парсинга строки. Сам парсинг происходит в обработчике USART_RXC_vect. Контроль времени парсинга в обработчике TIMER1_COMPA_vect
 void ActivateParsing(const char *string, unsigned int _parsing_delay)// На входе указатель на 1 символ строки, и время парсинга строки в мс
 {
 	unsigned char temp;
 
 	parsing_result = IN_PROCESS;							// Начинаем парсинг с обнуления признака успешного парсинга/ошибки парсинга	
- 4a0:	10 92 60 00 	sts	0x0060, r1
+ 4ae:	10 92 60 00 	sts	0x0060, r1
 	parsing_pointer = string;								// Копируем указатель на 1 сивол строки, которую будем парсить в глобальную переменную 
- 4a4:	90 93 a2 00 	sts	0x00A2, r25
- 4a8:	80 93 a1 00 	sts	0x00A1, r24
+ 4b2:	90 93 a3 00 	sts	0x00A3, r25
+ 4b6:	80 93 a2 00 	sts	0x00A2, r24
     return 1;
 }
 
 static __inline__ uint8_t __iCliRetVal(void)
 {
     cli();
- 4ac:	f8 94       	cli
+ 4ba:	f8 94       	cli
 	ATOMIC_BLOCK(ATOMIC_FORCEON){parsing_delay = _parsing_delay;}// Задаем максимальное время парсинга строки. Сам парсинг может закончиться и раньше
- 4ae:	70 93 68 00 	sts	0x0068, r23
- 4b2:	60 93 67 00 	sts	0x0067, r22
+ 4bc:	70 93 68 00 	sts	0x0068, r23
+ 4c0:	60 93 67 00 	sts	0x0067, r22
     return 1;
 }
 
 static __inline__ void __iSeiParam(const uint8_t *__s)
 {
     sei();
- 4b6:	78 94       	sei
+ 4c4:	78 94       	sei
 	temp = UDR;												// Читаем приемник, чтобы сбросить флаг прерывания от всякого мусора, который там был до этого	
- 4b8:	8c b1       	in	r24, 0x0c	; 12
+ 4c6:	8c b1       	in	r24, 0x0c	; 12
 	UCSRB |= 1<<RXCIE;										// Разрешаем прерывание по приходу байта - парсинг начался							
- 4ba:	57 9a       	sbi	0x0a, 7	; 10
+ 4c8:	57 9a       	sbi	0x0a, 7	; 10
 		}
 	}
 	if (parsing_result == 1) return OK;
 	else return BAD;
 */
 }
- 4bc:	08 95       	ret
+ 4ca:	08 95       	ret
 
-000004be <Wait_RING>:
+000004cc <Wait_RING>:
 	}
 }
 //=====================================================================================================================================================
 // Активация парсинга признака входящего звонка - "RING", либо переключение на прием номера звонящего абонета в случае входящего звонка
 void Wait_RING(unsigned int _led_delay, unsigned char next_programming_mode)// В качестве параметров передаються: следующее состояние автомата программирования номеров дозвона и период мигания светодиода LED_PROG
 {
- 4be:	1f 93       	push	r17
- 4c0:	cf 93       	push	r28
- 4c2:	df 93       	push	r29
- 4c4:	ec 01       	movw	r28, r24
- 4c6:	16 2f       	mov	r17, r22
+ 4cc:	1f 93       	push	r17
+ 4ce:	cf 93       	push	r28
+ 4d0:	df 93       	push	r29
+ 4d2:	ec 01       	movw	r28, r24
+ 4d4:	16 2f       	mov	r17, r22
 	if (parsing_result == BAD)								// Если входящего звонка нет
- 4c8:	80 91 60 00 	lds	r24, 0x0060
- 4cc:	82 30       	cpi	r24, 0x02	; 2
- 4ce:	29 f4       	brne	.+10     	; 0x4da <Wait_RING+0x1c>
+ 4d6:	80 91 60 00 	lds	r24, 0x0060
+ 4da:	82 30       	cpi	r24, 0x02	; 2
+ 4dc:	29 f4       	brne	.+10     	; 0x4e8 <Wait_RING+0x1c>
 	{
-		ActivateParsing(RING,WAIT_INCOMING_CALL_TIME);		// Активируем ожидание 1-го звонка в течении 65 сек
- 4d0:	87 e6       	ldi	r24, 0x67	; 103
- 4d2:	91 e0       	ldi	r25, 0x01	; 1
- 4d4:	6f ef       	ldi	r22, 0xFF	; 255
- 4d6:	7f ef       	ldi	r23, 0xFF	; 255
- 4d8:	e3 df       	rcall	.-58     	; 0x4a0 <ActivateParsing>
+		ActivateParsing(RING,WAIT_INCOMING_CALL_TIME);		// Активируем ожидание входящего звонка в течении Х секунд, потом перезупеск
+ 4de:	85 e7       	ldi	r24, 0x75	; 117
+ 4e0:	91 e0       	ldi	r25, 0x01	; 1
+ 4e2:	6f ef       	ldi	r22, 0xFF	; 255
+ 4e4:	7f ef       	ldi	r23, 0xFF	; 255
+ 4e6:	e3 df       	rcall	.-58     	; 0x4ae <ActivateParsing>
 	}
 	if (parsing_result == OK)								// Если распознан входящий звонок
- 4da:	80 91 60 00 	lds	r24, 0x0060
- 4de:	81 30       	cpi	r24, 0x01	; 1
- 4e0:	31 f4       	brne	.+12     	; 0x4ee <Wait_RING+0x30>
+ 4e8:	80 91 60 00 	lds	r24, 0x0060
+ 4ec:	81 30       	cpi	r24, 0x01	; 1
+ 4ee:	31 f4       	brne	.+12     	; 0x4fc <Wait_RING+0x30>
 	{							
 		ppk_mode = PROG;									// Включаем режим записи тел.номера
- 4e2:	80 e4       	ldi	r24, 0x40	; 64
- 4e4:	80 93 71 00 	sts	0x0071, r24
+ 4f0:	80 e4       	ldi	r24, 0x40	; 64
+ 4f2:	80 93 71 00 	sts	0x0071, r24
 		UCSRB |= 1<<RXCIE;									// Разрешаем прерывание по приходу байта - запись номера началась
- 4e8:	57 9a       	sbi	0x0a, 7	; 10
+ 4f6:	57 9a       	sbi	0x0a, 7	; 10
 		programming_mode = next_programming_mode;			// Переводим автомат в состояние ожидания окончания записи очередного номера абонента в приемный буффер					
- 4ea:	10 93 61 00 	sts	0x0061, r17
+ 4f8:	10 93 9e 00 	sts	0x009E, r17
 	}
 	if (led_delay == 0)
- 4ee:	80 91 6b 00 	lds	r24, 0x006B
- 4f2:	90 91 6c 00 	lds	r25, 0x006C
- 4f6:	00 97       	sbiw	r24, 0x00	; 0
- 4f8:	51 f4       	brne	.+20     	; 0x50e <Wait_RING+0x50>
+ 4fc:	80 91 6b 00 	lds	r24, 0x006B
+ 500:	90 91 6c 00 	lds	r25, 0x006C
+ 504:	00 97       	sbiw	r24, 0x00	; 0
+ 506:	51 f4       	brne	.+20     	; 0x51c <Wait_RING+0x50>
     return 1;
 }
 
 static __inline__ uint8_t __iCliRetVal(void)
 {
     cli();
- 4fa:	f8 94       	cli
+ 508:	f8 94       	cli
 	{
 		ATOMIC_BLOCK(ATOMIC_FORCEON)
 		{
 			led_delay = _led_delay;							// Мигаем светодиодом LED_PROG с нужной частотой
- 4fc:	d0 93 6c 00 	sts	0x006C, r29
- 500:	c0 93 6b 00 	sts	0x006B, r28
+ 50a:	d0 93 6c 00 	sts	0x006C, r29
+ 50e:	c0 93 6b 00 	sts	0x006B, r28
     return 1;
 }
 
 static __inline__ void __iSeiParam(const uint8_t *__s)
 {
     sei();
- 504:	78 94       	sei
+ 512:	78 94       	sei
 		}
 		LED_PORT ^= 1<<LED_PROG;					
- 506:	88 b3       	in	r24, 0x18	; 24
- 508:	90 e1       	ldi	r25, 0x10	; 16
- 50a:	89 27       	eor	r24, r25
- 50c:	88 bb       	out	0x18, r24	; 24
+ 514:	88 b3       	in	r24, 0x18	; 24
+ 516:	90 e1       	ldi	r25, 0x10	; 16
+ 518:	89 27       	eor	r24, r25
+ 51a:	88 bb       	out	0x18, r24	; 24
 	}
 }
- 50e:	df 91       	pop	r29
- 510:	cf 91       	pop	r28
- 512:	1f 91       	pop	r17
- 514:	08 95       	ret
+ 51c:	df 91       	pop	r29
+ 51e:	cf 91       	pop	r28
+ 520:	1f 91       	pop	r17
+ 522:	08 95       	ret
 
-00000516 <ReadNumbers>:
+00000524 <ReadNumbers>:
 }
 //=====================================================================================================================================================
 // Чтение записанных телефонных номеров из EEPROM в ОЗУ
 void ReadNumbers(void)
 {
 	eeprom_read_block(number1,ee_number1,14);				// Прочесть строку Number_1 из EEPROM, в строку Number1
- 516:	84 e7       	ldi	r24, 0x74	; 116
- 518:	90 e0       	ldi	r25, 0x00	; 0
- 51a:	61 e0       	ldi	r22, 0x01	; 1
- 51c:	70 e0       	ldi	r23, 0x00	; 0
- 51e:	4e e0       	ldi	r20, 0x0E	; 14
- 520:	50 e0       	ldi	r21, 0x00	; 0
- 522:	b5 d3       	rcall	.+1898   	; 0xc8e <__eerd_block_m8>
-	eeprom_read_block(number2,ee_number2,14);				// Прочесть строку Number_2 из EEPROM, в строку Number2
- 524:	82 e8       	ldi	r24, 0x82	; 130
+ 524:	84 e7       	ldi	r24, 0x74	; 116
  526:	90 e0       	ldi	r25, 0x00	; 0
- 528:	6f e0       	ldi	r22, 0x0F	; 15
+ 528:	61 e0       	ldi	r22, 0x01	; 1
  52a:	70 e0       	ldi	r23, 0x00	; 0
  52c:	4e e0       	ldi	r20, 0x0E	; 14
  52e:	50 e0       	ldi	r21, 0x00	; 0
- 530:	ae d3       	rcall	.+1884   	; 0xc8e <__eerd_block_m8>
-	eeprom_read_block(number3,ee_number3,14);				// Прочесть строку Number_3 из EEPROM, в строку Number3
- 532:	80 e9       	ldi	r24, 0x90	; 144
+ 530:	85 d3       	rcall	.+1802   	; 0xc3c <__eerd_block_m8>
+	eeprom_read_block(number2,ee_number2,14);				// Прочесть строку Number_2 из EEPROM, в строку Number2
+ 532:	82 e8       	ldi	r24, 0x82	; 130
  534:	90 e0       	ldi	r25, 0x00	; 0
- 536:	6d e1       	ldi	r22, 0x1D	; 29
+ 536:	6f e0       	ldi	r22, 0x0F	; 15
  538:	70 e0       	ldi	r23, 0x00	; 0
  53a:	4e e0       	ldi	r20, 0x0E	; 14
  53c:	50 e0       	ldi	r21, 0x00	; 0
- 53e:	a7 d3       	rcall	.+1870   	; 0xc8e <__eerd_block_m8>
+ 53e:	7e d3       	rcall	.+1788   	; 0xc3c <__eerd_block_m8>
+	eeprom_read_block(number3,ee_number3,14);				// Прочесть строку Number_3 из EEPROM, в строку Number3
+ 540:	80 e9       	ldi	r24, 0x90	; 144
+ 542:	90 e0       	ldi	r25, 0x00	; 0
+ 544:	6d e1       	ldi	r22, 0x1D	; 29
+ 546:	70 e0       	ldi	r23, 0x00	; 0
+ 548:	4e e0       	ldi	r20, 0x0E	; 14
+ 54a:	50 e0       	ldi	r21, 0x00	; 0
+ 54c:	77 d3       	rcall	.+1774   	; 0xc3c <__eerd_block_m8>
 }
- 540:	08 95       	ret
+ 54e:	08 95       	ret
 
-00000542 <SendByte>:
+00000550 <SendByte>:
 }
 //=====================================================================================================================================================
 // Отправка одного символа строки в UART
 void SendByte(char byte)									// На входе байт
 {
 	while(!(UCSRA & (1<<UDRE)));							// Ждем флага готовности UART
- 542:	5d 9b       	sbis	0x0b, 5	; 11
- 544:	fe cf       	rjmp	.-4      	; 0x542 <SendByte>
+ 550:	5d 9b       	sbis	0x0b, 5	; 11
+ 552:	fe cf       	rjmp	.-4      	; 0x550 <SendByte>
 	UDR=byte;												// Засылаем байт в UART
- 546:	8c b9       	out	0x0c, r24	; 12
+ 554:	8c b9       	out	0x0c, r24	; 12
 }
- 548:	08 95       	ret
+ 556:	08 95       	ret
 
-0000054a <SendStr>:
+00000558 <SendStr>:
 	}
 }
 //=====================================================================================================================================================
 // Отправка строки из ОЗУ в UART
 void SendStr(char *string)									// На входе указатель на символ строки
 {
- 54a:	ef 92       	push	r14
- 54c:	ff 92       	push	r15
- 54e:	cf 93       	push	r28
- 550:	df 93       	push	r29
- 552:	e8 2e       	mov	r14, r24
- 554:	e7 01       	movw	r28, r14
- 556:	7e 01       	movw	r14, r28
- 558:	f9 2e       	mov	r15, r25
- 55a:	e7 01       	movw	r28, r14
+ 558:	ef 92       	push	r14
+ 55a:	ff 92       	push	r15
+ 55c:	cf 93       	push	r28
+ 55e:	df 93       	push	r29
+ 560:	e8 2e       	mov	r14, r24
+ 562:	e7 01       	movw	r28, r14
+ 564:	7e 01       	movw	r14, r28
+ 566:	f9 2e       	mov	r15, r25
+ 568:	e7 01       	movw	r28, r14
 	while (*string != '\0')									// Пока байт строки не 0 (конец строки)
- 55c:	01 c0       	rjmp	.+2      	; 0x560 <SendStr+0x16>
+ 56a:	01 c0       	rjmp	.+2      	; 0x56e <SendStr+0x16>
 	{
 		SendByte(*string++);								// Мы продолжаем слать строку, не забывая увеличивать указатель, выбирая следующий символ строки
- 55e:	f1 df       	rcall	.-30     	; 0x542 <SendByte>
+ 56c:	f1 df       	rcall	.-30     	; 0x550 <SendByte>
 }
 //=====================================================================================================================================================
 // Отправка строки из ОЗУ в UART
 void SendStr(char *string)									// На входе указатель на символ строки
 {
 	while (*string != '\0')									// Пока байт строки не 0 (конец строки)
- 560:	89 91       	ld	r24, Y+
- 562:	88 23       	and	r24, r24
- 564:	e1 f7       	brne	.-8      	; 0x55e <SendStr+0x14>
+ 56e:	89 91       	ld	r24, Y+
+ 570:	88 23       	and	r24, r24
+ 572:	e1 f7       	brne	.-8      	; 0x56c <SendStr+0x14>
 	{
 		SendByte(*string++);								// Мы продолжаем слать строку, не забывая увеличивать указатель, выбирая следующий символ строки
-//		string ++;											// Не забывая увеличивать указатель, выбирая следующий символ строки
 	}
 }
- 566:	df 91       	pop	r29
- 568:	cf 91       	pop	r28
- 56a:	ff 90       	pop	r15
- 56c:	ef 90       	pop	r14
- 56e:	08 95       	ret
+ 574:	df 91       	pop	r29
+ 576:	cf 91       	pop	r28
+ 578:	ff 90       	pop	r15
+ 57a:	ef 90       	pop	r14
+ 57c:	08 95       	ret
 
-00000570 <SendStr_P>:
+0000057e <SendStr_P>:
 	eeprom_read_block(number3,ee_number3,14);				// Прочесть строку Number_3 из EEPROM, в строку Number3
 }
 //=====================================================================================================================================================
 // Отправка строки из флеша в UART
 void SendStr_P(const char *string)							// На входе указатель на символ строки
 {
- 570:	cf 93       	push	r28
- 572:	df 93       	push	r29
- 574:	ec 01       	movw	r28, r24
+ 57e:	cf 93       	push	r28
+ 580:	df 93       	push	r29
+ 582:	ec 01       	movw	r28, r24
 	while (pgm_read_byte(string) != '\0')					// Пока байт строки не 0 (конец строки)
- 576:	04 c0       	rjmp	.+8      	; 0x580 <SendStr_P+0x10>
+ 584:	04 c0       	rjmp	.+8      	; 0x58e <SendStr_P+0x10>
 	{
 		SendByte(pgm_read_byte(string++));					// Мы продолжаем слать строку, не забывая увеличивать указатель, выбирая следующий символ строки
- 578:	21 96       	adiw	r28, 0x01	; 1
- 57a:	fc 01       	movw	r30, r24
- 57c:	84 91       	lpm	r24, Z+
- 57e:	e1 df       	rcall	.-62     	; 0x542 <SendByte>
- 580:	ce 01       	movw	r24, r28
+ 586:	21 96       	adiw	r28, 0x01	; 1
+ 588:	fc 01       	movw	r30, r24
+ 58a:	84 91       	lpm	r24, Z+
+ 58c:	e1 df       	rcall	.-62     	; 0x550 <SendByte>
+ 58e:	ce 01       	movw	r24, r28
 }
 //=====================================================================================================================================================
 // Отправка строки из флеша в UART
 void SendStr_P(const char *string)							// На входе указатель на символ строки
 {
 	while (pgm_read_byte(string) != '\0')					// Пока байт строки не 0 (конец строки)
- 582:	fe 01       	movw	r30, r28
- 584:	24 91       	lpm	r18, Z+
- 586:	22 23       	and	r18, r18
- 588:	b9 f7       	brne	.-18     	; 0x578 <SendStr_P+0x8>
+ 590:	fe 01       	movw	r30, r28
+ 592:	24 91       	lpm	r18, Z+
+ 594:	22 23       	and	r18, r18
+ 596:	b9 f7       	brne	.-18     	; 0x586 <SendStr_P+0x8>
 	{
 		SendByte(pgm_read_byte(string++));					// Мы продолжаем слать строку, не забывая увеличивать указатель, выбирая следующий символ строки
-//		string ++;											// Не забывая увеличивать указатель, выбирая следующий символ строки
 	}
 }
- 58a:	df 91       	pop	r29
- 58c:	cf 91       	pop	r28
- 58e:	08 95       	ret
+ 598:	df 91       	pop	r29
+ 59a:	cf 91       	pop	r28
+ 59c:	08 95       	ret
 
-00000590 <SaveNumber_2_RAM>:
+0000059e <SaveNumber_2_RAM>:
 	}
 }
 //=====================================================================================================================================================
 // Сохранение номера звонящего абонента в ОЗУ
 void SaveNumber_2_RAM(char *number, unsigned char next_programming_mode)// В качестве параметров передаються: указатель на 1 символ номера абонента и следующее состояние автомата программирования номеров дозвона
 {
- 590:	df 93       	push	r29
- 592:	cf 93       	push	r28
- 594:	0f 92       	push	r0
- 596:	cd b7       	in	r28, 0x3d	; 61
- 598:	de b7       	in	r29, 0x3e	; 62
+ 59e:	df 93       	push	r29
+ 5a0:	cf 93       	push	r28
+ 5a2:	0f 92       	push	r0
+ 5a4:	cd b7       	in	r28, 0x3d	; 61
+ 5a6:	de b7       	in	r29, 0x3e	; 62
 	if (buffer_index == buffer_max-1)						// Если приемный буффер полный - приняли весь телефонный номер звонящего
- 59a:	20 91 64 00 	lds	r18, 0x0064
- 59e:	2d 30       	cpi	r18, 0x0D	; 13
- 5a0:	31 f5       	brne	.+76     	; 0x5ee <SaveNumber_2_RAM+0x5e>
+ 5a8:	20 91 64 00 	lds	r18, 0x0064
+ 5ac:	2d 30       	cpi	r18, 0x0D	; 13
+ 5ae:	31 f5       	brne	.+76     	; 0x5fc <SaveNumber_2_RAM+0x5e>
 	{
 		for	(buffer_index = 0; buffer_index != buffer_max-1; buffer_index ++)// Копирем номер звонящего из приемного буффера в строку numberX
- 5a2:	10 92 64 00 	sts	0x0064, r1
- 5a6:	11 c0       	rjmp	.+34     	; 0x5ca <SaveNumber_2_RAM+0x3a>
+ 5b0:	10 92 64 00 	sts	0x0064, r1
+ 5b4:	11 c0       	rjmp	.+34     	; 0x5d8 <SaveNumber_2_RAM+0x3a>
 		{
 			number[buffer_index] = buffer[buffer_index];
- 5a8:	30 91 64 00 	lds	r19, 0x0064
- 5ac:	e0 91 64 00 	lds	r30, 0x0064
- 5b0:	f0 e0       	ldi	r31, 0x00	; 0
- 5b2:	ed 55       	subi	r30, 0x5D	; 93
- 5b4:	ff 4f       	sbci	r31, 0xFF	; 255
- 5b6:	20 81       	ld	r18, Z
- 5b8:	fc 01       	movw	r30, r24
- 5ba:	e3 0f       	add	r30, r19
- 5bc:	f1 1d       	adc	r31, r1
- 5be:	20 83       	st	Z, r18
+ 5b6:	30 91 64 00 	lds	r19, 0x0064
+ 5ba:	e0 91 64 00 	lds	r30, 0x0064
+ 5be:	f0 e0       	ldi	r31, 0x00	; 0
+ 5c0:	ec 55       	subi	r30, 0x5C	; 92
+ 5c2:	ff 4f       	sbci	r31, 0xFF	; 255
+ 5c4:	20 81       	ld	r18, Z
+ 5c6:	fc 01       	movw	r30, r24
+ 5c8:	e3 0f       	add	r30, r19
+ 5ca:	f1 1d       	adc	r31, r1
+ 5cc:	20 83       	st	Z, r18
 // Сохранение номера звонящего абонента в ОЗУ
 void SaveNumber_2_RAM(char *number, unsigned char next_programming_mode)// В качестве параметров передаються: указатель на 1 символ номера абонента и следующее состояние автомата программирования номеров дозвона
 {
 	if (buffer_index == buffer_max-1)						// Если приемный буффер полный - приняли весь телефонный номер звонящего
 	{
 		for	(buffer_index = 0; buffer_index != buffer_max-1; buffer_index ++)// Копирем номер звонящего из приемного буффера в строку numberX
- 5c0:	20 91 64 00 	lds	r18, 0x0064
- 5c4:	2f 5f       	subi	r18, 0xFF	; 255
- 5c6:	20 93 64 00 	sts	0x0064, r18
- 5ca:	20 91 64 00 	lds	r18, 0x0064
- 5ce:	2d 30       	cpi	r18, 0x0D	; 13
- 5d0:	59 f7       	brne	.-42     	; 0x5a8 <SaveNumber_2_RAM+0x18>
+ 5ce:	20 91 64 00 	lds	r18, 0x0064
+ 5d2:	2f 5f       	subi	r18, 0xFF	; 255
+ 5d4:	20 93 64 00 	sts	0x0064, r18
+ 5d8:	20 91 64 00 	lds	r18, 0x0064
+ 5dc:	2d 30       	cpi	r18, 0x0D	; 13
+ 5de:	59 f7       	brne	.-42     	; 0x5b6 <SaveNumber_2_RAM+0x18>
 		{
 			number[buffer_index] = buffer[buffer_index];
 		}
 		SendStr_P(ATH);										// Отклоняем входящий вызов
- 5d2:	8d ee       	ldi	r24, 0xED	; 237
- 5d4:	90 e0       	ldi	r25, 0x00	; 0
- 5d6:	69 83       	std	Y+1, r22	; 0x01
- 5d8:	cb df       	rcall	.-106    	; 0x570 <SendStr_P>
+ 5e0:	8b ef       	ldi	r24, 0xFB	; 251
+ 5e2:	90 e0       	ldi	r25, 0x00	; 0
+ 5e4:	69 83       	std	Y+1, r22	; 0x01
+ 5e6:	cb df       	rcall	.-106    	; 0x57e <SendStr_P>
 		buffer_index = 0;									// Обнуляем указатель массива, чтобы писАть в буффер сначала
- 5da:	10 92 64 00 	sts	0x0064, r1
+ 5e8:	10 92 64 00 	sts	0x0064, r1
 		ppk_mode = GUARD_OFF;								// Включаем режим парсинга команд
- 5de:	10 92 71 00 	sts	0x0071, r1
+ 5ec:	10 92 71 00 	sts	0x0071, r1
 		parsing_result = BAD;								// Активируем ожидание следующего звонка в следующем шаге конечного автомата
- 5e2:	82 e0       	ldi	r24, 0x02	; 2
- 5e4:	80 93 60 00 	sts	0x0060, r24
+ 5f0:	82 e0       	ldi	r24, 0x02	; 2
+ 5f2:	80 93 60 00 	sts	0x0060, r24
 		programming_mode = next_programming_mode;			// Переводим автомат в состоние ожидания следующего звонка 
- 5e8:	69 81       	ldd	r22, Y+1	; 0x01
- 5ea:	60 93 61 00 	sts	0x0061, r22
+ 5f6:	69 81       	ldd	r22, Y+1	; 0x01
+ 5f8:	60 93 9e 00 	sts	0x009E, r22
 	}
 }
- 5ee:	0f 90       	pop	r0
- 5f0:	cf 91       	pop	r28
- 5f2:	df 91       	pop	r29
- 5f4:	08 95       	ret
+ 5fc:	0f 90       	pop	r0
+ 5fe:	cf 91       	pop	r28
+ 600:	df 91       	pop	r29
+ 602:	08 95       	ret
 
-000005f6 <Switch_Programming_mode>:
+00000604 <Switch_Programming_mode>:
 	}														// Ждем возвращения Джампера программирования в положение "РАБ"		
 }
 //=====================================================================================================================================================
 // Конечный автомат записи номеров дозвона. В зависимости от значения programming_mode, ожидает входящего звонка, либо записывает номер звонящего в ОЗУ
 void Switch_Programming_mode(void)													
 {
- 5f6:	1f 93       	push	r17
+ 604:	1f 93       	push	r17
 	parsing_result = BAD;
- 5f8:	82 e0       	ldi	r24, 0x02	; 2
- 5fa:	80 93 60 00 	sts	0x0060, r24
-			case 6:
+ 606:	82 e0       	ldi	r24, 0x02	; 2
+ 608:	80 93 60 00 	sts	0x0060, r24
 			{			
 				SaveNumber_2_RAM(number3, 7);				// Сохраняем номер 3-го абонента в ОЗУ, если он принят
+				_delay_ms(500);
 				break;
 			}
 			default: programming_mode = 1; break;
- 5fe:	11 e0       	ldi	r17, 0x01	; 1
+ 60c:	11 e0       	ldi	r17, 0x01	; 1
 // Конечный автомат записи номеров дозвона. В зависимости от значения programming_mode, ожидает входящего звонка, либо записывает номер звонящего в ОЗУ
 void Switch_Programming_mode(void)													
 {
 	parsing_result = BAD;
 
 	while (programming_mode != 7)							// Пока не запишем 3 звонящих номера
- 600:	37 c0       	rjmp	.+110    	; 0x670 <Switch_Programming_mode+0x7a>
+ 60e:	36 c0       	rjmp	.+108    	; 0x67c <Switch_Programming_mode+0x78>
 	{
 		wdt_reset();		
- 602:	a8 95       	wdr
+ 610:	a8 95       	wdr
 		switch (programming_mode)							// Гоняем конечный автомат записи номеров дозвона
- 604:	83 30       	cpi	r24, 0x03	; 3
- 606:	b1 f0       	breq	.+44     	; 0x634 <Switch_Programming_mode+0x3e>
- 608:	84 30       	cpi	r24, 0x04	; 4
- 60a:	28 f4       	brcc	.+10     	; 0x616 <Switch_Programming_mode+0x20>
- 60c:	81 30       	cpi	r24, 0x01	; 1
- 60e:	51 f0       	breq	.+20     	; 0x624 <Switch_Programming_mode+0x2e>
- 610:	82 30       	cpi	r24, 0x02	; 2
- 612:	61 f5       	brne	.+88     	; 0x66c <Switch_Programming_mode+0x76>
- 614:	0b c0       	rjmp	.+22     	; 0x62c <Switch_Programming_mode+0x36>
- 616:	85 30       	cpi	r24, 0x05	; 5
- 618:	f9 f0       	breq	.+62     	; 0x658 <Switch_Programming_mode+0x62>
- 61a:	85 30       	cpi	r24, 0x05	; 5
- 61c:	78 f0       	brcs	.+30     	; 0x63c <Switch_Programming_mode+0x46>
- 61e:	86 30       	cpi	r24, 0x06	; 6
- 620:	29 f5       	brne	.+74     	; 0x66c <Switch_Programming_mode+0x76>
- 622:	1f c0       	rjmp	.+62     	; 0x662 <Switch_Programming_mode+0x6c>
+ 612:	83 30       	cpi	r24, 0x03	; 3
+ 614:	b1 f0       	breq	.+44     	; 0x642 <Switch_Programming_mode+0x3e>
+ 616:	84 30       	cpi	r24, 0x04	; 4
+ 618:	28 f4       	brcc	.+10     	; 0x624 <Switch_Programming_mode+0x20>
+ 61a:	81 30       	cpi	r24, 0x01	; 1
+ 61c:	51 f0       	breq	.+20     	; 0x632 <Switch_Programming_mode+0x2e>
+ 61e:	82 30       	cpi	r24, 0x02	; 2
+ 620:	59 f5       	brne	.+86     	; 0x678 <Switch_Programming_mode+0x74>
+ 622:	0b c0       	rjmp	.+22     	; 0x63a <Switch_Programming_mode+0x36>
+ 624:	85 30       	cpi	r24, 0x05	; 5
+ 626:	a9 f0       	breq	.+42     	; 0x652 <Switch_Programming_mode+0x4e>
+ 628:	85 30       	cpi	r24, 0x05	; 5
+ 62a:	78 f0       	brcs	.+30     	; 0x64a <Switch_Programming_mode+0x46>
+ 62c:	86 30       	cpi	r24, 0x06	; 6
+ 62e:	21 f5       	brne	.+72     	; 0x678 <Switch_Programming_mode+0x74>
+ 630:	15 c0       	rjmp	.+42     	; 0x65c <Switch_Programming_mode+0x58>
 		{
 			case 1:
 			{
 				Wait_RING(1000, 2);							// Мигаем светодиодом LED_PROG с частотой 1 раз в 2 секунды
- 624:	88 ee       	ldi	r24, 0xE8	; 232
- 626:	93 e0       	ldi	r25, 0x03	; 3
- 628:	62 e0       	ldi	r22, 0x02	; 2
- 62a:	19 c0       	rjmp	.+50     	; 0x65e <Switch_Programming_mode+0x68>
+ 632:	88 ee       	ldi	r24, 0xE8	; 232
+ 634:	93 e0       	ldi	r25, 0x03	; 3
+ 636:	62 e0       	ldi	r22, 0x02	; 2
+ 638:	0f c0       	rjmp	.+30     	; 0x658 <Switch_Programming_mode+0x54>
 				break;
 			}
 			case 2:
 			{			
 				SaveNumber_2_RAM(number1, 3);				// Сохраняем номер 1-го абонента в ОЗУ, если он принят
- 62c:	84 e7       	ldi	r24, 0x74	; 116
- 62e:	90 e0       	ldi	r25, 0x00	; 0
- 630:	63 e0       	ldi	r22, 0x03	; 3
- 632:	07 c0       	rjmp	.+14     	; 0x642 <Switch_Programming_mode+0x4c>
-				_delay_ms(1500);
+ 63a:	84 e7       	ldi	r24, 0x74	; 116
+ 63c:	90 e0       	ldi	r25, 0x00	; 0
+ 63e:	63 e0       	ldi	r22, 0x03	; 3
+ 640:	10 c0       	rjmp	.+32     	; 0x662 <Switch_Programming_mode+0x5e>
+				_delay_ms(500);
 				break;
 			}
 			case 3:
 			{
 				Wait_RING(500, 4);							// Мигаем светодиодом LED_PROG с частотой 1 раз в секунду
- 634:	84 ef       	ldi	r24, 0xF4	; 244
- 636:	91 e0       	ldi	r25, 0x01	; 1
- 638:	64 e0       	ldi	r22, 0x04	; 4
- 63a:	11 c0       	rjmp	.+34     	; 0x65e <Switch_Programming_mode+0x68>
+ 642:	84 ef       	ldi	r24, 0xF4	; 244
+ 644:	91 e0       	ldi	r25, 0x01	; 1
+ 646:	64 e0       	ldi	r22, 0x04	; 4
+ 648:	07 c0       	rjmp	.+14     	; 0x658 <Switch_Programming_mode+0x54>
 				break;
 			}
 			case 4:
 			{
 				SaveNumber_2_RAM(number2, 5);				// Сохраняем номер 2-го абонента в ОЗУ, если он принят
- 63c:	82 e8       	ldi	r24, 0x82	; 130
- 63e:	90 e0       	ldi	r25, 0x00	; 0
- 640:	65 e0       	ldi	r22, 0x05	; 5
- 642:	a6 df       	rcall	.-180    	; 0x590 <SaveNumber_2_RAM>
+ 64a:	82 e8       	ldi	r24, 0x82	; 130
+ 64c:	90 e0       	ldi	r25, 0x00	; 0
+ 64e:	65 e0       	ldi	r22, 0x05	; 5
+ 650:	08 c0       	rjmp	.+16     	; 0x662 <Switch_Programming_mode+0x5e>
+				_delay_ms(500);
+				break;
+			}
+			case 5:
+			{			
+				Wait_RING(250, 6);							// Мигаем светодиодом LED_PROG с частотой 2 раза в секунду
+ 652:	8a ef       	ldi	r24, 0xFA	; 250
+ 654:	90 e0       	ldi	r25, 0x00	; 0
+ 656:	66 e0       	ldi	r22, 0x06	; 6
+ 658:	39 df       	rcall	.-398    	; 0x4cc <Wait_RING>
+				break;
+ 65a:	10 c0       	rjmp	.+32     	; 0x67c <Switch_Programming_mode+0x78>
+			}
+			case 6:
+			{			
+				SaveNumber_2_RAM(number3, 7);				// Сохраняем номер 3-го абонента в ОЗУ, если он принят
+ 65c:	80 e9       	ldi	r24, 0x90	; 144
+ 65e:	90 e0       	ldi	r25, 0x00	; 0
+ 660:	67 e0       	ldi	r22, 0x07	; 7
+ 662:	9d df       	rcall	.-198    	; 0x59e <SaveNumber_2_RAM>
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 644:	8f ef       	ldi	r24, 0xFF	; 255
- 646:	9e e9       	ldi	r25, 0x9E	; 158
- 648:	a4 e2       	ldi	r26, 0x24	; 36
- 64a:	81 50       	subi	r24, 0x01	; 1
- 64c:	90 40       	sbci	r25, 0x00	; 0
- 64e:	a0 40       	sbci	r26, 0x00	; 0
- 650:	e1 f7       	brne	.-8      	; 0x64a <Switch_Programming_mode+0x54>
- 652:	00 c0       	rjmp	.+0      	; 0x654 <Switch_Programming_mode+0x5e>
- 654:	00 00       	nop
- 656:	0c c0       	rjmp	.+24     	; 0x670 <Switch_Programming_mode+0x7a>
-				_delay_ms(1500);
+ 664:	8f ef       	ldi	r24, 0xFF	; 255
+ 666:	94 e3       	ldi	r25, 0x34	; 52
+ 668:	ac e0       	ldi	r26, 0x0C	; 12
+ 66a:	81 50       	subi	r24, 0x01	; 1
+ 66c:	90 40       	sbci	r25, 0x00	; 0
+ 66e:	a0 40       	sbci	r26, 0x00	; 0
+ 670:	e1 f7       	brne	.-8      	; 0x66a <Switch_Programming_mode+0x66>
+ 672:	00 c0       	rjmp	.+0      	; 0x674 <Switch_Programming_mode+0x70>
+ 674:	00 00       	nop
+ 676:	02 c0       	rjmp	.+4      	; 0x67c <Switch_Programming_mode+0x78>
+				_delay_ms(500);
 				break;
-			}
-			case 5:
-			{			
-				Wait_RING(250, 6);							// Мигаем светодиодом LED_PROG с частотой 2 раза в секунду
- 658:	8a ef       	ldi	r24, 0xFA	; 250
- 65a:	90 e0       	ldi	r25, 0x00	; 0
- 65c:	66 e0       	ldi	r22, 0x06	; 6
- 65e:	2f df       	rcall	.-418    	; 0x4be <Wait_RING>
-				break;
- 660:	07 c0       	rjmp	.+14     	; 0x670 <Switch_Programming_mode+0x7a>
-			}
-			case 6:
-			{			
-				SaveNumber_2_RAM(number3, 7);				// Сохраняем номер 3-го абонента в ОЗУ, если он принят
- 662:	80 e9       	ldi	r24, 0x90	; 144
- 664:	90 e0       	ldi	r25, 0x00	; 0
- 666:	67 e0       	ldi	r22, 0x07	; 7
- 668:	93 df       	rcall	.-218    	; 0x590 <SaveNumber_2_RAM>
-				break;
- 66a:	02 c0       	rjmp	.+4      	; 0x670 <Switch_Programming_mode+0x7a>
 			}
 			default: programming_mode = 1; break;
- 66c:	10 93 61 00 	sts	0x0061, r17
+ 678:	10 93 9e 00 	sts	0x009E, r17
 // Конечный автомат записи номеров дозвона. В зависимости от значения programming_mode, ожидает входящего звонка, либо записывает номер звонящего в ОЗУ
 void Switch_Programming_mode(void)													
 {
 	parsing_result = BAD;
 
 	while (programming_mode != 7)							// Пока не запишем 3 звонящих номера
- 670:	80 91 61 00 	lds	r24, 0x0061
- 674:	87 30       	cpi	r24, 0x07	; 7
- 676:	29 f6       	brne	.-118    	; 0x602 <Switch_Programming_mode+0xc>
+ 67c:	80 91 9e 00 	lds	r24, 0x009E
+ 680:	87 30       	cpi	r24, 0x07	; 7
+ 682:	31 f6       	brne	.-116    	; 0x610 <Switch_Programming_mode+0xc>
 				break;
 			}
 			default: programming_mode = 1; break;
 		}
 	}
 }
- 678:	1f 91       	pop	r17
- 67a:	08 95       	ret
+ 684:	1f 91       	pop	r17
+ 686:	08 95       	ret
 
-0000067c <SwitchSIMCOM_mode>:
+00000688 <SwitchSIMCOM_mode>:
+}
 //=====================================================================================================================================================
 // Конечный автомат выбора отправляемой АТ-команды. В зависимости от значения simcom_mode, посылает определенную AT-команду
 void SwitchSIMCOM_mode(void)														
-{
-															// Если надо отправить SMS, изменяем выбраное ранее состояние автомата
+{															// Если надо отправить SMS, изменяем выбраное ранее состояние автомата
 	if ((flags & (1<<sms_flag))&&(simcom_init_mode == 1))	// Если установлен признак необходимости отправки SMS и модуль SIMCOM прошел полную инициализацию
- 67c:	80 91 72 00 	lds	r24, 0x0072
- 680:	80 ff       	sbrs	r24, 0
- 682:	0e c0       	rjmp	.+28     	; 0x6a0 <SwitchSIMCOM_mode+0x24>
- 684:	80 91 9e 00 	lds	r24, 0x009E
- 688:	81 30       	cpi	r24, 0x01	; 1
- 68a:	51 f4       	brne	.+20     	; 0x6a0 <SwitchSIMCOM_mode+0x24>
+ 688:	80 91 72 00 	lds	r24, 0x0072
+ 68c:	80 ff       	sbrs	r24, 0
+ 68e:	0e c0       	rjmp	.+28     	; 0x6ac <SwitchSIMCOM_mode+0x24>
+ 690:	80 91 9f 00 	lds	r24, 0x009F
+ 694:	81 30       	cpi	r24, 0x01	; 1
+ 696:	51 f4       	brne	.+20     	; 0x6ac <SwitchSIMCOM_mode+0x24>
 	{
 		simcom_mode = 10;									// Переключим автомат отправки АТ-команд в режим отправки SMS
- 68c:	8a e0       	ldi	r24, 0x0A	; 10
- 68e:	80 93 62 00 	sts	0x0062, r24
+ 698:	8a e0       	ldi	r24, 0x0A	; 10
+ 69a:	80 93 61 00 	sts	0x0061, r24
     return 1;
 }
 
 static __inline__ uint8_t __iCliRetVal(void)
 {
     cli();
- 692:	f8 94       	cli
+ 69e:	f8 94       	cli
 		ATOMIC_BLOCK(ATOMIC_FORCEON)
 		{
 			flags &= ~(1<<sms_flag);						//  Сразу запретим повторное переключение автомата в режим отправки SMS
- 694:	80 91 72 00 	lds	r24, 0x0072
- 698:	8e 7f       	andi	r24, 0xFE	; 254
- 69a:	80 93 72 00 	sts	0x0072, r24
+ 6a0:	80 91 72 00 	lds	r24, 0x0072
+ 6a4:	8e 7f       	andi	r24, 0xFE	; 254
+ 6a6:	80 93 72 00 	sts	0x0072, r24
     return 1;
 }
 
 static __inline__ void __iSeiParam(const uint8_t *__s)
 {
     sei();
- 69e:	78 94       	sei
+ 6aa:	78 94       	sei
 		}
 	}
 
 	switch (simcom_mode)									// Состояние автомата определяеться ответами (верный/неверный) модуля SIMCOM
- 6a0:	80 91 62 00 	lds	r24, 0x0062
- 6a4:	90 e0       	ldi	r25, 0x00	; 0
- 6a6:	01 97       	sbiw	r24, 0x01	; 1
- 6a8:	8b 30       	cpi	r24, 0x0B	; 11
- 6aa:	91 05       	cpc	r25, r1
- 6ac:	08 f0       	brcs	.+2      	; 0x6b0 <SwitchSIMCOM_mode+0x34>
- 6ae:	5d c0       	rjmp	.+186    	; 0x76a <SwitchSIMCOM_mode+0xee>
- 6b0:	8d 5e       	subi	r24, 0xED	; 237
- 6b2:	9f 4f       	sbci	r25, 0xFF	; 255
- 6b4:	8f 93       	push	r24
- 6b6:	9f 93       	push	r25
- 6b8:	08 95       	ret
+ 6ac:	80 91 61 00 	lds	r24, 0x0061
+ 6b0:	90 e0       	ldi	r25, 0x00	; 0
+ 6b2:	01 97       	sbiw	r24, 0x01	; 1
+ 6b4:	8f 30       	cpi	r24, 0x0F	; 15
+ 6b6:	91 05       	cpc	r25, r1
+ 6b8:	08 f0       	brcs	.+2      	; 0x6bc <SwitchSIMCOM_mode+0x34>
+ 6ba:	68 c0       	rjmp	.+208    	; 0x78c <SwitchSIMCOM_mode+0x104>
+ 6bc:	8d 5e       	subi	r24, 0xED	; 237
+ 6be:	9f 4f       	sbci	r25, 0xFF	; 255
+ 6c0:	8f 93       	push	r24
+ 6c2:	9f 93       	push	r25
+ 6c4:	08 95       	ret
 	{
 		case 1:
 		{
 			SIMCOM_RESET_PORT &= ~(1<<SIMCOM_RESET_PIN);	// Садим SIMCOM_RESET на землю
- 6ba:	94 98       	cbi	0x12, 4	; 18
- 6bc:	8f e7       	ldi	r24, 0x7F	; 127
- 6be:	9f ea       	ldi	r25, 0xAF	; 175
- 6c0:	a2 e0       	ldi	r26, 0x02	; 2
- 6c2:	81 50       	subi	r24, 0x01	; 1
- 6c4:	90 40       	sbci	r25, 0x00	; 0
- 6c6:	a0 40       	sbci	r26, 0x00	; 0
- 6c8:	e1 f7       	brne	.-8      	; 0x6c2 <SwitchSIMCOM_mode+0x46>
- 6ca:	00 c0       	rjmp	.+0      	; 0x6cc <SwitchSIMCOM_mode+0x50>
- 6cc:	00 00       	nop
+ 6c6:	94 98       	cbi	0x12, 4	; 18
+ 6c8:	8f e7       	ldi	r24, 0x7F	; 127
+ 6ca:	9f ea       	ldi	r25, 0xAF	; 175
+ 6cc:	a2 e0       	ldi	r26, 0x02	; 2
+ 6ce:	81 50       	subi	r24, 0x01	; 1
+ 6d0:	90 40       	sbci	r25, 0x00	; 0
+ 6d2:	a0 40       	sbci	r26, 0x00	; 0
+ 6d4:	e1 f7       	brne	.-8      	; 0x6ce <SwitchSIMCOM_mode+0x46>
+ 6d6:	00 c0       	rjmp	.+0      	; 0x6d8 <SwitchSIMCOM_mode+0x50>
+ 6d8:	00 00       	nop
 			_delay_ms(SIM800L_RESET_TIME);					// Задержка на Reset модуля SIMCOM
 			SIMCOM_RESET_PORT |= 1<<SIMCOM_RESET_PIN;		// Отпускаем SIMCOM_RESET
- 6ce:	94 9a       	sbi	0x12, 4	; 18
+ 6da:	94 9a       	sbi	0x12, 4	; 18
     return 1;
 }
 
 static __inline__ uint8_t __iCliRetVal(void)
 {
     cli();
- 6d0:	f8 94       	cli
+ 6dc:	f8 94       	cli
 			ATOMIC_BLOCK(ATOMIC_FORCEON)
 			{
 				parsing_delay = WAIT_SIMCOM_READY;			// Воспользуемся таймером парсинга, все равно до перезапуска модяля по UART не используеться
- 6d2:	88 e2       	ldi	r24, 0x28	; 40
- 6d4:	93 e2       	ldi	r25, 0x23	; 35
- 6d6:	90 93 68 00 	sts	0x0068, r25
- 6da:	80 93 67 00 	sts	0x0067, r24
+ 6de:	88 e2       	ldi	r24, 0x28	; 40
+ 6e0:	93 e2       	ldi	r25, 0x23	; 35
+ 6e2:	90 93 68 00 	sts	0x0068, r25
+ 6e6:	80 93 67 00 	sts	0x0067, r24
 				simcom_mode = 2;
- 6de:	82 e0       	ldi	r24, 0x02	; 2
- 6e0:	80 93 62 00 	sts	0x0062, r24
+ 6ea:	82 e0       	ldi	r24, 0x02	; 2
+ 6ec:	80 93 61 00 	sts	0x0061, r24
     return 1;
 }
 
 static __inline__ void __iSeiParam(const uint8_t *__s)
 {
     sei();
- 6e4:	78 94       	sei
+ 6f0:	78 94       	sei
 			}			
 			break;
- 6e6:	08 95       	ret
+ 6f2:	08 95       	ret
 		}
 		case 2:
 		{
 			SendStr_P(AT);									// Шлем АТ
- 6e8:	8e e6       	ldi	r24, 0x6E	; 110
- 6ea:	90 e0       	ldi	r25, 0x00	; 0
- 6ec:	41 df       	rcall	.-382    	; 0x570 <SendStr_P>
+ 6f4:	8c e7       	ldi	r24, 0x7C	; 124
+ 6f6:	90 e0       	ldi	r25, 0x00	; 0
+ 6f8:	42 df       	rcall	.-380    	; 0x57e <SendStr_P>
 			ActivateParsing(AT_OK,AT_WAIT_TIME);			// Активируем парсинг ответа в обработчике USART_RX_vect
- 6ee:	8e e0       	ldi	r24, 0x0E	; 14
- 6f0:	91 e0       	ldi	r25, 0x01	; 1
- 6f2:	37 c0       	rjmp	.+110    	; 0x762 <SwitchSIMCOM_mode+0xe6>
+ 6fa:	8c e1       	ldi	r24, 0x1C	; 28
+ 6fc:	91 e0       	ldi	r25, 0x01	; 1
+ 6fe:	40 c0       	rjmp	.+128    	; 0x780 <SwitchSIMCOM_mode+0xf8>
 			break;
 		}
 		case 3:
 		{			
 			SendStr_P(ATE0);								// Отключаем эхо
- 6f4:	82 e7       	ldi	r24, 0x72	; 114
- 6f6:	90 e0       	ldi	r25, 0x00	; 0
- 6f8:	3b df       	rcall	.-394    	; 0x570 <SendStr_P>
+ 700:	80 e8       	ldi	r24, 0x80	; 128
+ 702:	90 e0       	ldi	r25, 0x00	; 0
+ 704:	3c df       	rcall	.-392    	; 0x57e <SendStr_P>
 			ActivateParsing(ATE0_OK,AT_WAIT_TIME);			// Активируем парсинг ответа в обработчике USART_RX_vect
- 6fa:	88 e1       	ldi	r24, 0x18	; 24
- 6fc:	91 e0       	ldi	r25, 0x01	; 1
- 6fe:	31 c0       	rjmp	.+98     	; 0x762 <SwitchSIMCOM_mode+0xe6>
+ 706:	86 e2       	ldi	r24, 0x26	; 38
+ 708:	91 e0       	ldi	r25, 0x01	; 1
+ 70a:	3a c0       	rjmp	.+116    	; 0x780 <SwitchSIMCOM_mode+0xf8>
 			break;
 		}
 		case 4:
 		{			
 			SendStr_P(AT_IPR);								// Задаем скорость обмена с модулем
- 700:	88 e7       	ldi	r24, 0x78	; 120
- 702:	90 e0       	ldi	r25, 0x00	; 0
- 704:	2b c0       	rjmp	.+86     	; 0x75c <SwitchSIMCOM_mode+0xe0>
+ 70c:	86 e8       	ldi	r24, 0x86	; 134
+ 70e:	90 e0       	ldi	r25, 0x00	; 0
+ 710:	34 c0       	rjmp	.+104    	; 0x77a <SwitchSIMCOM_mode+0xf2>
 			ActivateParsing(_OK,AT_WAIT_TIME);				// Активируем парсинг ответа в обработчике USART_RX_vect
 			break;
 		}
 		case 5:
-		{			
-			SendStr_P(AT_GSMBUSY_1);						// Запрет всех входящих звонков
- 706:	82 ef       	ldi	r24, 0xF2	; 242
- 708:	90 e0       	ldi	r25, 0x00	; 0
- 70a:	28 c0       	rjmp	.+80     	; 0x75c <SwitchSIMCOM_mode+0xe0>
-			ActivateParsing(_OK,AT_WAIT_TIME);				// Активируем парсинг ответа в обработчике USART_RX_vect
+		{
+			SendStr_P(AT_CMGF);								// Задаем текстовый формат SMS
+ 712:	8e e9       	ldi	r24, 0x9E	; 158
+ 714:	90 e0       	ldi	r25, 0x00	; 0
+ 716:	31 c0       	rjmp	.+98     	; 0x77a <SwitchSIMCOM_mode+0xf2>
+			ActivateParsing(_OK,AT_WAIT_TIME);				// Активируем парсинг ответа в обработчике USART_RX_vect			
 			break;
 		}
 		case 6:
 		{			
-			SendStr_P(AT_CMGF);								// Задаем текстовый формат SMS
- 70c:	80 e9       	ldi	r24, 0x90	; 144
- 70e:	90 e0       	ldi	r25, 0x00	; 0
- 710:	25 c0       	rjmp	.+74     	; 0x75c <SwitchSIMCOM_mode+0xe0>
+			SendStr_P(AT_GSMBUSY_1);						// Запрет всех входящих звонков
+ 718:	80 e0       	ldi	r24, 0x00	; 0
+ 71a:	91 e0       	ldi	r25, 0x01	; 1
+ 71c:	2e c0       	rjmp	.+92     	; 0x77a <SwitchSIMCOM_mode+0xf2>
 			ActivateParsing(_OK,AT_WAIT_TIME);				// Активируем парсинг ответа в обработчике USART_RX_vect
 			break;
 		}
 		case 7:
 		{			
 			SendStr_P(AT_CPAS);								// Делаем запрос на состояние модуля SIMCOM
- 712:	86 ea       	ldi	r24, 0xA6	; 166
- 714:	90 e0       	ldi	r25, 0x00	; 0
- 716:	2c df       	rcall	.-424    	; 0x570 <SendStr_P>
+ 71e:	84 eb       	ldi	r24, 0xB4	; 180
+ 720:	90 e0       	ldi	r25, 0x00	; 0
+ 722:	2d df       	rcall	.-422    	; 0x57e <SendStr_P>
 			ActivateParsing(CPAS_OK,AT_WAIT_TIME);			// Активируем парсинг ответа в обработчике USART_RX_vect
- 718:	8b e2       	ldi	r24, 0x2B	; 43
- 71a:	91 e0       	ldi	r25, 0x01	; 1
- 71c:	22 c0       	rjmp	.+68     	; 0x762 <SwitchSIMCOM_mode+0xe6>
+ 724:	89 e3       	ldi	r24, 0x39	; 57
+ 726:	91 e0       	ldi	r25, 0x01	; 1
+ 728:	2b c0       	rjmp	.+86     	; 0x780 <SwitchSIMCOM_mode+0xf8>
 			break;
 		}
 		case 8:
 		{			
 			SendStr_P(AT_CREG);								// Делаем запрос на состояние регистрации в сети
- 71e:	8f ea       	ldi	r24, 0xAF	; 175
- 720:	90 e0       	ldi	r25, 0x00	; 0
- 722:	26 df       	rcall	.-436    	; 0x570 <SendStr_P>
+ 72a:	8d eb       	ldi	r24, 0xBD	; 189
+ 72c:	90 e0       	ldi	r25, 0x00	; 0
+ 72e:	27 df       	rcall	.-434    	; 0x57e <SendStr_P>
 			ActivateParsing(CREG_OK,AT_WAIT_TIME);			// Активируем парсинг ответа в обработчике USART_RX_vect
- 724:	8e e3       	ldi	r24, 0x3E	; 62
- 726:	91 e0       	ldi	r25, 0x01	; 1
- 728:	1c c0       	rjmp	.+56     	; 0x762 <SwitchSIMCOM_mode+0xe6>
+ 730:	8c e4       	ldi	r24, 0x4C	; 76
+ 732:	91 e0       	ldi	r25, 0x01	; 1
+ 734:	25 c0       	rjmp	.+74     	; 0x780 <SwitchSIMCOM_mode+0xf8>
 			break;
 		}
 		case 9:
 		{			
 			SendStr_P(AT_CCALR);							// Делаем запрос на возможность совершать звонки
- 72a:	89 eb       	ldi	r24, 0xB9	; 185
- 72c:	90 e0       	ldi	r25, 0x00	; 0
- 72e:	20 df       	rcall	.-448    	; 0x570 <SendStr_P>
+ 736:	87 ec       	ldi	r24, 0xC7	; 199
+ 738:	90 e0       	ldi	r25, 0x00	; 0
+ 73a:	21 df       	rcall	.-446    	; 0x57e <SendStr_P>
 			ActivateParsing(CCALR_OK,AT_WAIT_TIME);			// Активируем парсинг ответа в обработчике USART_RX_vect
- 730:	83 e5       	ldi	r24, 0x53	; 83
- 732:	91 e0       	ldi	r25, 0x01	; 1
- 734:	16 c0       	rjmp	.+44     	; 0x762 <SwitchSIMCOM_mode+0xe6>
+ 73c:	81 e6       	ldi	r24, 0x61	; 97
+ 73e:	91 e0       	ldi	r25, 0x01	; 1
+ 740:	1f c0       	rjmp	.+62     	; 0x780 <SwitchSIMCOM_mode+0xf8>
 			break;	
 		}
 		case 10:
 		{			
 			SendStr_P(AT_CMGS);								// Делаем запрос на отправку SMS о пропаже сети 220В						
- 736:	8b ec       	ldi	r24, 0xCB	; 203
- 738:	90 e0       	ldi	r25, 0x00	; 0
- 73a:	1a df       	rcall	.-460    	; 0x570 <SendStr_P>
-			SendStr(Abonent_SMS);
- 73c:	84 e7       	ldi	r24, 0x74	; 116
- 73e:	90 e0       	ldi	r25, 0x00	; 0
- 740:	04 df       	rcall	.-504    	; 0x54a <SendStr>
-			SendStr_P(AT_CMGS_2);
- 742:	85 ed       	ldi	r24, 0xD5	; 213
+ 742:	89 ed       	ldi	r24, 0xD9	; 217
  744:	90 e0       	ldi	r25, 0x00	; 0
- 746:	14 df       	rcall	.-472    	; 0x570 <SendStr_P>
+ 746:	1b df       	rcall	.-458    	; 0x57e <SendStr_P>
+			SendStr(Abonent_SMS);
+ 748:	84 e7       	ldi	r24, 0x74	; 116
+ 74a:	90 e0       	ldi	r25, 0x00	; 0
+ 74c:	05 df       	rcall	.-502    	; 0x558 <SendStr>
+			SendStr_P(AT_CMGS_2);
+ 74e:	83 ee       	ldi	r24, 0xE3	; 227
+ 750:	90 e0       	ldi	r25, 0x00	; 0
+ 752:	15 df       	rcall	.-470    	; 0x57e <SendStr_P>
 			ActivateParsing(POINTER,AT_WAIT_TIME);			// Активируем парсинг курсора приглашения для отправки тела SMS
- 748:	8a e7       	ldi	r24, 0x7A	; 122
- 74a:	91 e0       	ldi	r25, 0x01	; 1
- 74c:	0a c0       	rjmp	.+20     	; 0x762 <SwitchSIMCOM_mode+0xe6>
+ 754:	88 e8       	ldi	r24, 0x88	; 136
+ 756:	91 e0       	ldi	r25, 0x01	; 1
+ 758:	13 c0       	rjmp	.+38     	; 0x780 <SwitchSIMCOM_mode+0xf8>
 			break;
 		}
 		case 11:
 		{
 			if (!(ACSR & (1<<ACIS0)))						// Если следующие прерывание от компаратора ожидается по переходу выхода компаратора с 1 на 0 
- 74e:	40 99       	sbic	0x08, 0	; 8
- 750:	03 c0       	rjmp	.+6      	; 0x758 <SwitchSIMCOM_mode+0xdc>
+ 75a:	40 99       	sbic	0x08, 0	; 8
+ 75c:	03 c0       	rjmp	.+6      	; 0x764 <SwitchSIMCOM_mode+0xdc>
 				SendStr_P(NO_220);							// Отправляем тело SMS о пропаже сети 220В
- 752:	88 ed       	ldi	r24, 0xD8	; 216
- 754:	90 e0       	ldi	r25, 0x00	; 0
- 756:	02 c0       	rjmp	.+4      	; 0x75c <SwitchSIMCOM_mode+0xe0>
+ 75e:	86 ee       	ldi	r24, 0xE6	; 230
+ 760:	90 e0       	ldi	r25, 0x00	; 0
+ 762:	0b c0       	rjmp	.+22     	; 0x77a <SwitchSIMCOM_mode+0xf2>
 			else SendStr_P(RETURN_220);						// Иначе отправляем тело SMS о восстановлении сети 220В			
- 758:	82 ee       	ldi	r24, 0xE2	; 226
- 75a:	90 e0       	ldi	r25, 0x00	; 0
- 75c:	09 df       	rcall	.-494    	; 0x570 <SendStr_P>
+ 764:	80 ef       	ldi	r24, 0xF0	; 240
+ 766:	90 e0       	ldi	r25, 0x00	; 0
+ 768:	08 c0       	rjmp	.+16     	; 0x77a <SwitchSIMCOM_mode+0xf2>
 			ActivateParsing(_OK,AT_WAIT_TIME);				// Активируем парсинг отчета о успешной отправке SMS в обработчике USART_RX_vect
- 75e:	84 e2       	ldi	r24, 0x24	; 36
- 760:	91 e0       	ldi	r25, 0x01	; 1
- 762:	68 eb       	ldi	r22, 0xB8	; 184
- 764:	7b e0       	ldi	r23, 0x0B	; 11
- 766:	9c de       	rcall	.-712    	; 0x4a0 <ActivateParsing>
 			break;
- 768:	08 95       	ret
 		}
+		case 12:
+		{
+			SendStr_P(AT_CLCC);								// Переключаем на сокращенный ответ при входящем звонке
+ 76a:	83 e9       	ldi	r24, 0x93	; 147
+ 76c:	90 e0       	ldi	r25, 0x00	; 0
+ 76e:	05 c0       	rjmp	.+10     	; 0x77a <SwitchSIMCOM_mode+0xf2>
+			ActivateParsing(_OK,AT_WAIT_TIME);				// Активируем парсинг ответа в обработчике USART_RX_vect
+			break;
+		}
+		case 13:
+		{
+			SendStr_P(AT_CLIP);								// Включаем АОН
+ 770:	89 ea       	ldi	r24, 0xA9	; 169
+ 772:	90 e0       	ldi	r25, 0x00	; 0
+ 774:	02 c0       	rjmp	.+4      	; 0x77a <SwitchSIMCOM_mode+0xf2>
+			ActivateParsing(_OK,AT_WAIT_TIME);				// Активируем парсинг ответа в обработчике USART_RX_vect
+			break;
+		}
+		case 14:
+		{
+			SendStr_P(AT_GSMBUSY_0);						// Разрешение всех входящих звонков
+ 776:	8e e0       	ldi	r24, 0x0E	; 14
+ 778:	91 e0       	ldi	r25, 0x01	; 1
+ 77a:	01 df       	rcall	.-510    	; 0x57e <SendStr_P>
+			ActivateParsing(_OK,AT_WAIT_TIME);				// Активируем парсинг ответа в обработчике USART_RX_vect
+ 77c:	82 e3       	ldi	r24, 0x32	; 50
+ 77e:	91 e0       	ldi	r25, 0x01	; 1
+ 780:	68 eb       	ldi	r22, 0xB8	; 184
+ 782:	7b e0       	ldi	r23, 0x0B	; 11
+ 784:	94 de       	rcall	.-728    	; 0x4ae <ActivateParsing>
+			break;
+ 786:	08 95       	ret
+		}
+		case 15:
+		{
+			simcom_mode = 6;								// Выставляем автомат в состояние запрета всех входящих звонков, чтобы после процедуры программирования сразу запретить входящие звонки
+ 788:	86 e0       	ldi	r24, 0x06	; 6
+ 78a:	01 c0       	rjmp	.+2      	; 0x78e <SwitchSIMCOM_mode+0x106>
+			break;
+		}		
 		default: simcom_mode = 1;
- 76a:	81 e0       	ldi	r24, 0x01	; 1
- 76c:	80 93 62 00 	sts	0x0062, r24
- 770:	08 95       	ret
+ 78c:	81 e0       	ldi	r24, 0x01	; 1
+ 78e:	80 93 61 00 	sts	0x0061, r24
+ 792:	08 95       	ret
 
-00000772 <CheckSIMCOM>:
+00000794 <CheckSIMCOM>:
 }
 //=====================================================================================================================================================
 // Функция опроса SIMCOM. Содержит модуль анализа ответов. При неправильном ответе на 5 запросов подряд - перезапустит модуль SIMCOM и произведет его полную переинициализацию
 void CheckSIMCOM(void)									
 {
 	wdt_reset();
- 772:	a8 95       	wdr
+ 794:	a8 95       	wdr
 								
 	if ((parsing_result == OK)&&(parsing_delay == 65535))	// Если предыдущий парсинг закончился успешно, и истекло время парсинга (можно слать следующую АТ-команду)
- 774:	20 91 60 00 	lds	r18, 0x0060
- 778:	21 30       	cpi	r18, 0x01	; 1
- 77a:	99 f5       	brne	.+102    	; 0x7e2 <CheckSIMCOM+0x70>
- 77c:	80 91 67 00 	lds	r24, 0x0067
- 780:	90 91 68 00 	lds	r25, 0x0068
- 784:	3f ef       	ldi	r19, 0xFF	; 255
- 786:	8f 3f       	cpi	r24, 0xFF	; 255
- 788:	93 07       	cpc	r25, r19
- 78a:	59 f5       	brne	.+86     	; 0x7e2 <CheckSIMCOM+0x70>
+ 796:	20 91 60 00 	lds	r18, 0x0060
+ 79a:	21 30       	cpi	r18, 0x01	; 1
+ 79c:	09 f0       	breq	.+2      	; 0x7a0 <CheckSIMCOM+0xc>
+ 79e:	41 c0       	rjmp	.+130    	; 0x822 <CheckSIMCOM+0x8e>
+ 7a0:	80 91 67 00 	lds	r24, 0x0067
+ 7a4:	90 91 68 00 	lds	r25, 0x0068
+ 7a8:	3f ef       	ldi	r19, 0xFF	; 255
+ 7aa:	8f 3f       	cpi	r24, 0xFF	; 255
+ 7ac:	93 07       	cpc	r25, r19
+ 7ae:	c9 f5       	brne	.+114    	; 0x822 <CheckSIMCOM+0x8e>
 	{
 		parsing_fault = NUM_OF_ATTEMPT;						// Обновим счетчик ошибок парсинга
- 78c:	85 e0       	ldi	r24, 0x05	; 5
- 78e:	80 93 63 00 	sts	0x0063, r24
+ 7b0:	85 e0       	ldi	r24, 0x05	; 5
+ 7b2:	80 93 62 00 	sts	0x0062, r24
 		switch (simcom_mode)								// Переключим состояние автомата SwitchSIMCOM_mode для отправки следующей команды
- 792:	80 91 62 00 	lds	r24, 0x0062
- 796:	90 e0       	ldi	r25, 0x00	; 0
- 798:	01 97       	sbiw	r24, 0x01	; 1
- 79a:	8b 30       	cpi	r24, 0x0B	; 11
- 79c:	91 05       	cpc	r25, r1
- 79e:	f0 f4       	brcc	.+60     	; 0x7dc <CheckSIMCOM+0x6a>
- 7a0:	82 5e       	subi	r24, 0xE2	; 226
- 7a2:	9f 4f       	sbci	r25, 0xFF	; 255
- 7a4:	8f 93       	push	r24
- 7a6:	9f 93       	push	r25
- 7a8:	08 95       	ret
+ 7b6:	80 91 61 00 	lds	r24, 0x0061
+ 7ba:	90 e0       	ldi	r25, 0x00	; 0
+ 7bc:	01 97       	sbiw	r24, 0x01	; 1
+ 7be:	8e 30       	cpi	r24, 0x0E	; 14
+ 7c0:	91 05       	cpc	r25, r1
+ 7c2:	60 f5       	brcc	.+88     	; 0x81c <CheckSIMCOM+0x88>
+ 7c4:	8e 5d       	subi	r24, 0xDE	; 222
+ 7c6:	9f 4f       	sbci	r25, 0xFF	; 255
+ 7c8:	8f 93       	push	r24
+ 7ca:	9f 93       	push	r25
+ 7cc:	08 95       	ret
 		{
-			case 1: break;
-			case 2: simcom_mode = 3; break;					// Модуль SIMCOM перезапущен, начинаем отправку и парсинг Ат-команд
- 7aa:	83 e0       	ldi	r24, 0x03	; 3
- 7ac:	01 c0       	rjmp	.+2      	; 0x7b0 <CheckSIMCOM+0x3e>
-			case 3: simcom_mode = 4; break;
- 7ae:	84 e0       	ldi	r24, 0x04	; 4
- 7b0:	80 93 62 00 	sts	0x0062, r24
- 7b4:	15 c0       	rjmp	.+42     	; 0x7e0 <CheckSIMCOM+0x6e>
-			case 4: simcom_mode = 5; break;
- 7b6:	85 e0       	ldi	r24, 0x05	; 5
- 7b8:	fb cf       	rjmp	.-10     	; 0x7b0 <CheckSIMCOM+0x3e>
-			case 5: simcom_mode = 6; break;
- 7ba:	86 e0       	ldi	r24, 0x06	; 6
- 7bc:	f9 cf       	rjmp	.-14     	; 0x7b0 <CheckSIMCOM+0x3e>
-			case 6: simcom_mode = 7; break;
-			case 7: simcom_mode = 8; break;
- 7be:	88 e0       	ldi	r24, 0x08	; 8
- 7c0:	f7 cf       	rjmp	.-18     	; 0x7b0 <CheckSIMCOM+0x3e>
-			case 8: simcom_mode = 9; break;
- 7c2:	89 e0       	ldi	r24, 0x09	; 9
- 7c4:	f5 cf       	rjmp	.-22     	; 0x7b0 <CheckSIMCOM+0x3e>
-			case 9:
+			case 1: break;									// Если только зашли в автомат, перезапускаем модуль
+			case 2: simcom_mode = 3; break;					// Если получили ответ на АТ, шлем ATE0
+ 7ce:	83 e0       	ldi	r24, 0x03	; 3
+ 7d0:	01 c0       	rjmp	.+2      	; 0x7d4 <CheckSIMCOM+0x40>
+			case 3: simcom_mode = 4; break;					// Если получили ответ на АТЕ0, шлем AT+IPR
+ 7d2:	84 e0       	ldi	r24, 0x04	; 4
+ 7d4:	80 93 61 00 	sts	0x0061, r24
+ 7d8:	23 c0       	rjmp	.+70     	; 0x820 <CheckSIMCOM+0x8c>
+			case 4: simcom_mode = 5; break;					// Если получили ответ на AT+IPR, шлем AT+CMGF
+ 7da:	85 e0       	ldi	r24, 0x05	; 5
+ 7dc:	fb cf       	rjmp	.-10     	; 0x7d4 <CheckSIMCOM+0x40>
+			case 5: simcom_mode = 6; break;					// Если получили ответ на AT+CMGF, шлем AT+GSMBUSY=1
+ 7de:	86 e0       	ldi	r24, 0x06	; 6
+ 7e0:	f9 cf       	rjmp	.-14     	; 0x7d4 <CheckSIMCOM+0x40>
+			case 6: simcom_mode = 7; break;					// Если получили ответ на AT+GSMBUSY=1, шлем AT+CPAS
+			case 7: simcom_mode = 8; break;					// Если получили ответ на AT+CPAS, шлем AT+CREG
+ 7e2:	88 e0       	ldi	r24, 0x08	; 8
+ 7e4:	f7 cf       	rjmp	.-18     	; 0x7d4 <CheckSIMCOM+0x40>
+			case 8: simcom_mode = 9; break;					// Если получили ответ на AT+CREG, шлем AT+CCALR
+ 7e6:	89 e0       	ldi	r24, 0x09	; 9
+ 7e8:	f5 cf       	rjmp	.-22     	; 0x7d4 <CheckSIMCOM+0x40>
+			case 9:											// Если получили ответ на AT+CCALR
 			{
 				simcom_init_mode = 1;						// Модуль SIMCOM прошел полную инициализацию и может совершать звонки и слать SMS
- 7c6:	81 e0       	ldi	r24, 0x01	; 1
- 7c8:	80 93 9e 00 	sts	0x009E, r24
- 7cc:	05 c0       	rjmp	.+10     	; 0x7d8 <CheckSIMCOM+0x66>
-				simcom_mode = 7;							// Опять проверяем состояние модуля (и так по кругу гоняем состояния 7-8-9)
+ 7ea:	81 e0       	ldi	r24, 0x01	; 1
+ 7ec:	80 93 9f 00 	sts	0x009F, r24
+				if (programming_mode == 1)					// Если ППК в режиме программирования, продолжаем спец. инициализацию
+ 7f0:	80 91 9e 00 	lds	r24, 0x009E
+ 7f4:	81 30       	cpi	r24, 0x01	; 1
+ 7f6:	39 f4       	brne	.+14     	; 0x806 <CheckSIMCOM+0x72>
+					 simcom_mode = 12;						// Шлем AT+CLCC=0
+ 7f8:	8c e0       	ldi	r24, 0x0C	; 12
+ 7fa:	ec cf       	rjmp	.-40     	; 0x7d4 <CheckSIMCOM+0x40>
+				else simcom_mode = 7;						// Иначе опять шлем AT+CPAS (и так по кругу гоняем состояния 7-8-9)
 				break;
 			}
-			case 10: simcom_mode = 11; break;
- 7ce:	8b e0       	ldi	r24, 0x0B	; 11
- 7d0:	ef cf       	rjmp	.-34     	; 0x7b0 <CheckSIMCOM+0x3e>
-			case 11:
+			case 10: simcom_mode = 11; break;				// Если получили курсор приема тела SMS, отправляем тело SMS
+ 7fc:	8b e0       	ldi	r24, 0x0B	; 11
+ 7fe:	ea cf       	rjmp	.-44     	; 0x7d4 <CheckSIMCOM+0x40>
+			case 11:										// Если успешно отправили SMS
 			{
 				ACSR |= 1<<ACI|1<<ACIE;						// Разрешим прерывания от компаратора для повторной отправки SMS о пропаже 220В	
- 7d2:	88 b1       	in	r24, 0x08	; 8
- 7d4:	88 61       	ori	r24, 0x18	; 24
- 7d6:	88 b9       	out	0x08, r24	; 8
+ 800:	88 b1       	in	r24, 0x08	; 8
+ 802:	88 61       	ori	r24, 0x18	; 24
+ 804:	88 b9       	out	0x08, r24	; 8
 				simcom_mode = 7;							// Перелючаем автомат отправки АТ-команд на отправку 1-й команды циклического опроса модуля (AT+CPAS)
- 7d8:	87 e0       	ldi	r24, 0x07	; 7
- 7da:	ea cf       	rjmp	.-44     	; 0x7b0 <CheckSIMCOM+0x3e>
+ 806:	87 e0       	ldi	r24, 0x07	; 7
+ 808:	e5 cf       	rjmp	.-54     	; 0x7d4 <CheckSIMCOM+0x40>
+				break;
+			}
+			case 12: simcom_mode = 13; break;				// Если получили ответ на AT+CLCC=0, шлем AT+CLIP
+ 80a:	8d e0       	ldi	r24, 0x0D	; 13
+ 80c:	e3 cf       	rjmp	.-58     	; 0x7d4 <CheckSIMCOM+0x40>
+			case 13: simcom_mode = 14; break;				// Если получили ответ на AT+CLIP, шлем AT+GSMBUSY=0
+ 80e:	8e e0       	ldi	r24, 0x0E	; 14
+ 810:	e1 cf       	rjmp	.-62     	; 0x7d4 <CheckSIMCOM+0x40>
+			case 14:										// Если получили ответ на AT+GSMBUSY=0
+			{
+				simcom_init_mode = 2;						// Модуль SIMCOM готов принимать и обрабатывать входящие звонки 
+ 812:	82 e0       	ldi	r24, 0x02	; 2
+ 814:	80 93 9f 00 	sts	0x009F, r24
+				simcom_mode = 15;							// Ничего не шлем
+ 818:	8f e0       	ldi	r24, 0x0F	; 15
+ 81a:	dc cf       	rjmp	.-72     	; 0x7d4 <CheckSIMCOM+0x40>
 				break;
 			}
 			default: simcom_mode = 1;
- 7dc:	20 93 62 00 	sts	0x0062, r18
+ 81c:	20 93 61 00 	sts	0x0061, r18
 		}
 		SwitchSIMCOM_mode();								// Отправляем АТ-команду, конечный автомат сам выберет нужную		
- 7e0:	4d df       	rcall	.-358    	; 0x67c <SwitchSIMCOM_mode>
+ 820:	33 df       	rcall	.-410    	; 0x688 <SwitchSIMCOM_mode>
 	}
 
 	if ((parsing_result == BAD)&&(parsing_delay == 65535))	// Если парсинг закончился неуспешно, и истекло время парсинга
- 7e2:	80 91 60 00 	lds	r24, 0x0060
- 7e6:	82 30       	cpi	r24, 0x02	; 2
- 7e8:	21 f5       	brne	.+72     	; 0x832 <CheckSIMCOM+0xc0>
- 7ea:	80 91 67 00 	lds	r24, 0x0067
- 7ee:	90 91 68 00 	lds	r25, 0x0068
- 7f2:	2f ef       	ldi	r18, 0xFF	; 255
- 7f4:	8f 3f       	cpi	r24, 0xFF	; 255
- 7f6:	92 07       	cpc	r25, r18
- 7f8:	e1 f4       	brne	.+56     	; 0x832 <CheckSIMCOM+0xc0>
+ 822:	80 91 60 00 	lds	r24, 0x0060
+ 826:	82 30       	cpi	r24, 0x02	; 2
+ 828:	21 f5       	brne	.+72     	; 0x872 <CheckSIMCOM+0xde>
+ 82a:	80 91 67 00 	lds	r24, 0x0067
+ 82e:	90 91 68 00 	lds	r25, 0x0068
+ 832:	2f ef       	ldi	r18, 0xFF	; 255
+ 834:	8f 3f       	cpi	r24, 0xFF	; 255
+ 836:	92 07       	cpc	r25, r18
+ 838:	e1 f4       	brne	.+56     	; 0x872 <CheckSIMCOM+0xde>
 	{
 		if ((simcom_mode == 10)||(simcom_mode == 11))		// И мы не получили курсор приглашения ввода тела SMS, либо ОК после отправки тела SMS
- 7fa:	80 91 62 00 	lds	r24, 0x0062
- 7fe:	8a 50       	subi	r24, 0x0A	; 10
- 800:	82 30       	cpi	r24, 0x02	; 2
- 802:	38 f4       	brcc	.+14     	; 0x812 <CheckSIMCOM+0xa0>
+ 83a:	80 91 61 00 	lds	r24, 0x0061
+ 83e:	8a 50       	subi	r24, 0x0A	; 10
+ 840:	82 30       	cpi	r24, 0x02	; 2
+ 842:	38 f4       	brcc	.+14     	; 0x852 <CheckSIMCOM+0xbe>
 		{
 			ACSR |= 1<<ACI|1<<ACIE;							// Отправка SMS о пропаже 220В не удалась. Повтор делать не будем, но разрешаем прерывания компаратора, возможно будут еще пропажи сети 220В и их можно будет передать
- 804:	88 b1       	in	r24, 0x08	; 8
- 806:	88 61       	ori	r24, 0x18	; 24
- 808:	88 b9       	out	0x08, r24	; 8
+ 844:	88 b1       	in	r24, 0x08	; 8
+ 846:	88 61       	ori	r24, 0x18	; 24
+ 848:	88 b9       	out	0x08, r24	; 8
 			simcom_mode = 7;								// Перелючаем автомат отправки АТ-команд на отправку 1-й команды циклического опроса модуля (AT+CPAS)
- 80a:	87 e0       	ldi	r24, 0x07	; 7
- 80c:	80 93 62 00 	sts	0x0062, r24
- 810:	0f c0       	rjmp	.+30     	; 0x830 <CheckSIMCOM+0xbe>
+ 84a:	87 e0       	ldi	r24, 0x07	; 7
+ 84c:	80 93 61 00 	sts	0x0061, r24
+ 850:	0f c0       	rjmp	.+30     	; 0x870 <CheckSIMCOM+0xdc>
 		}
 
 		else
 		{			
 			parsing_fault--;
- 812:	80 91 63 00 	lds	r24, 0x0063
- 816:	81 50       	subi	r24, 0x01	; 1
- 818:	80 93 63 00 	sts	0x0063, r24
+ 852:	80 91 62 00 	lds	r24, 0x0062
+ 856:	81 50       	subi	r24, 0x01	; 1
+ 858:	80 93 62 00 	sts	0x0062, r24
 			if (parsing_fault == 0)							// Если исчерпали попытки парсинга
- 81c:	88 23       	and	r24, r24
- 81e:	41 f4       	brne	.+16     	; 0x830 <CheckSIMCOM+0xbe>
+ 85c:	88 23       	and	r24, r24
+ 85e:	41 f4       	brne	.+16     	; 0x870 <CheckSIMCOM+0xdc>
 			{
 				simcom_init_mode = 0;						// Сбрасываем состояние инициализации модуля SIMCOM
- 820:	10 92 9e 00 	sts	0x009E, r1
+ 860:	10 92 9f 00 	sts	0x009F, r1
 				simcom_mode = 1;							// Переводим автомат в начальный режим - делаем переинициализацию модуля SIMCOM
- 824:	81 e0       	ldi	r24, 0x01	; 1
- 826:	80 93 62 00 	sts	0x0062, r24
+ 864:	81 e0       	ldi	r24, 0x01	; 1
+ 866:	80 93 61 00 	sts	0x0061, r24
 				parsing_fault = NUM_OF_ATTEMPT;				// Обновим счетчик ошибок парсинга
- 82a:	85 e0       	ldi	r24, 0x05	; 5
- 82c:	80 93 63 00 	sts	0x0063, r24
+ 86a:	85 e0       	ldi	r24, 0x05	; 5
+ 86c:	80 93 62 00 	sts	0x0062, r24
 			}
 		}
 		SwitchSIMCOM_mode();								// Повторно отправляем предыдущую АТ-команду без предварительного переключения состояния автомата
- 830:	25 df       	rcall	.-438    	; 0x67c <SwitchSIMCOM_mode>
- 832:	08 95       	ret
+ 870:	0b df       	rcall	.-490    	; 0x688 <SwitchSIMCOM_mode>
+ 872:	08 95       	ret
 
-00000834 <Programming>:
+00000874 <Programming>:
 //=====================================================================================================================================================
 // Программирование прибора
 void Programming(void)
 {
 #if defined (DEBUG)
 	LED_PORT &= ~(1<<LED_PROG);								// ТОЛЬКО ДЛЯ ОТЛАДКИ
- 834:	c4 98       	cbi	0x18, 4	; 24
-#else
-	LED_PORT |= 1<<LED_PROG;								// Включим светодиод программирования
-#endif
+ 874:	c4 98       	cbi	0x18, 4	; 24
+	SendStr_P(AT_GSMBUSY_1);								// Запрет всех входящих звонков
+	wdt_reset();
+	_delay_ms(1500);
+	wdt_reset();
+*/
+	programming_mode = 1;
+ 876:	81 e0       	ldi	r24, 0x01	; 1
+ 878:	80 93 9e 00 	sts	0x009E, r24
 
-	while (simcom_init_mode != 1)							// Пока модуль SIMCOM не пройдет полную инициализацию
- 836:	01 c0       	rjmp	.+2      	; 0x83a <Programming+0x6>
+	while (simcom_init_mode != 2)							// Пока модуль SIMCOM не настроится на прием входящих звонков
+ 87c:	01 c0       	rjmp	.+2      	; 0x880 <Programming+0xc>
 	{
-		CheckSIMCOM();										// Проверяем состояние модуля, регистрацию в сети, и прочее
- 838:	9c df       	rcall	.-200    	; 0x772 <CheckSIMCOM>
-	LED_PORT &= ~(1<<LED_PROG);								// ТОЛЬКО ДЛЯ ОТЛАДКИ
-#else
-	LED_PORT |= 1<<LED_PROG;								// Включим светодиод программирования
-#endif
+		CheckSIMCOM();										// Выполняем команды автомата
+ 87e:	8a df       	rcall	.-236    	; 0x794 <CheckSIMCOM>
+	_delay_ms(1500);
+	wdt_reset();
+*/
+	programming_mode = 1;
 
-	while (simcom_init_mode != 1)							// Пока модуль SIMCOM не пройдет полную инициализацию
- 83a:	80 91 9e 00 	lds	r24, 0x009E
- 83e:	81 30       	cpi	r24, 0x01	; 1
- 840:	d9 f7       	brne	.-10     	; 0x838 <Programming+0x4>
+	while (simcom_init_mode != 2)							// Пока модуль SIMCOM не настроится на прием входящих звонков
+ 880:	80 91 9f 00 	lds	r24, 0x009F
+ 884:	82 30       	cpi	r24, 0x02	; 2
+ 886:	d9 f7       	brne	.-10     	; 0x87e <Programming+0xa>
 	{
-		CheckSIMCOM();										// Проверяем состояние модуля, регистрацию в сети, и прочее
+		CheckSIMCOM();										// Выполняем команды автомата
 	}
 
-	wdt_reset();
- 842:	a8 95       	wdr
- 844:	8f ef       	ldi	r24, 0xFF	; 255
- 846:	9e e9       	ldi	r25, 0x9E	; 158
- 848:	a4 e2       	ldi	r26, 0x24	; 36
- 84a:	81 50       	subi	r24, 0x01	; 1
- 84c:	90 40       	sbci	r25, 0x00	; 0
- 84e:	a0 40       	sbci	r26, 0x00	; 0
- 850:	e1 f7       	brne	.-8      	; 0x84a <Programming+0x16>
- 852:	00 c0       	rjmp	.+0      	; 0x854 <Programming+0x20>
- 854:	00 00       	nop
-	_delay_ms(1500);
-	wdt_reset();
- 856:	a8 95       	wdr
-	SendStr_P(AT_GSMBUSY_0);								// Разрешение всех входящих звонков
- 858:	80 e0       	ldi	r24, 0x00	; 0
- 85a:	91 e0       	ldi	r25, 0x01	; 1
- 85c:	89 de       	rcall	.-750    	; 0x570 <SendStr_P>
-	wdt_reset();
- 85e:	a8 95       	wdr
- 860:	8f ef       	ldi	r24, 0xFF	; 255
- 862:	9e e9       	ldi	r25, 0x9E	; 158
- 864:	a4 e2       	ldi	r26, 0x24	; 36
- 866:	81 50       	subi	r24, 0x01	; 1
- 868:	90 40       	sbci	r25, 0x00	; 0
- 86a:	a0 40       	sbci	r26, 0x00	; 0
- 86c:	e1 f7       	brne	.-8      	; 0x866 <Programming+0x32>
- 86e:	00 c0       	rjmp	.+0      	; 0x870 <Programming+0x3c>
- 870:	00 00       	nop
-	_delay_ms(1500);
-	wdt_reset();
- 872:	a8 95       	wdr
-	SendStr_P(AT_CLIP);										// Включаем АОН
- 874:	8b e9       	ldi	r24, 0x9B	; 155
- 876:	90 e0       	ldi	r25, 0x00	; 0
- 878:	7b de       	rcall	.-778    	; 0x570 <SendStr_P>
-	wdt_reset();
- 87a:	a8 95       	wdr
- 87c:	8f ef       	ldi	r24, 0xFF	; 255
- 87e:	9e e9       	ldi	r25, 0x9E	; 158
- 880:	a4 e2       	ldi	r26, 0x24	; 36
- 882:	81 50       	subi	r24, 0x01	; 1
- 884:	90 40       	sbci	r25, 0x00	; 0
- 886:	a0 40       	sbci	r26, 0x00	; 0
- 888:	e1 f7       	brne	.-8      	; 0x882 <Programming+0x4e>
- 88a:	00 c0       	rjmp	.+0      	; 0x88c <Programming+0x58>
- 88c:	00 00       	nop
-	_delay_ms(1500);
-	wdt_reset();
- 88e:	a8 95       	wdr
-	SendStr_P(AT_CLCC);										// Переключаем на сокращенный ответ при входящем звонке
- 890:	85 e8       	ldi	r24, 0x85	; 133
- 892:	90 e0       	ldi	r25, 0x00	; 0
- 894:	6d de       	rcall	.-806    	; 0x570 <SendStr_P>
-	wdt_reset();
- 896:	a8 95       	wdr
- 898:	8f ef       	ldi	r24, 0xFF	; 255
- 89a:	9e e9       	ldi	r25, 0x9E	; 158
- 89c:	a4 e2       	ldi	r26, 0x24	; 36
- 89e:	81 50       	subi	r24, 0x01	; 1
- 8a0:	90 40       	sbci	r25, 0x00	; 0
- 8a2:	a0 40       	sbci	r26, 0x00	; 0
- 8a4:	e1 f7       	brne	.-8      	; 0x89e <Programming+0x6a>
- 8a6:	00 c0       	rjmp	.+0      	; 0x8a8 <Programming+0x74>
- 8a8:	00 00       	nop
-	_delay_ms(1500);
-	wdt_reset();
- 8aa:	a8 95       	wdr
-	
 	Switch_Programming_mode();								// Вызываем конечный автомат режима программирования
- 8ac:	a4 de       	rcall	.-696    	; 0x5f6 <Switch_Programming_mode>
-	
-	wdt_reset();
- 8ae:	a8 95       	wdr
- 8b0:	8f ef       	ldi	r24, 0xFF	; 255
- 8b2:	9e e9       	ldi	r25, 0x9E	; 158
- 8b4:	a4 e2       	ldi	r26, 0x24	; 36
- 8b6:	81 50       	subi	r24, 0x01	; 1
- 8b8:	90 40       	sbci	r25, 0x00	; 0
- 8ba:	a0 40       	sbci	r26, 0x00	; 0
- 8bc:	e1 f7       	brne	.-8      	; 0x8b6 <Programming+0x82>
- 8be:	00 c0       	rjmp	.+0      	; 0x8c0 <Programming+0x8c>
- 8c0:	00 00       	nop
-	_delay_ms(1500);
-	wdt_reset();
- 8c2:	a8 95       	wdr
-	SendStr_P(AT_GSMBUSY_1);								// Запрет всех входящих звонков
- 8c4:	82 ef       	ldi	r24, 0xF2	; 242
- 8c6:	90 e0       	ldi	r25, 0x00	; 0
- 8c8:	53 de       	rcall	.-858    	; 0x570 <SendStr_P>
-	wdt_reset();
- 8ca:	a8 95       	wdr
- 8cc:	8f ef       	ldi	r24, 0xFF	; 255
- 8ce:	9e e9       	ldi	r25, 0x9E	; 158
- 8d0:	a4 e2       	ldi	r26, 0x24	; 36
- 8d2:	81 50       	subi	r24, 0x01	; 1
- 8d4:	90 40       	sbci	r25, 0x00	; 0
- 8d6:	a0 40       	sbci	r26, 0x00	; 0
- 8d8:	e1 f7       	brne	.-8      	; 0x8d2 <Programming+0x9e>
- 8da:	00 c0       	rjmp	.+0      	; 0x8dc <Programming+0xa8>
- 8dc:	00 00       	nop
-	_delay_ms(1500);
-	wdt_reset();
- 8de:	a8 95       	wdr
+ 888:	bd de       	rcall	.-646    	; 0x604 <Switch_Programming_mode>
     return 1;
 }
 
 static __inline__ uint8_t __iCliRetVal(void)
 {
     cli();
- 8e0:	f8 94       	cli
+ 88a:	f8 94       	cli
 
 	ATOMIC_BLOCK(ATOMIC_FORCEON)							// Если произошел выход из автомата, значит есть 3 номера в ОЗУ. Копируем их из ОЗУ в EEPROM
 	{
 		led_delay = 0;										// Прекратим мигание светодиода программирования (LED_PROG)		
- 8e2:	10 92 6c 00 	sts	0x006C, r1
- 8e6:	10 92 6b 00 	sts	0x006B, r1
+ 88c:	10 92 6c 00 	sts	0x006C, r1
+ 890:	10 92 6b 00 	sts	0x006B, r1
 	#if defined (DEBUG)
 		LED_PORT &= ~(1<<LED_PROG);							// ТОЛЬКО ДЛЯ ОТЛАДКИ
- 8ea:	c4 98       	cbi	0x18, 4	; 24
+ 894:	c4 98       	cbi	0x18, 4	; 24
 	#else
 		LED_PORT |= 1<<LED_PROG;							// Зажигаем светодиод программирования			
 	#endif
 		eeprom_update_block(number1,ee_number1,14);			
- 8ec:	84 e7       	ldi	r24, 0x74	; 116
- 8ee:	90 e0       	ldi	r25, 0x00	; 0
- 8f0:	61 e0       	ldi	r22, 0x01	; 1
- 8f2:	70 e0       	ldi	r23, 0x00	; 0
- 8f4:	4e e0       	ldi	r20, 0x0E	; 14
- 8f6:	50 e0       	ldi	r21, 0x00	; 0
- 8f8:	e2 d1       	rcall	.+964    	; 0xcbe <__eeupd_block_m8>
+ 896:	84 e7       	ldi	r24, 0x74	; 116
+ 898:	90 e0       	ldi	r25, 0x00	; 0
+ 89a:	61 e0       	ldi	r22, 0x01	; 1
+ 89c:	70 e0       	ldi	r23, 0x00	; 0
+ 89e:	4e e0       	ldi	r20, 0x0E	; 14
+ 8a0:	50 e0       	ldi	r21, 0x00	; 0
+ 8a2:	e4 d1       	rcall	.+968    	; 0xc6c <__eeupd_block_m8>
 		eeprom_update_block(number2,ee_number2,14);
- 8fa:	82 e8       	ldi	r24, 0x82	; 130
- 8fc:	90 e0       	ldi	r25, 0x00	; 0
- 8fe:	6f e0       	ldi	r22, 0x0F	; 15
- 900:	70 e0       	ldi	r23, 0x00	; 0
- 902:	4e e0       	ldi	r20, 0x0E	; 14
- 904:	50 e0       	ldi	r21, 0x00	; 0
- 906:	db d1       	rcall	.+950    	; 0xcbe <__eeupd_block_m8>
+ 8a4:	82 e8       	ldi	r24, 0x82	; 130
+ 8a6:	90 e0       	ldi	r25, 0x00	; 0
+ 8a8:	6f e0       	ldi	r22, 0x0F	; 15
+ 8aa:	70 e0       	ldi	r23, 0x00	; 0
+ 8ac:	4e e0       	ldi	r20, 0x0E	; 14
+ 8ae:	50 e0       	ldi	r21, 0x00	; 0
+ 8b0:	dd d1       	rcall	.+954    	; 0xc6c <__eeupd_block_m8>
 		eeprom_update_block(number3,ee_number3,14);
- 908:	80 e9       	ldi	r24, 0x90	; 144
- 90a:	90 e0       	ldi	r25, 0x00	; 0
- 90c:	6d e1       	ldi	r22, 0x1D	; 29
- 90e:	70 e0       	ldi	r23, 0x00	; 0
- 910:	4e e0       	ldi	r20, 0x0E	; 14
- 912:	50 e0       	ldi	r21, 0x00	; 0
- 914:	d4 d1       	rcall	.+936    	; 0xcbe <__eeupd_block_m8>
+ 8b2:	80 e9       	ldi	r24, 0x90	; 144
+ 8b4:	90 e0       	ldi	r25, 0x00	; 0
+ 8b6:	6d e1       	ldi	r22, 0x1D	; 29
+ 8b8:	70 e0       	ldi	r23, 0x00	; 0
+ 8ba:	4e e0       	ldi	r20, 0x0E	; 14
+ 8bc:	50 e0       	ldi	r21, 0x00	; 0
+ 8be:	d6 d1       	rcall	.+940    	; 0xc6c <__eeupd_block_m8>
     return 1;
 }
 
 static __inline__ void __iSeiParam(const uint8_t *__s)
 {
     sei();
- 916:	78 94       	sei
+ 8c0:	78 94       	sei
 	}
 	#if defined (DEBUG)
 		LED_PORT |= 1<<LED_PROG;							// ТОЛЬКО ДЛЯ ОТЛАДКИ
- 918:	c4 9a       	sbi	0x18, 4	; 24
+ 8c2:	c4 9a       	sbi	0x18, 4	; 24
 	#else
 		LED_PORT &= ~(1<<LED_PROG);							// Гасим светодиод программирования
 	#endif
 	
 	pin_state = JUMPER_PINS;								// Читаем состояние всего порта c Джампером программирования
- 91a:	80 b3       	in	r24, 0x10	; 16
- 91c:	80 93 73 00 	sts	0x0073, r24
+ 8c4:	80 b3       	in	r24, 0x10	; 16
+ 8c6:	80 93 73 00 	sts	0x0073, r24
 	while(!(pin_state & (1<<JUMPER_PIN)))
- 920:	90 e0       	ldi	r25, 0x00	; 0
- 922:	80 72       	andi	r24, 0x20	; 32
- 924:	90 70       	andi	r25, 0x00	; 0
- 926:	01 c0       	rjmp	.+2      	; 0x92a <Programming+0xf6>
+ 8ca:	90 e0       	ldi	r25, 0x00	; 0
+ 8cc:	80 72       	andi	r24, 0x20	; 32
+ 8ce:	90 70       	andi	r25, 0x00	; 0
+ 8d0:	01 c0       	rjmp	.+2      	; 0x8d4 <Programming+0x60>
 	{
 		wdt_reset();
- 928:	a8 95       	wdr
+ 8d2:	a8 95       	wdr
 	#else
 		LED_PORT &= ~(1<<LED_PROG);							// Гасим светодиод программирования
 	#endif
 	
 	pin_state = JUMPER_PINS;								// Читаем состояние всего порта c Джампером программирования
 	while(!(pin_state & (1<<JUMPER_PIN)))
- 92a:	00 97       	sbiw	r24, 0x00	; 0
- 92c:	e9 f3       	breq	.-6      	; 0x928 <Programming+0xf4>
+ 8d4:	00 97       	sbiw	r24, 0x00	; 0
+ 8d6:	e9 f3       	breq	.-6      	; 0x8d2 <Programming+0x5e>
 	{
 		wdt_reset();
 	}														// Ждем возвращения Джампера программирования в положение "РАБ"		
 }
- 92e:	08 95       	ret
+ 8d8:	08 95       	ret
 
-00000930 <Ring_on_Number>:
+000008da <Ring_on_Number>:
 	}
 }
 //=====================================================================================================================================================
 // Дозвон конкретному абоненту
 void Ring_on_Number(char *number)							// В качестве параметра передаеться указатель на 1 символ номера абонента
 {
- 930:	cf 93       	push	r28
- 932:	df 93       	push	r29
- 934:	ec 01       	movw	r28, r24
+ 8da:	cf 93       	push	r28
+ 8dc:	df 93       	push	r29
+ 8de:	ec 01       	movw	r28, r24
 	SendStr_P(ATD);											// Звоним абоненту
- 936:	84 ec       	ldi	r24, 0xC4	; 196
- 938:	90 e0       	ldi	r25, 0x00	; 0
- 93a:	1a de       	rcall	.-972    	; 0x570 <SendStr_P>
+ 8e0:	82 ed       	ldi	r24, 0xD2	; 210
+ 8e2:	90 e0       	ldi	r25, 0x00	; 0
+ 8e4:	4c de       	rcall	.-872    	; 0x57e <SendStr_P>
 	SendStr(number);
- 93c:	ce 01       	movw	r24, r28
- 93e:	05 de       	rcall	.-1014   	; 0x54a <SendStr>
+ 8e6:	ce 01       	movw	r24, r28
+ 8e8:	37 de       	rcall	.-914    	; 0x558 <SendStr>
 	SendStr_P(RING_END);
- 940:	88 ec       	ldi	r24, 0xC8	; 200
- 942:	90 e0       	ldi	r25, 0x00	; 0
- 944:	15 de       	rcall	.-982    	; 0x570 <SendStr_P>
+ 8ea:	86 ed       	ldi	r24, 0xD6	; 214
+ 8ec:	90 e0       	ldi	r25, 0x00	; 0
+ 8ee:	47 de       	rcall	.-882    	; 0x57e <SendStr_P>
 	ActivateParsing(_OK,RING_WAIT_TIME);					// Активируем ожидание ответа
- 946:	84 e2       	ldi	r24, 0x24	; 36
- 948:	91 e0       	ldi	r25, 0x01	; 1
- 94a:	60 e2       	ldi	r22, 0x20	; 32
- 94c:	7e e4       	ldi	r23, 0x4E	; 78
- 94e:	a8 dd       	rcall	.-1200   	; 0x4a0 <ActivateParsing>
+ 8f0:	82 e3       	ldi	r24, 0x32	; 50
+ 8f2:	91 e0       	ldi	r25, 0x01	; 1
+ 8f4:	60 e2       	ldi	r22, 0x20	; 32
+ 8f6:	7e e4       	ldi	r23, 0x4E	; 78
+ 8f8:	da dd       	rcall	.-1100   	; 0x4ae <ActivateParsing>
 }
- 950:	df 91       	pop	r29
- 952:	cf 91       	pop	r28
- 954:	08 95       	ret
+ 8fa:	df 91       	pop	r29
+ 8fc:	cf 91       	pop	r28
+ 8fe:	08 95       	ret
 
-00000956 <Blink_LED_WORK>:
+00000900 <Blink_LED_WORK>:
     return 1;
 }
 
 static __inline__ uint8_t __iCliRetVal(void)
 {
     cli();
- 956:	f8 94       	cli
+ 900:	f8 94       	cli
 // Мигание светодиодом LED_WORK
 void Blink_LED_WORK(void)
 {
 	ATOMIC_BLOCK(ATOMIC_FORCEON)
 	{
 		led_delay = 500;
- 958:	84 ef       	ldi	r24, 0xF4	; 244
- 95a:	91 e0       	ldi	r25, 0x01	; 1
- 95c:	90 93 6c 00 	sts	0x006C, r25
- 960:	80 93 6b 00 	sts	0x006B, r24
+ 902:	84 ef       	ldi	r24, 0xF4	; 244
+ 904:	91 e0       	ldi	r25, 0x01	; 1
+ 906:	90 93 6c 00 	sts	0x006C, r25
+ 90a:	80 93 6b 00 	sts	0x006B, r24
     return 1;
 }
 
 static __inline__ void __iSeiParam(const uint8_t *__s)
 {
     sei();
- 964:	78 94       	sei
+ 90e:	78 94       	sei
 	}
 	LED_PORT ^= 1<<LED_WORK;
- 966:	88 b3       	in	r24, 0x18	; 24
- 968:	98 e0       	ldi	r25, 0x08	; 8
- 96a:	89 27       	eor	r24, r25
- 96c:	88 bb       	out	0x18, r24	; 24
+ 910:	88 b3       	in	r24, 0x18	; 24
+ 912:	98 e0       	ldi	r25, 0x08	; 8
+ 914:	89 27       	eor	r24, r25
+ 916:	88 bb       	out	0x18, r24	; 24
 }
- 96e:	08 95       	ret
+ 918:	08 95       	ret
 
-00000970 <Siren_Outs_OFF>:
+0000091a <Siren_Outs_OFF>:
 //=====================================================================================================================================================
 // Выключение сирены и выходов, если пришло время
 void Siren_Outs_OFF(void) 
 {
 	if (siren_delay == 0)									// Если нет отсчета время звучания сирены
- 970:	80 91 6d 00 	lds	r24, 0x006D
- 974:	90 91 6e 00 	lds	r25, 0x006E
- 978:	00 97       	sbiw	r24, 0x00	; 0
- 97a:	09 f4       	brne	.+2      	; 0x97e <Siren_Outs_OFF+0xe>
+ 91a:	80 91 6d 00 	lds	r24, 0x006D
+ 91e:	90 91 6e 00 	lds	r25, 0x006E
+ 922:	00 97       	sbiw	r24, 0x00	; 0
+ 924:	09 f4       	brne	.+2      	; 0x928 <Siren_Outs_OFF+0xe>
 	{
 	#if defined (DEBUG)
 		OUT_PORT |= 1<<SIREN;								// ТОЛЬКО ДЛЯ ОТЛАДКИ
- 97c:	c0 9a       	sbi	0x18, 0	; 24
+ 926:	c0 9a       	sbi	0x18, 0	; 24
 	#else
 		OUT_PORT &= ~(1<<SIREN);							// Выключим сирену
 	#endif
 	}
 
 	if (out_delay == 0)										// Если нет отсчета время активности выходов
- 97e:	80 91 6f 00 	lds	r24, 0x006F
- 982:	90 91 70 00 	lds	r25, 0x0070
- 986:	00 97       	sbiw	r24, 0x00	; 0
- 988:	11 f4       	brne	.+4      	; 0x98e <Siren_Outs_OFF+0x1e>
+ 928:	80 91 6f 00 	lds	r24, 0x006F
+ 92c:	90 91 70 00 	lds	r25, 0x0070
+ 930:	00 97       	sbiw	r24, 0x00	; 0
+ 932:	11 f4       	brne	.+4      	; 0x938 <Siren_Outs_OFF+0x1e>
 	{
 	#if defined (DEBUG)
 		OUT_PORT |= 1<<OUT_1;								// ТОЛЬКО ДЛЯ ОТЛАДКИ
- 98a:	c1 9a       	sbi	0x18, 1	; 24
+ 934:	c1 9a       	sbi	0x18, 1	; 24
 	#else			
 		OUT_PORT &= ~(1<<OUT_1);							// Выключим выходы OUT_1,			
 	#endif
 		OUT_PORT |= 1<<OUT_2;								// и OUT_2 (инверсная логика работы)
- 98c:	c2 9a       	sbi	0x18, 2	; 24
- 98e:	08 95       	ret
+ 936:	c2 9a       	sbi	0x18, 2	; 24
+ 938:	08 95       	ret
 
-00000990 <Ring>:
+0000093a <Ring>:
 	ACSR ^= 1<<ACIS0;										// Меняем условие возникновения прерывания - если был переход с 0 на 1, делаем переход с 1 на 0 и наоборот
 }
 //=====================================================================================================================================================
 // Конечный автомат дозвона. В зависимости от значения ring_mode, осуществляет исходящий вызов, либо ожидает реакции абонента
 void Ring(void)
 {
- 990:	1f 93       	push	r17
+ 93a:	1f 93       	push	r17
 	unsigned char ring_mode = 1;							// Состояние автомата изменяеться исключительно внутри него самого, поэтому переменная локальная
 
 	while (parsing_result == IN_PROCESS){}					// Ждем окончания парсинга предыдущей команды
- 992:	80 91 60 00 	lds	r24, 0x0060
- 996:	88 23       	and	r24, r24
- 998:	e1 f3       	breq	.-8      	; 0x992 <Ring+0x2>
- 99a:	11 e0       	ldi	r17, 0x01	; 1
+ 93c:	80 91 60 00 	lds	r24, 0x0060
+ 940:	88 23       	and	r24, r24
+ 942:	e1 f3       	breq	.-8      	; 0x93c <Ring+0x2>
+ 944:	11 e0       	ldi	r17, 0x01	; 1
 
 	while (ring_mode != 16)									// Пока автомат не перейдет в состояние "Попытки дозвона на все номера осуществлены"
 	{
 		wdt_reset();
- 99c:	a8 95       	wdr
+ 946:	a8 95       	wdr
 		Siren_Outs_OFF();									// Проверяем сирену и выходы, если пора - выключаем
- 99e:	e8 df       	rcall	.-48     	; 0x970 <Siren_Outs_OFF>
+ 948:	e8 df       	rcall	.-48     	; 0x91a <Siren_Outs_OFF>
 
 		if (led_delay == 0) Blink_LED_WORK();				// Мигаем LED_WORK
- 9a0:	80 91 6b 00 	lds	r24, 0x006B
- 9a4:	90 91 6c 00 	lds	r25, 0x006C
- 9a8:	00 97       	sbiw	r24, 0x00	; 0
- 9aa:	09 f4       	brne	.+2      	; 0x9ae <Ring+0x1e>
- 9ac:	d4 df       	rcall	.-88     	; 0x956 <Blink_LED_WORK>
+ 94a:	80 91 6b 00 	lds	r24, 0x006B
+ 94e:	90 91 6c 00 	lds	r25, 0x006C
+ 952:	00 97       	sbiw	r24, 0x00	; 0
+ 954:	09 f4       	brne	.+2      	; 0x958 <Ring+0x1e>
+ 956:	d4 df       	rcall	.-88     	; 0x900 <Blink_LED_WORK>
 
 		CheckButton(10000);									// Проверяем кнопку постановки/снятия каждый 10000-й проход цикла дозвона по тревоге,
- 9ae:	80 e1       	ldi	r24, 0x10	; 16
- 9b0:	97 e2       	ldi	r25, 0x27	; 39
- 9b2:	24 dd       	rcall	.-1464   	; 0x3fc <CheckButton>
+ 958:	80 e1       	ldi	r24, 0x10	; 16
+ 95a:	97 e2       	ldi	r25, 0x27	; 39
+ 95c:	56 dd       	rcall	.-1364   	; 0x40a <CheckButton>
 															// обязательно после мигания LED_WORK по тревоге, иначе получим инвертированиое состояние выхода после снятия с охраны
 		if ((ppk_mode == GUARD_OFF)&&(ring_mode != 15))		// Если ППК был переведен в состояние "СНЯТО С ОХРАНЫ" и еще продолжаеться дозвон
- 9b4:	80 91 71 00 	lds	r24, 0x0071
- 9b8:	88 23       	and	r24, r24
- 9ba:	21 f4       	brne	.+8      	; 0x9c4 <Ring+0x34>
- 9bc:	1f 30       	cpi	r17, 0x0F	; 15
- 9be:	09 f0       	breq	.+2      	; 0x9c2 <Ring+0x32>
- 9c0:	7e c0       	rjmp	.+252    	; 0xabe <Ring+0x12e>
- 9c2:	86 c0       	rjmp	.+268    	; 0xad0 <Ring+0x140>
+ 95e:	80 91 71 00 	lds	r24, 0x0071
+ 962:	88 23       	and	r24, r24
+ 964:	21 f4       	brne	.+8      	; 0x96e <Ring+0x34>
+ 966:	1f 30       	cpi	r17, 0x0F	; 15
+ 968:	09 f0       	breq	.+2      	; 0x96c <Ring+0x32>
+ 96a:	7e c0       	rjmp	.+252    	; 0xa68 <Ring+0x12e>
+ 96c:	86 c0       	rjmp	.+268    	; 0xa7a <Ring+0x140>
 		{
 			ring_mode = 14;									// Прекращаем дозвон
 		}
 						
 		switch (ring_mode)									// Осуществляем дозвон на все номера
- 9c4:	81 2f       	mov	r24, r17
- 9c6:	90 e0       	ldi	r25, 0x00	; 0
- 9c8:	02 97       	sbiw	r24, 0x02	; 2
- 9ca:	8e 30       	cpi	r24, 0x0E	; 14
- 9cc:	91 05       	cpc	r25, r1
- 9ce:	28 f4       	brcc	.+10     	; 0x9da <Ring+0x4a>
- 9d0:	87 5d       	subi	r24, 0xD7	; 215
- 9d2:	9f 4f       	sbci	r25, 0xFF	; 255
- 9d4:	8f 93       	push	r24
- 9d6:	9f 93       	push	r25
- 9d8:	08 95       	ret
+ 96e:	81 2f       	mov	r24, r17
+ 970:	90 e0       	ldi	r25, 0x00	; 0
+ 972:	02 97       	sbiw	r24, 0x02	; 2
+ 974:	8e 30       	cpi	r24, 0x0E	; 14
+ 976:	91 05       	cpc	r25, r1
+ 978:	28 f4       	brcc	.+10     	; 0x984 <Ring+0x4a>
+ 97a:	80 5d       	subi	r24, 0xD0	; 208
+ 97c:	9f 4f       	sbci	r25, 0xFF	; 255
+ 97e:	8f 93       	push	r24
+ 980:	9f 93       	push	r25
+ 982:	08 95       	ret
 		{
 			case 1:
 			{
 				Ring_on_Number(number1);					// Звоним 1 абоненту				
- 9da:	84 e7       	ldi	r24, 0x74	; 116
- 9dc:	90 e0       	ldi	r25, 0x00	; 0
- 9de:	a8 df       	rcall	.-176    	; 0x930 <Ring_on_Number>
+ 984:	84 e7       	ldi	r24, 0x74	; 116
+ 986:	90 e0       	ldi	r25, 0x00	; 0
+ 988:	a8 df       	rcall	.-176    	; 0x8da <Ring_on_Number>
 				ring_mode = 2;								// Переводим автомат в состояние "Ожидание ответа модуля на дозвон 1 абоненту"
- 9e0:	12 e0       	ldi	r17, 0x02	; 2
+ 98a:	12 e0       	ldi	r17, 0x02	; 2
 				break;
- 9e2:	dc cf       	rjmp	.-72     	; 0x99c <Ring+0xc>
+ 98c:	dc cf       	rjmp	.-72     	; 0x946 <Ring+0xc>
 			}
 			case 2:
 			{
 				if (parsing_result != IN_PROCESS)			// Если модуль начал не дозвон
- 9e4:	80 91 60 00 	lds	r24, 0x0060
- 9e8:	88 23       	and	r24, r24
- 9ea:	09 f4       	brne	.+2      	; 0x9ee <Ring+0x5e>
- 9ec:	3f c0       	rjmp	.+126    	; 0xa6c <Ring+0xdc>
+ 98e:	80 91 60 00 	lds	r24, 0x0060
+ 992:	88 23       	and	r24, r24
+ 994:	09 f4       	brne	.+2      	; 0x998 <Ring+0x5e>
+ 996:	3f c0       	rjmp	.+126    	; 0xa16 <Ring+0xdc>
 				{
 					ring_mode = 3;							// Просто положим трубку	
- 9ee:	13 e0       	ldi	r17, 0x03	; 3
- 9f0:	3d c0       	rjmp	.+122    	; 0xa6c <Ring+0xdc>
+ 998:	13 e0       	ldi	r17, 0x03	; 3
+ 99a:	3d c0       	rjmp	.+122    	; 0xa16 <Ring+0xdc>
 				}
 				break;
 			}
 			case 3:
 			{
 				if (parsing_result != IN_PROCESS)			// Независимо от ответа модуля
- 9f2:	80 91 60 00 	lds	r24, 0x0060
- 9f6:	88 23       	and	r24, r24
- 9f8:	89 f2       	breq	.-94     	; 0x99c <Ring+0xc>
+ 99c:	80 91 60 00 	lds	r24, 0x0060
+ 9a0:	88 23       	and	r24, r24
+ 9a2:	89 f2       	breq	.-94     	; 0x946 <Ring+0xc>
 				{
 					SendStr_P(ATH);							// Ложим трубку					
- 9fa:	8d ee       	ldi	r24, 0xED	; 237
- 9fc:	90 e0       	ldi	r25, 0x00	; 0
- 9fe:	b8 dd       	rcall	.-1168   	; 0x570 <SendStr_P>
+ 9a4:	8b ef       	ldi	r24, 0xFB	; 251
+ 9a6:	90 e0       	ldi	r25, 0x00	; 0
+ 9a8:	ea dd       	rcall	.-1068   	; 0x57e <SendStr_P>
 					ActivateParsing(_OK,AT_WAIT_TIME);
- a00:	84 e2       	ldi	r24, 0x24	; 36
- a02:	91 e0       	ldi	r25, 0x01	; 1
- a04:	68 eb       	ldi	r22, 0xB8	; 184
- a06:	7b e0       	ldi	r23, 0x0B	; 11
- a08:	4b dd       	rcall	.-1386   	; 0x4a0 <ActivateParsing>
+ 9aa:	82 e3       	ldi	r24, 0x32	; 50
+ 9ac:	91 e0       	ldi	r25, 0x01	; 1
+ 9ae:	68 eb       	ldi	r22, 0xB8	; 184
+ 9b0:	7b e0       	ldi	r23, 0x0B	; 11
+ 9b2:	7d dd       	rcall	.-1286   	; 0x4ae <ActivateParsing>
 					ring_mode = 4;							// Переводим автомат в состояние "Ожидание отбоя вызова"
- a0a:	14 e0       	ldi	r17, 0x04	; 4
- a0c:	c7 cf       	rjmp	.-114    	; 0x99c <Ring+0xc>
+ 9b4:	14 e0       	ldi	r17, 0x04	; 4
+ 9b6:	c7 cf       	rjmp	.-114    	; 0x946 <Ring+0xc>
 				}
 				break;
 			}
 			case 4:
 			{
 				if (parsing_result != IN_PROCESS)			// Независимо от ответа модуля
- a0e:	80 91 60 00 	lds	r24, 0x0060
- a12:	88 23       	and	r24, r24
- a14:	09 f0       	breq	.+2      	; 0xa18 <Ring+0x88>
- a16:	62 c0       	rjmp	.+196    	; 0xadc <Ring+0x14c>
- a18:	c1 cf       	rjmp	.-126    	; 0x99c <Ring+0xc>
+ 9b8:	80 91 60 00 	lds	r24, 0x0060
+ 9bc:	88 23       	and	r24, r24
+ 9be:	09 f0       	breq	.+2      	; 0x9c2 <Ring+0x88>
+ 9c0:	62 c0       	rjmp	.+196    	; 0xa86 <Ring+0x14c>
+ 9c2:	c1 cf       	rjmp	.-126    	; 0x946 <Ring+0xc>
 				break;
 			}
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 			case 5:
 			{
 				Ring_on_Number(number2);					// Звоним 2 абоненту				
- a1a:	82 e8       	ldi	r24, 0x82	; 130
- a1c:	90 e0       	ldi	r25, 0x00	; 0
- a1e:	88 df       	rcall	.-240    	; 0x930 <Ring_on_Number>
+ 9c4:	82 e8       	ldi	r24, 0x82	; 130
+ 9c6:	90 e0       	ldi	r25, 0x00	; 0
+ 9c8:	88 df       	rcall	.-240    	; 0x8da <Ring_on_Number>
 				ring_mode = 6;								// Переводим автомат в состояние "Ожидание ответа модуля на дозвон 2 абоненту"
- a20:	16 e0       	ldi	r17, 0x06	; 6
+ 9ca:	16 e0       	ldi	r17, 0x06	; 6
 				break;
- a22:	bc cf       	rjmp	.-136    	; 0x99c <Ring+0xc>
+ 9cc:	bc cf       	rjmp	.-136    	; 0x946 <Ring+0xc>
 			}
 			case 6:
 			{
 				if (parsing_result != IN_PROCESS)			// Если модуль начал не дозвон
- a24:	80 91 60 00 	lds	r24, 0x0060
- a28:	88 23       	and	r24, r24
- a2a:	01 f1       	breq	.+64     	; 0xa6c <Ring+0xdc>
+ 9ce:	80 91 60 00 	lds	r24, 0x0060
+ 9d2:	88 23       	and	r24, r24
+ 9d4:	01 f1       	breq	.+64     	; 0xa16 <Ring+0xdc>
 				{
 					ring_mode = 7;							// Просто положим трубку	
- a2c:	17 e0       	ldi	r17, 0x07	; 7
- a2e:	1e c0       	rjmp	.+60     	; 0xa6c <Ring+0xdc>
+ 9d6:	17 e0       	ldi	r17, 0x07	; 7
+ 9d8:	1e c0       	rjmp	.+60     	; 0xa16 <Ring+0xdc>
 				}
 				break;
 			}
 			case 7:
 			{
 				if (parsing_result != IN_PROCESS)			// Независимо от ответа модуля
- a30:	80 91 60 00 	lds	r24, 0x0060
- a34:	88 23       	and	r24, r24
- a36:	09 f4       	brne	.+2      	; 0xa3a <Ring+0xaa>
- a38:	b1 cf       	rjmp	.-158    	; 0x99c <Ring+0xc>
+ 9da:	80 91 60 00 	lds	r24, 0x0060
+ 9de:	88 23       	and	r24, r24
+ 9e0:	09 f4       	brne	.+2      	; 0x9e4 <Ring+0xaa>
+ 9e2:	b1 cf       	rjmp	.-158    	; 0x946 <Ring+0xc>
 				{
 					SendStr_P(ATH);							// Ложим трубку					
- a3a:	8d ee       	ldi	r24, 0xED	; 237
- a3c:	90 e0       	ldi	r25, 0x00	; 0
- a3e:	98 dd       	rcall	.-1232   	; 0x570 <SendStr_P>
+ 9e4:	8b ef       	ldi	r24, 0xFB	; 251
+ 9e6:	90 e0       	ldi	r25, 0x00	; 0
+ 9e8:	ca dd       	rcall	.-1132   	; 0x57e <SendStr_P>
 					ActivateParsing(_OK,AT_WAIT_TIME);
- a40:	84 e2       	ldi	r24, 0x24	; 36
- a42:	91 e0       	ldi	r25, 0x01	; 1
- a44:	68 eb       	ldi	r22, 0xB8	; 184
- a46:	7b e0       	ldi	r23, 0x0B	; 11
- a48:	2b dd       	rcall	.-1450   	; 0x4a0 <ActivateParsing>
+ 9ea:	82 e3       	ldi	r24, 0x32	; 50
+ 9ec:	91 e0       	ldi	r25, 0x01	; 1
+ 9ee:	68 eb       	ldi	r22, 0xB8	; 184
+ 9f0:	7b e0       	ldi	r23, 0x0B	; 11
+ 9f2:	5d dd       	rcall	.-1350   	; 0x4ae <ActivateParsing>
 					ring_mode = 8;							// Переводим автомат в состояние "Ожидание отбоя вызова"
- a4a:	18 e0       	ldi	r17, 0x08	; 8
- a4c:	a7 cf       	rjmp	.-178    	; 0x99c <Ring+0xc>
+ 9f4:	18 e0       	ldi	r17, 0x08	; 8
+ 9f6:	a7 cf       	rjmp	.-178    	; 0x946 <Ring+0xc>
 				}
 				break;
 			}
 			case 8:
 			{
 				if (parsing_result != IN_PROCESS)			// Независимо от ответа модуля
- a4e:	80 91 60 00 	lds	r24, 0x0060
- a52:	88 23       	and	r24, r24
- a54:	09 f0       	breq	.+2      	; 0xa58 <Ring+0xc8>
- a56:	44 c0       	rjmp	.+136    	; 0xae0 <Ring+0x150>
- a58:	a1 cf       	rjmp	.-190    	; 0x99c <Ring+0xc>
+ 9f8:	80 91 60 00 	lds	r24, 0x0060
+ 9fc:	88 23       	and	r24, r24
+ 9fe:	09 f0       	breq	.+2      	; 0xa02 <Ring+0xc8>
+ a00:	44 c0       	rjmp	.+136    	; 0xa8a <Ring+0x150>
+ a02:	a1 cf       	rjmp	.-190    	; 0x946 <Ring+0xc>
 				break;
 			}		
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 			case 9:
 			{
 				Ring_on_Number(number3);					// Звоним 3 абоненту				
- a5a:	80 e9       	ldi	r24, 0x90	; 144
- a5c:	90 e0       	ldi	r25, 0x00	; 0
- a5e:	68 df       	rcall	.-304    	; 0x930 <Ring_on_Number>
+ a04:	80 e9       	ldi	r24, 0x90	; 144
+ a06:	90 e0       	ldi	r25, 0x00	; 0
+ a08:	68 df       	rcall	.-304    	; 0x8da <Ring_on_Number>
 				ring_mode = 10;								// Переводим автомат в состояние "Ожидание ответа модуля на дозвон 3 абоненту"
- a60:	1a e0       	ldi	r17, 0x0A	; 10
+ a0a:	1a e0       	ldi	r17, 0x0A	; 10
 				break;
- a62:	9c cf       	rjmp	.-200    	; 0x99c <Ring+0xc>
+ a0c:	9c cf       	rjmp	.-200    	; 0x946 <Ring+0xc>
 			}
 			case 10:
 			{
 				if (parsing_result != IN_PROCESS)			// Если модуль начал не дозвон
- a64:	80 91 60 00 	lds	r24, 0x0060
- a68:	81 11       	cpse	r24, r1
+ a0e:	80 91 60 00 	lds	r24, 0x0060
+ a12:	81 11       	cpse	r24, r1
 				{
 					ring_mode = 11;							// Просто положим трубку	
- a6a:	1b e0       	ldi	r17, 0x0B	; 11
+ a14:	1b e0       	ldi	r17, 0x0B	; 11
 				}
 
 				if (parsing_result == OK)					// А если начал дозвон (прислал OK)
- a6c:	80 91 60 00 	lds	r24, 0x0060
- a70:	81 30       	cpi	r24, 0x01	; 1
- a72:	09 f0       	breq	.+2      	; 0xa76 <Ring+0xe6>
- a74:	93 cf       	rjmp	.-218    	; 0x99c <Ring+0xc>
+ a16:	80 91 60 00 	lds	r24, 0x0060
+ a1a:	81 30       	cpi	r24, 0x01	; 1
+ a1c:	09 f0       	breq	.+2      	; 0xa20 <Ring+0xe6>
+ a1e:	93 cf       	rjmp	.-218    	; 0x946 <Ring+0xc>
 				{
 					ActivateParsing(BUSY,RING_WAIT_TIME);	// Активируем парсинг ответа абонента
- a76:	8d e7       	ldi	r24, 0x7D	; 125
- a78:	91 e0       	ldi	r25, 0x01	; 1
- a7a:	60 e2       	ldi	r22, 0x20	; 32
- a7c:	7e e4       	ldi	r23, 0x4E	; 78
- a7e:	10 dd       	rcall	.-1504   	; 0x4a0 <ActivateParsing>
- a80:	8d cf       	rjmp	.-230    	; 0x99c <Ring+0xc>
+ a20:	8b e8       	ldi	r24, 0x8B	; 139
+ a22:	91 e0       	ldi	r25, 0x01	; 1
+ a24:	60 e2       	ldi	r22, 0x20	; 32
+ a26:	7e e4       	ldi	r23, 0x4E	; 78
+ a28:	42 dd       	rcall	.-1404   	; 0x4ae <ActivateParsing>
+ a2a:	8d cf       	rjmp	.-230    	; 0x946 <Ring+0xc>
 				}
 				break;
 			}
 			case 11:
 			{
 				if (parsing_result != IN_PROCESS)			// Независимо от ответа модуля
- a82:	80 91 60 00 	lds	r24, 0x0060
- a86:	88 23       	and	r24, r24
- a88:	09 f4       	brne	.+2      	; 0xa8c <Ring+0xfc>
- a8a:	88 cf       	rjmp	.-240    	; 0x99c <Ring+0xc>
+ a2c:	80 91 60 00 	lds	r24, 0x0060
+ a30:	88 23       	and	r24, r24
+ a32:	09 f4       	brne	.+2      	; 0xa36 <Ring+0xfc>
+ a34:	88 cf       	rjmp	.-240    	; 0x946 <Ring+0xc>
 				{
 					SendStr_P(ATH);							// Ложим трубку					
- a8c:	8d ee       	ldi	r24, 0xED	; 237
- a8e:	90 e0       	ldi	r25, 0x00	; 0
- a90:	6f dd       	rcall	.-1314   	; 0x570 <SendStr_P>
+ a36:	8b ef       	ldi	r24, 0xFB	; 251
+ a38:	90 e0       	ldi	r25, 0x00	; 0
+ a3a:	a1 dd       	rcall	.-1214   	; 0x57e <SendStr_P>
 					ActivateParsing(_OK,AT_WAIT_TIME);
- a92:	84 e2       	ldi	r24, 0x24	; 36
- a94:	91 e0       	ldi	r25, 0x01	; 1
- a96:	68 eb       	ldi	r22, 0xB8	; 184
- a98:	7b e0       	ldi	r23, 0x0B	; 11
- a9a:	02 dd       	rcall	.-1532   	; 0x4a0 <ActivateParsing>
+ a3c:	82 e3       	ldi	r24, 0x32	; 50
+ a3e:	91 e0       	ldi	r25, 0x01	; 1
+ a40:	68 eb       	ldi	r22, 0xB8	; 184
+ a42:	7b e0       	ldi	r23, 0x0B	; 11
+ a44:	34 dd       	rcall	.-1432   	; 0x4ae <ActivateParsing>
 					ring_mode = 12;							// Переводим автомат в состояние "Ожидание отбоя вызова"
- a9c:	1c e0       	ldi	r17, 0x0C	; 12
- a9e:	7e cf       	rjmp	.-260    	; 0x99c <Ring+0xc>
+ a46:	1c e0       	ldi	r17, 0x0C	; 12
+ a48:	7e cf       	rjmp	.-260    	; 0x946 <Ring+0xc>
 				}
 				break;
 			}
 			case 12:
 			{
 				if (parsing_result != IN_PROCESS)			// Независимо от ответа модуля
- aa0:	80 91 60 00 	lds	r24, 0x0060
- aa4:	88 23       	and	r24, r24
- aa6:	f1 f4       	brne	.+60     	; 0xae4 <Ring+0x154>
- aa8:	79 cf       	rjmp	.-270    	; 0x99c <Ring+0xc>
+ a4a:	80 91 60 00 	lds	r24, 0x0060
+ a4e:	88 23       	and	r24, r24
+ a50:	f1 f4       	brne	.+60     	; 0xa8e <Ring+0x154>
+ a52:	79 cf       	rjmp	.-270    	; 0x946 <Ring+0xc>
     return 1;
 }
 
 static __inline__ uint8_t __iCliRetVal(void)
 {
     cli();
- aaa:	f8 94       	cli
+ a54:	f8 94       	cli
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 			case 13:
 			{
 				ATOMIC_BLOCK(ATOMIC_FORCEON)
 				{
 					ppk_mode = ALARM_RING_COMPL;			// Все звонки осуществлены. Активируем режим ППК "ТРЕВОГА, ЗВОНКИ СОВЕРШЕНЫ"
- aac:	89 e0       	ldi	r24, 0x09	; 9
- aae:	80 93 71 00 	sts	0x0071, r24
+ a56:	89 e0       	ldi	r24, 0x09	; 9
+ a58:	80 93 71 00 	sts	0x0071, r24
 					eeprom_update_byte(&ppk_mode_save, ALARM_RING_COMPL);// И обновляем резервную копию состояния ППК в EEPROM
- ab2:	80 e0       	ldi	r24, 0x00	; 0
- ab4:	90 e0       	ldi	r25, 0x00	; 0
- ab6:	69 e0       	ldi	r22, 0x09	; 9
- ab8:	11 d1       	rcall	.+546    	; 0xcdc <__eeupd_byte_m8>
+ a5c:	80 e0       	ldi	r24, 0x00	; 0
+ a5e:	90 e0       	ldi	r25, 0x00	; 0
+ a60:	69 e0       	ldi	r22, 0x09	; 9
+ a62:	13 d1       	rcall	.+550    	; 0xc8a <__eeupd_byte_m8>
     return 1;
 }
 
 static __inline__ void __iSeiParam(const uint8_t *__s)
 {
     sei();
- aba:	78 94       	sei
+ a64:	78 94       	sei
 				}
 				ring_mode = 16;								// Переводим автомат в состояние "Попытки дозвона на все номера осуществлены"
 				break;
- abc:	17 c0       	rjmp	.+46     	; 0xaec <Ring+0x15c>
+ a66:	17 c0       	rjmp	.+46     	; 0xa96 <Ring+0x15c>
 			}
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 			case 14:
 			{
 				SendStr_P(ATH);
- abe:	8d ee       	ldi	r24, 0xED	; 237
- ac0:	90 e0       	ldi	r25, 0x00	; 0
- ac2:	56 dd       	rcall	.-1364   	; 0x570 <SendStr_P>
+ a68:	8b ef       	ldi	r24, 0xFB	; 251
+ a6a:	90 e0       	ldi	r25, 0x00	; 0
+ a6c:	88 dd       	rcall	.-1264   	; 0x57e <SendStr_P>
 				ActivateParsing(_OK,AT_WAIT_TIME);
- ac4:	84 e2       	ldi	r24, 0x24	; 36
- ac6:	91 e0       	ldi	r25, 0x01	; 1
- ac8:	68 eb       	ldi	r22, 0xB8	; 184
- aca:	7b e0       	ldi	r23, 0x0B	; 11
- acc:	e9 dc       	rcall	.-1582   	; 0x4a0 <ActivateParsing>
- ace:	0c c0       	rjmp	.+24     	; 0xae8 <Ring+0x158>
+ a6e:	82 e3       	ldi	r24, 0x32	; 50
+ a70:	91 e0       	ldi	r25, 0x01	; 1
+ a72:	68 eb       	ldi	r22, 0xB8	; 184
+ a74:	7b e0       	ldi	r23, 0x0B	; 11
+ a76:	1b dd       	rcall	.-1482   	; 0x4ae <ActivateParsing>
+ a78:	0c c0       	rjmp	.+24     	; 0xa92 <Ring+0x158>
 				ring_mode = 15;
 				break;
 			}
 			case 15:
 			{
 				if (parsing_result != IN_PROCESS)
- ad0:	80 91 60 00 	lds	r24, 0x0060
- ad4:	88 23       	and	r24, r24
- ad6:	41 f0       	breq	.+16     	; 0xae8 <Ring+0x158>
+ a7a:	80 91 60 00 	lds	r24, 0x0060
+ a7e:	88 23       	and	r24, r24
+ a80:	41 f0       	breq	.+16     	; 0xa92 <Ring+0x158>
 				{
 				#if defined (DEBUG)
 					LED_PORT |= 1<<LED_WORK;				// ТОЛЬКО ДЛЯ ОТЛАДКИ
- ad8:	c3 9a       	sbi	0x18, 3	; 24
- ada:	08 c0       	rjmp	.+16     	; 0xaec <Ring+0x15c>
+ a82:	c3 9a       	sbi	0x18, 3	; 24
+ a84:	08 c0       	rjmp	.+16     	; 0xa96 <Ring+0x15c>
 			}
 			case 4:
 			{
 				if (parsing_result != IN_PROCESS)			// Независимо от ответа модуля
 				{
 					ring_mode = 5;							// Переводим автомат в состояние "Звонок 2 абоненту"
- adc:	15 e0       	ldi	r17, 0x05	; 5
- ade:	5e cf       	rjmp	.-324    	; 0x99c <Ring+0xc>
+ a86:	15 e0       	ldi	r17, 0x05	; 5
+ a88:	5e cf       	rjmp	.-324    	; 0x946 <Ring+0xc>
 			}
 			case 8:
 			{
 				if (parsing_result != IN_PROCESS)			// Независимо от ответа модуля
 				{
 					ring_mode = 9;							// Переводим автомат в состояние "Звонок 3 абоненту"
- ae0:	19 e0       	ldi	r17, 0x09	; 9
- ae2:	5c cf       	rjmp	.-328    	; 0x99c <Ring+0xc>
+ a8a:	19 e0       	ldi	r17, 0x09	; 9
+ a8c:	5c cf       	rjmp	.-328    	; 0x946 <Ring+0xc>
 			}
 			case 12:
 			{
 				if (parsing_result != IN_PROCESS)			// Независимо от ответа модуля
 				{
 					ring_mode =13;							// Переводим автомат в состояние "Все звонки осуществлены"
- ae4:	1d e0       	ldi	r17, 0x0D	; 13
- ae6:	5a cf       	rjmp	.-332    	; 0x99c <Ring+0xc>
+ a8e:	1d e0       	ldi	r17, 0x0D	; 13
+ a90:	5a cf       	rjmp	.-332    	; 0x946 <Ring+0xc>
 				ring_mode = 15;
 				break;
 			}
 			case 15:
 			{
 				if (parsing_result != IN_PROCESS)
- ae8:	1f e0       	ldi	r17, 0x0F	; 15
- aea:	58 cf       	rjmp	.-336    	; 0x99c <Ring+0xc>
+ a92:	1f e0       	ldi	r17, 0x0F	; 15
+ a94:	58 cf       	rjmp	.-336    	; 0x946 <Ring+0xc>
 			}
 			case 16: break;
 			default: ring_mode = 16; break;
 		}
 	}
 }
- aec:	1f 91       	pop	r17
- aee:	08 95       	ret
+ a96:	1f 91       	pop	r17
+ a98:	08 95       	ret
 
-00000af0 <Init>:
+00000a9a <Init>:
 //=====================================================================================================================================================
 // Инициализация портов и периферии
 void Init(void)
 {
 // Инициализация портов
 	SIMCOM_RESET_DDR |= 1<<SIMCOM_RESET_PIN;				// SIMCOM_RESET на вывод
- af0:	8c 9a       	sbi	0x11, 4	; 17
+ a9a:	8c 9a       	sbi	0x11, 4	; 17
 	DDRB |= 1<<LED_PROG|1<<LED_WORK|1<<OUT_2|1<<OUT_1|1<<SIREN;// Сирену, выходы, и светодиоды - на вывод
- af2:	87 b3       	in	r24, 0x17	; 23
- af4:	8f 61       	ori	r24, 0x1F	; 31
- af6:	87 bb       	out	0x17, r24	; 23
+ a9c:	87 b3       	in	r24, 0x17	; 23
+ a9e:	8f 61       	ori	r24, 0x1F	; 31
+ aa0:	87 bb       	out	0x17, r24	; 23
 	
 #if defined (DEBUG)
 	PORTD |= 1<<JUMPER_PIN|1<<DATCHIK_2|1<<DATCHIK_1;		// ТОЛЬКО ДЛЯ ОТЛАДКИ
- af8:	82 b3       	in	r24, 0x12	; 18
- afa:	8c 62       	ori	r24, 0x2C	; 44
- afc:	82 bb       	out	0x12, r24	; 18
+ aa2:	82 b3       	in	r24, 0x12	; 18
+ aa4:	8c 62       	ori	r24, 0x2C	; 44
+ aa6:	82 bb       	out	0x12, r24	; 18
 #else
 	PORTD |= 1<<JUMPER_PIN|1<<DATCHIK_1;					// Включаем подтяжку для Джампера входа в режим программирования и DATCHIK_1 ( DATCHIK_2 не надо !!! )
 #endif
 	PORTB |= 1<<BUTTON_PIN|1<<OUT_2;						// Включаем подтяжку для Кнопки постановки/снятия, и активируем OUT_2 (выключиться при тревоге)
- afe:	88 b3       	in	r24, 0x18	; 24
- b00:	84 62       	ori	r24, 0x24	; 36
- b02:	88 bb       	out	0x18, r24	; 24
+ aa8:	88 b3       	in	r24, 0x18	; 24
+ aaa:	84 62       	ori	r24, 0x24	; 36
+ aac:	88 bb       	out	0x18, r24	; 24
 
 #if defined (DEBUG)
 	LED_PORT |= 1<<LED_WORK|1<<LED_PROG;					// ТОЛЬКО ДЛЯ ОТЛАДКИ
- b04:	88 b3       	in	r24, 0x18	; 24
- b06:	88 61       	ori	r24, 0x18	; 24
- b08:	88 bb       	out	0x18, r24	; 24
+ aae:	88 b3       	in	r24, 0x18	; 24
+ ab0:	88 61       	ori	r24, 0x18	; 24
+ ab2:	88 bb       	out	0x18, r24	; 24
 #else
 	LED_PORT &= ~(1<<LED_WORK|1<<LED_PROG);					// Выключим светодиоды
 #endif
 
 // Инициализация UART
 	UBRRL = LO(bauddivider);
- b0a:	83 e3       	ldi	r24, 0x33	; 51
- b0c:	89 b9       	out	0x09, r24	; 9
+ ab4:	83 e3       	ldi	r24, 0x33	; 51
+ ab6:	89 b9       	out	0x09, r24	; 9
 	UBRRH = HI(bauddivider);
- b0e:	10 bc       	out	0x20, r1	; 32
+ ab8:	10 bc       	out	0x20, r1	; 32
 	UCSRA = 0;
- b10:	1b b8       	out	0x0b, r1	; 11
+ aba:	1b b8       	out	0x0b, r1	; 11
 	UCSRB = 0<<RXCIE|0<<TXCIE|0<<UDRIE|1<<RXEN|1<<TXEN;		// Прерывание UDRIE сразу никогда не разрешаем, иначе контроллер сразу входит в это прерывание
- b12:	88 e1       	ldi	r24, 0x18	; 24
- b14:	8a b9       	out	0x0a, r24	; 10
+ abc:	88 e1       	ldi	r24, 0x18	; 24
+ abe:	8a b9       	out	0x0a, r24	; 10
 
 #if defined (__AVR_ATmega8__)
 	UCSRC = 1<<URSEL|1<<UCSZ1|1<<UCSZ0;
- b16:	86 e8       	ldi	r24, 0x86	; 134
- b18:	80 bd       	out	0x20, r24	; 32
+ ac0:	86 e8       	ldi	r24, 0x86	; 134
+ ac2:	80 bd       	out	0x20, r24	; 32
 
 // Инициализация Таймеров
 #if defined (__AVR_ATmega8__)
 // Предделитель подбираеться экспериментально, для достижения периода прерывания Timer1 каждую мс
 															// Везде вкл. режим прерывания Timer1 по совпадению (1<<WGM12)
 	TCCR1B = 1<<WGM12|0<<CS12|0<<CS11|1<<CS10;				// Запуск таймера без предделителя
- b1a:	89 e0       	ldi	r24, 0x09	; 9
- b1c:	8e bd       	out	0x2e, r24	; 46
+ ac4:	89 e0       	ldi	r24, 0x09	; 9
+ ac6:	8e bd       	out	0x2e, r24	; 46
 //	TCCR1B = 1<<WGM12|0<<CS12|1<<CS11|0<<CS10;				// Запуск таймера с предделителем 8
 //	TCCR1B = 1<<WGM12|0<<CS12|1<<CS11|1<<CS10;				// Запуск таймера с предделителем 64
 //	TCCR1B = 1<<WGM12|1<<CS12|0<<CS11|0<<CS10;				// Запуск таймера с предделителем 256
 //	TCCR1B = 1<<WGM12|1<<CS12|0<<CS11|1<<CS10;				// Запуск таймера с предделителем 1024				
 	OCR1A = 7999;											// Значение подбираеться экспериментально, для достижения периода прерывания Timer1 каждую мс
- b1e:	8f e3       	ldi	r24, 0x3F	; 63
- b20:	9f e1       	ldi	r25, 0x1F	; 31
- b22:	9b bd       	out	0x2b, r25	; 43
- b24:	8a bd       	out	0x2a, r24	; 42
+ ac8:	8f e3       	ldi	r24, 0x3F	; 63
+ aca:	9f e1       	ldi	r25, 0x1F	; 31
+ acc:	9b bd       	out	0x2b, r25	; 43
+ ace:	8a bd       	out	0x2a, r24	; 42
 	TIMSK = 1<<OCIE1A;										// Разрешаем прерывание по совпадению значения OCR1A с заданым ранее
- b26:	80 e1       	ldi	r24, 0x10	; 16
- b28:	89 bf       	out	0x39, r24	; 57
+ ad0:	80 e1       	ldi	r24, 0x10	; 16
+ ad2:	89 bf       	out	0x39, r24	; 57
 	TIFR = 1<<OCF1A;										// Сбросим флаг, чтобы прерывание не выскочило сразу
- b2a:	88 bf       	out	0x38, r24	; 56
+ ad4:	88 bf       	out	0x38, r24	; 56
 	TIMSK = 1<<OCIE0A;										// Разрешаем прерывание по совпадению значения OCR0A с заданым ранее
 #endif
 
 // Настроим внешние прерывания (DATCHIK_1, DATCHIK_2)
 #if defined (DEBUG)
 	MCUCR |= 1<<ISC11|1<<ISC01;								// ТОЛЬКО ДЛЯ ОТЛАДКИ
- b2c:	85 b7       	in	r24, 0x35	; 53
- b2e:	8a 60       	ori	r24, 0x0A	; 10
- b30:	85 bf       	out	0x35, r24	; 53
+ ad6:	85 b7       	in	r24, 0x35	; 53
+ ad8:	8a 60       	ori	r24, 0x0A	; 10
+ ada:	85 bf       	out	0x35, r24	; 53
 #else														
 	MCUCR |= 1<<ISC11|1<<ISC10|1<<ISC01;					// INT1 - прерывание по переднему фронту (DATCHIK_2), INT0 - прерывание по спаду (DATCHIK_1)				
 #endif
 
 // Настроим Аналоговый компаратор
-	if (pin_state & (1<<PD7))								// Если на момент инициализации на пине высокий уровень, значит есть сеть 220В, поэтому				
- b32:	80 91 73 00 	lds	r24, 0x0073
- b36:	87 ff       	sbrs	r24, 7
- b38:	03 c0       	rjmp	.+6      	; 0xb40 <Init+0x50>
-	ACSR |= 1<<ACBG|1<<ACIE|1<<ACIS1|1<<ACIS0;				// Подключаем внутренний ИОН, разрешаем прерывание от компаратора, условие возникновения прерывания - переход выхода компаратора с 0 на 1 (вывод PD7 садиться на землю).
- b3a:	88 b1       	in	r24, 0x08	; 8
- b3c:	8b 64       	ori	r24, 0x4B	; 75
- b3e:	02 c0       	rjmp	.+4      	; 0xb44 <Init+0x54>
-	else ACSR |= 1<<ACBG|1<<ACIE|1<<ACIS1;					// Подключаем внутренний ИОН, разрешаем прерывание от компаратора, условие возникновения прерывания - переход выхода компаратора с 1 на 0 (вывод PD7 подтягивается к питанию).
- b40:	88 b1       	in	r24, 0x08	; 8
- b42:	8a 64       	ori	r24, 0x4A	; 74
- b44:	88 b9       	out	0x08, r24	; 8
- b46:	08 95       	ret
+	if (!(pin_state & (1<<PD7)))							// Если на момент инициализации на пине низкий уровень, значит нет сети 220В,				
+ adc:	80 91 73 00 	lds	r24, 0x0073
+ ae0:	87 fd       	sbrc	r24, 7
+ ae2:	03 c0       	rjmp	.+6      	; 0xaea <Init+0x50>
+	ACSR |= 1<<ACBG|1<<ACIE|1<<ACIS1|1<<ACIS0;				// поэтому подключаем внутренний ИОН, разрешаем прерывание от компаратора, условие возникновения прерывания - переход выхода компаратора с 0 на 1.
+ ae4:	88 b1       	in	r24, 0x08	; 8
+ ae6:	8b 64       	ori	r24, 0x4B	; 75
+ ae8:	02 c0       	rjmp	.+4      	; 0xaee <Init+0x54>
+	else ACSR |= 1<<ACBG|1<<ACIE|1<<ACIS1;					// иначе есть сеть 220В, поэтому подключаем внутренний ИОН, разрешаем прерывание от компаратора, условие возникновения прерывания - переход выхода компаратора с 1 на 0.
+ aea:	88 b1       	in	r24, 0x08	; 8
+ aec:	8a 64       	ori	r24, 0x4A	; 74
+ aee:	88 b9       	out	0x08, r24	; 8
+ af0:	08 95       	ret
 
-00000b48 <main>:
+00000af2 <main>:
 void 	SaveNumber_2_RAM(char *number, unsigned char next_programming_mode);
 void	Siren_Outs_OFF(void);
 void	Blink_LED_WORK(void);
 //=====================================================================================================================================================
 int main(void)
 {
- b48:	ef 92       	push	r14
- b4a:	ff 92       	push	r15
- b4c:	0f 93       	push	r16
- b4e:	1f 93       	push	r17
- b50:	cf 93       	push	r28
- b52:	df 93       	push	r29
+ af2:	ef 92       	push	r14
+ af4:	ff 92       	push	r15
+ af6:	0f 93       	push	r16
+ af8:	1f 93       	push	r17
+ afa:	cf 93       	push	r28
+ afc:	df 93       	push	r29
 	Init();													// Инициализация портов и периферии
- b54:	cd df       	rcall	.-102    	; 0xaf0 <Init>
+ afe:	cd df       	rcall	.-102    	; 0xa9a <Init>
 	ppk_mode = eeprom_read_byte(&ppk_mode_save);			// Восстанавливаем состояние ППК из EEPROM до разрешения прерваний, для атомарности
- b56:	80 e0       	ldi	r24, 0x00	; 0
- b58:	90 e0       	ldi	r25, 0x00	; 0
- b5a:	a9 d0       	rcall	.+338    	; 0xcae <__eerd_byte_m8>
- b5c:	80 93 71 00 	sts	0x0071, r24
+ b00:	80 e0       	ldi	r24, 0x00	; 0
+ b02:	90 e0       	ldi	r25, 0x00	; 0
+ b04:	ab d0       	rcall	.+342    	; 0xc5c <__eerd_byte_m8>
+ b06:	80 93 71 00 	sts	0x0071, r24
 	sei();
- b60:	78 94       	sei
+ b0a:	78 94       	sei
 	wdt_enable(WDTO_2S);									// Включаем сторожевой таймер со сбросом через 2 секунды
- b62:	2f e0       	ldi	r18, 0x0F	; 15
- b64:	88 e1       	ldi	r24, 0x18	; 24
- b66:	90 e0       	ldi	r25, 0x00	; 0
- b68:	0f b6       	in	r0, 0x3f	; 63
- b6a:	f8 94       	cli
- b6c:	a8 95       	wdr
- b6e:	81 bd       	out	0x21, r24	; 33
- b70:	0f be       	out	0x3f, r0	; 63
- b72:	21 bd       	out	0x21, r18	; 33
+ b0c:	2f e0       	ldi	r18, 0x0F	; 15
+ b0e:	88 e1       	ldi	r24, 0x18	; 24
+ b10:	90 e0       	ldi	r25, 0x00	; 0
+ b12:	0f b6       	in	r0, 0x3f	; 63
+ b14:	f8 94       	cli
+ b16:	a8 95       	wdr
+ b18:	81 bd       	out	0x21, r24	; 33
+ b1a:	0f be       	out	0x3f, r0	; 63
+ b1c:	21 bd       	out	0x21, r18	; 33
 
 	if (ppk_mode == GUARD_OFF)								// Если ППК снят с охраны								
- b74:	80 91 71 00 	lds	r24, 0x0071
- b78:	88 23       	and	r24, r24
- b7a:	29 f4       	brne	.+10     	; 0xb86 <main+0x3e>
+ b1e:	80 91 71 00 	lds	r24, 0x0071
+ b22:	88 23       	and	r24, r24
+ b24:	29 f4       	brne	.+10     	; 0xb30 <main+0x3e>
 	{
 		pin_state = JUMPER_PINS;							// Читаем состояние всего порта c Джампером программирования
- b7c:	80 b3       	in	r24, 0x10	; 16
- b7e:	80 93 73 00 	sts	0x0073, r24
+ b26:	80 b3       	in	r24, 0x10	; 16
+ b28:	80 93 73 00 	sts	0x0073, r24
 		if (!(pin_state & (1<<JUMPER_PIN))) Programming();	// Если Джампер программирования в положении ПРОГ (вывод JUMPER_PIN на земле), переходим в режим "ПРОГРАММИРОВАНИЕ"
- b82:	85 ff       	sbrs	r24, 5
- b84:	57 de       	rcall	.-850    	; 0x834 <Programming>
+ b2c:	85 ff       	sbrs	r24, 5
+ b2e:	a2 de       	rcall	.-700    	; 0x874 <Programming>
 	}
+	programming_mode = 0;
+ b30:	10 92 9e 00 	sts	0x009E, r1
 
 	wdt_reset();
- b86:	a8 95       	wdr
+ b34:	a8 95       	wdr
 	ReadNumbers();											// Читаем записанные телефонные номера из EEPROM в ОЗУ
- b88:	c6 dc       	rcall	.-1652   	; 0x516 <ReadNumbers>
+ b36:	f6 dc       	rcall	.-1556   	; 0x524 <ReadNumbers>
 
 	if (ppk_mode != GUARD_OFF)								// Если НЕ в режиме "СНЯТО С ОХРАНЫ"
- b8a:	80 91 71 00 	lds	r24, 0x0071
- b8e:	88 23       	and	r24, r24
- b90:	21 f0       	breq	.+8      	; 0xb9a <main+0x52>
+ b38:	80 91 71 00 	lds	r24, 0x0071
+ b3c:	88 23       	and	r24, r24
+ b3e:	21 f0       	breq	.+8      	; 0xb48 <main+0x56>
 	{
 		GIFR = 1<<INTF1|1<<INTF0;							// Сбросим флаги возможно возникавших ранее внешних прерываний
- b92:	80 ec       	ldi	r24, 0xC0	; 192
- b94:	8a bf       	out	0x3a, r24	; 58
+ b40:	80 ec       	ldi	r24, 0xC0	; 192
+ b42:	8a bf       	out	0x3a, r24	; 58
 		GICR = 1<<INT1|1<<INT0;								// Разрешим прерывания INT1 и INT0
- b96:	8b bf       	out	0x3b, r24	; 59
+ b44:	8b bf       	out	0x3b, r24	; 59
 	#if defined (DEBUG)
 		LED_PORT &= ~(1<<LED_WORK);							// ТОЛЬКО ДЛЯ ОТЛАДКИ
- b98:	c3 98       	cbi	0x18, 3	; 24
+ b46:	c3 98       	cbi	0x18, 3	; 24
 //-----------------------------------------------------------------------------------------------------------------------------------------------------			
 		if ((ppk_mode == DELAY_IN)&&(exit_delay == 0))	// Если ППК находиться в состоянии "ЗАДЕРЖКА НА ВХОД" и задержка истекла
 		{
 			ATOMIC_BLOCK(ATOMIC_FORCEON)
 			{
 				ppk_mode = ALARM_ACTIVE;					// Активируем режим "ТРЕВОГА АКТИВНА"
- b9a:	93 e0       	ldi	r25, 0x03	; 3
- b9c:	e9 2e       	mov	r14, r25
+ b48:	93 e0       	ldi	r25, 0x03	; 3
+ b4a:	e9 2e       	mov	r14, r25
 			OUT_PORT &= ~(1<<OUT_2);						// и OUT_2 (инверсная логика работы)
 		#endif
 
 			ATOMIC_BLOCK(ATOMIC_FORCEON)
 			{
 				siren_delay = SIREN_TIME;					// Задаем время звучания сирены
- b9e:	c0 e1       	ldi	r28, 0x10	; 16
- ba0:	d7 e2       	ldi	r29, 0x27	; 39
+ b4c:	c0 e1       	ldi	r28, 0x10	; 16
+ b4e:	d7 e2       	ldi	r29, 0x27	; 39
 				out_delay = OUT_TIME;						// Задаем время активности выходов
 				ppk_mode = ALARM_SIREN_COMPL;				// Сирена была включена на нужное время, меняем состояние ППК
- ba2:	85 e0       	ldi	r24, 0x05	; 5
- ba4:	f8 2e       	mov	r15, r24
+ b50:	85 e0       	ldi	r24, 0x05	; 5
+ b52:	f8 2e       	mov	r15, r24
 				eeprom_update_byte(&ppk_mode_save, ALARM_SIREN_COMPL);// Обновляем состояние ППК в EEPROM
 			}
 			GIFR = 1<<INTF1|1<<INTF0;						// Сбросим флаги возникавших ранее прерываний
- ba6:	10 ec       	ldi	r17, 0xC0	; 192
+ b54:	10 ec       	ldi	r17, 0xC0	; 192
 			Blink_LED_WORK();								// Мигаем LED_WORK
 		}
 //-----------------------------------------------------------------------------------------------------------------------------------------------------			
 		if ((ppk_mode == DELAY_OUT)&&(exit_delay == 0))	// Если ППК находиться в состоянии "ЗАДЕРЖКА НА ВЫХОД" и задержка истекла
 		{
 				ppk_mode = GUARD_ON;						// Активируем режим "ПОД ОХРАНОЙ"
- ba8:	01 e0       	ldi	r16, 0x01	; 1
+ b56:	01 e0       	ldi	r16, 0x01	; 1
 
 //=====================================================================================================================================================
 // Главный цикл
 	while (1)
 	{
 		CheckButton(5000);									// Проверяем кнопку постановки/снятия каждый 5000-й проход главного цикла
- baa:	88 e8       	ldi	r24, 0x88	; 136
- bac:	93 e1       	ldi	r25, 0x13	; 19
- bae:	26 dc       	rcall	.-1972   	; 0x3fc <CheckButton>
+ b58:	88 e8       	ldi	r24, 0x88	; 136
+ b5a:	93 e1       	ldi	r25, 0x13	; 19
+ b5c:	56 dc       	rcall	.-1876   	; 0x40a <CheckButton>
 		CheckSIMCOM();										// Проверяем состояние модуля, регистрацию в сети, и прочее
- bb0:	e0 dd       	rcall	.-1088   	; 0x772 <CheckSIMCOM>
+ b5e:	1a de       	rcall	.-972    	; 0x794 <CheckSIMCOM>
 		Siren_Outs_OFF();									// Проверяем сирену и выходы, если пора - выключаем
- bb2:	de de       	rcall	.-580    	; 0x970 <Siren_Outs_OFF>
+ b60:	dc de       	rcall	.-584    	; 0x91a <Siren_Outs_OFF>
 //-----------------------------------------------------------------------------------------------------------------------------------------------------			
 		if ((ppk_mode == DELAY_IN)&&(exit_delay == 0))	// Если ППК находиться в состоянии "ЗАДЕРЖКА НА ВХОД" и задержка истекла
- bb4:	80 91 71 00 	lds	r24, 0x0071
- bb8:	80 32       	cpi	r24, 0x20	; 32
- bba:	71 f4       	brne	.+28     	; 0xbd8 <main+0x90>
- bbc:	80 91 69 00 	lds	r24, 0x0069
- bc0:	90 91 6a 00 	lds	r25, 0x006A
- bc4:	00 97       	sbiw	r24, 0x00	; 0
- bc6:	41 f4       	brne	.+16     	; 0xbd8 <main+0x90>
+ b62:	80 91 71 00 	lds	r24, 0x0071
+ b66:	80 32       	cpi	r24, 0x20	; 32
+ b68:	71 f4       	brne	.+28     	; 0xb86 <main+0x94>
+ b6a:	80 91 69 00 	lds	r24, 0x0069
+ b6e:	90 91 6a 00 	lds	r25, 0x006A
+ b72:	00 97       	sbiw	r24, 0x00	; 0
+ b74:	41 f4       	brne	.+16     	; 0xb86 <main+0x94>
     return 1;
 }
 
 static __inline__ uint8_t __iCliRetVal(void)
 {
     cli();
- bc8:	f8 94       	cli
+ b76:	f8 94       	cli
 		{
 			ATOMIC_BLOCK(ATOMIC_FORCEON)
 			{
 				ppk_mode = ALARM_ACTIVE;					// Активируем режим "ТРЕВОГА АКТИВНА"
- bca:	e0 92 71 00 	sts	0x0071, r14
+ b78:	e0 92 71 00 	sts	0x0071, r14
 				eeprom_update_byte(&ppk_mode_save, ALARM_ACTIVE);// Обновляем состояние ППК в EEPROM
- bce:	80 e0       	ldi	r24, 0x00	; 0
- bd0:	90 e0       	ldi	r25, 0x00	; 0
- bd2:	63 e0       	ldi	r22, 0x03	; 3
- bd4:	83 d0       	rcall	.+262    	; 0xcdc <__eeupd_byte_m8>
+ b7c:	80 e0       	ldi	r24, 0x00	; 0
+ b7e:	90 e0       	ldi	r25, 0x00	; 0
+ b80:	63 e0       	ldi	r22, 0x03	; 3
+ b82:	83 d0       	rcall	.+262    	; 0xc8a <__eeupd_byte_m8>
     return 1;
 }
 
 static __inline__ void __iSeiParam(const uint8_t *__s)
 {
     sei();
- bd6:	78 94       	sei
+ b84:	78 94       	sei
 			}
 		}
 //-----------------------------------------------------------------------------------------------------------------------------------------------------			
 		if (ppk_mode == ALARM_ACTIVE)						// Если возникла тревога
- bd8:	80 91 71 00 	lds	r24, 0x0071
- bdc:	83 30       	cpi	r24, 0x03	; 3
- bde:	a9 f4       	brne	.+42     	; 0xc0a <main+0xc2>
+ b86:	80 91 71 00 	lds	r24, 0x0071
+ b8a:	83 30       	cpi	r24, 0x03	; 3
+ b8c:	a9 f4       	brne	.+42     	; 0xbb8 <main+0xc6>
 		{
 		#if defined (DEBUG)
 			OUT_PORT &= ~(1<<SIREN|1<<OUT_2|1<<OUT_1);		// ТОЛЬКО ДЛЯ ОТЛАДКИ
- be0:	88 b3       	in	r24, 0x18	; 24
- be2:	88 7f       	andi	r24, 0xF8	; 248
- be4:	88 bb       	out	0x18, r24	; 24
+ b8e:	88 b3       	in	r24, 0x18	; 24
+ b90:	88 7f       	andi	r24, 0xF8	; 248
+ b92:	88 bb       	out	0x18, r24	; 24
     return 1;
 }
 
 static __inline__ uint8_t __iCliRetVal(void)
 {
     cli();
- be6:	f8 94       	cli
+ b94:	f8 94       	cli
 			OUT_PORT &= ~(1<<OUT_2);						// и OUT_2 (инверсная логика работы)
 		#endif
 
 			ATOMIC_BLOCK(ATOMIC_FORCEON)
 			{
 				siren_delay = SIREN_TIME;					// Задаем время звучания сирены
- be8:	d0 93 6e 00 	sts	0x006E, r29
- bec:	c0 93 6d 00 	sts	0x006D, r28
+ b96:	d0 93 6e 00 	sts	0x006E, r29
+ b9a:	c0 93 6d 00 	sts	0x006D, r28
 				out_delay = OUT_TIME;						// Задаем время активности выходов
- bf0:	d0 93 70 00 	sts	0x0070, r29
- bf4:	c0 93 6f 00 	sts	0x006F, r28
+ b9e:	d0 93 70 00 	sts	0x0070, r29
+ ba2:	c0 93 6f 00 	sts	0x006F, r28
 				ppk_mode = ALARM_SIREN_COMPL;				// Сирена была включена на нужное время, меняем состояние ППК
- bf8:	f0 92 71 00 	sts	0x0071, r15
+ ba6:	f0 92 71 00 	sts	0x0071, r15
 				eeprom_update_byte(&ppk_mode_save, ALARM_SIREN_COMPL);// Обновляем состояние ППК в EEPROM
- bfc:	80 e0       	ldi	r24, 0x00	; 0
- bfe:	90 e0       	ldi	r25, 0x00	; 0
- c00:	65 e0       	ldi	r22, 0x05	; 5
- c02:	6c d0       	rcall	.+216    	; 0xcdc <__eeupd_byte_m8>
+ baa:	80 e0       	ldi	r24, 0x00	; 0
+ bac:	90 e0       	ldi	r25, 0x00	; 0
+ bae:	65 e0       	ldi	r22, 0x05	; 5
+ bb0:	6c d0       	rcall	.+216    	; 0xc8a <__eeupd_byte_m8>
     return 1;
 }
 
 static __inline__ void __iSeiParam(const uint8_t *__s)
 {
     sei();
- c04:	78 94       	sei
+ bb2:	78 94       	sei
 			}
 			GIFR = 1<<INTF1|1<<INTF0;						// Сбросим флаги возникавших ранее прерываний
- c06:	1a bf       	out	0x3a, r17	; 58
+ bb4:	1a bf       	out	0x3a, r17	; 58
 			GICR = 1<<INT1|1<<INT0;							// Разрешим прерывания INT1 и INT0				
- c08:	1b bf       	out	0x3b, r17	; 59
+ bb6:	1b bf       	out	0x3b, r17	; 59
 		}
 //-----------------------------------------------------------------------------------------------------------------------------------------------------			
 		if ((ppk_mode == ALARM_SIREN_COMPL)&&(simcom_init_mode == 1))// Если была включена сирена, и модуль SIMCOM находиться в рабочем режиме, начинаем звонить
- c0a:	80 91 71 00 	lds	r24, 0x0071
- c0e:	85 30       	cpi	r24, 0x05	; 5
- c10:	29 f4       	brne	.+10     	; 0xc1c <main+0xd4>
- c12:	80 91 9e 00 	lds	r24, 0x009E
- c16:	81 30       	cpi	r24, 0x01	; 1
- c18:	09 f4       	brne	.+2      	; 0xc1c <main+0xd4>
+ bb8:	80 91 71 00 	lds	r24, 0x0071
+ bbc:	85 30       	cpi	r24, 0x05	; 5
+ bbe:	29 f4       	brne	.+10     	; 0xbca <main+0xd8>
+ bc0:	80 91 9f 00 	lds	r24, 0x009F
+ bc4:	81 30       	cpi	r24, 0x01	; 1
+ bc6:	09 f4       	brne	.+2      	; 0xbca <main+0xd8>
 		{
 			Ring();											// Звоним
- c1a:	ba de       	rcall	.-652    	; 0x990 <Ring>
+ bc8:	b8 de       	rcall	.-656    	; 0x93a <Ring>
 		}
 //-----------------------------------------------------------------------------------------------------------------------------------------------------			
 		if (((ppk_mode != GUARD_OFF)&&(ppk_mode != GUARD_ON))&&(led_delay == 0))// Если режим "ТРЕВОГА" или "ЗАДЕРЖКА"
- c1c:	80 91 71 00 	lds	r24, 0x0071
- c20:	88 23       	and	r24, r24
- c22:	59 f0       	breq	.+22     	; 0xc3a <main+0xf2>
- c24:	80 91 71 00 	lds	r24, 0x0071
- c28:	81 30       	cpi	r24, 0x01	; 1
- c2a:	39 f0       	breq	.+14     	; 0xc3a <main+0xf2>
- c2c:	80 91 6b 00 	lds	r24, 0x006B
- c30:	90 91 6c 00 	lds	r25, 0x006C
- c34:	00 97       	sbiw	r24, 0x00	; 0
- c36:	09 f4       	brne	.+2      	; 0xc3a <main+0xf2>
+ bca:	80 91 71 00 	lds	r24, 0x0071
+ bce:	88 23       	and	r24, r24
+ bd0:	59 f0       	breq	.+22     	; 0xbe8 <main+0xf6>
+ bd2:	80 91 71 00 	lds	r24, 0x0071
+ bd6:	81 30       	cpi	r24, 0x01	; 1
+ bd8:	39 f0       	breq	.+14     	; 0xbe8 <main+0xf6>
+ bda:	80 91 6b 00 	lds	r24, 0x006B
+ bde:	90 91 6c 00 	lds	r25, 0x006C
+ be2:	00 97       	sbiw	r24, 0x00	; 0
+ be4:	09 f4       	brne	.+2      	; 0xbe8 <main+0xf6>
 		{
 			Blink_LED_WORK();								// Мигаем LED_WORK
- c38:	8e de       	rcall	.-740    	; 0x956 <Blink_LED_WORK>
+ be6:	8c de       	rcall	.-744    	; 0x900 <Blink_LED_WORK>
 		}
 //-----------------------------------------------------------------------------------------------------------------------------------------------------			
 		if ((ppk_mode == DELAY_OUT)&&(exit_delay == 0))	// Если ППК находиться в состоянии "ЗАДЕРЖКА НА ВЫХОД" и задержка истекла
- c3a:	80 91 71 00 	lds	r24, 0x0071
- c3e:	80 31       	cpi	r24, 0x10	; 16
- c40:	89 f4       	brne	.+34     	; 0xc64 <main+0x11c>
- c42:	80 91 69 00 	lds	r24, 0x0069
- c46:	90 91 6a 00 	lds	r25, 0x006A
- c4a:	00 97       	sbiw	r24, 0x00	; 0
- c4c:	59 f4       	brne	.+22     	; 0xc64 <main+0x11c>
+ be8:	80 91 71 00 	lds	r24, 0x0071
+ bec:	80 31       	cpi	r24, 0x10	; 16
+ bee:	89 f4       	brne	.+34     	; 0xc12 <main+0x120>
+ bf0:	80 91 69 00 	lds	r24, 0x0069
+ bf4:	90 91 6a 00 	lds	r25, 0x006A
+ bf8:	00 97       	sbiw	r24, 0x00	; 0
+ bfa:	59 f4       	brne	.+22     	; 0xc12 <main+0x120>
 		{
 				ppk_mode = GUARD_ON;						// Активируем режим "ПОД ОХРАНОЙ"
- c4e:	00 93 71 00 	sts	0x0071, r16
+ bfc:	00 93 71 00 	sts	0x0071, r16
 				GIFR = 1<<INTF1|1<<INTF0;					// Сбросим флаги возможно возникавших ранее прерываний
- c52:	1a bf       	out	0x3a, r17	; 58
+ c00:	1a bf       	out	0x3a, r17	; 58
 				GICR = 1<<INT1|1<<INT0;						// Разрешим прерывания INT1 и INT0
- c54:	1b bf       	out	0x3b, r17	; 59
+ c02:	1b bf       	out	0x3b, r17	; 59
     return 1;
 }
 
 static __inline__ uint8_t __iCliRetVal(void)
 {
     cli();
- c56:	f8 94       	cli
+ c04:	f8 94       	cli
 				ATOMIC_BLOCK(ATOMIC_FORCEON)
 				{
 					led_delay = 0;							// Прекращаем мигать LED_WORK
- c58:	10 92 6c 00 	sts	0x006C, r1
- c5c:	10 92 6b 00 	sts	0x006B, r1
+ c06:	10 92 6c 00 	sts	0x006C, r1
+ c0a:	10 92 6b 00 	sts	0x006B, r1
     return 1;
 }
 
 static __inline__ void __iSeiParam(const uint8_t *__s)
 {
     sei();
- c60:	78 94       	sei
+ c0e:	78 94       	sei
 				}
 			#if defined (DEBUG)
 				LED_PORT &= ~(1<<LED_WORK);					// ТОЛЬКО ДЛЯ ОТЛАДКИ
- c62:	c3 98       	cbi	0x18, 3	; 24
+ c10:	c3 98       	cbi	0x18, 3	; 24
 			#else
 				LED_PORT |= 1<<LED_WORK;					// Зажигаем светодиод ОХРАНА
 			#endif
 		}
 //-----------------------------------------------------------------------------------------------------------------------------------------------------			
 		if ((ppk_mode == DELAY_IN)&&(exit_delay == IN_DELAY))// Если ППК находиться в состоянии "ЗАДЕРЖКА НА ВХОД" и она только началась
- c64:	80 91 71 00 	lds	r24, 0x0071
- c68:	80 32       	cpi	r24, 0x20	; 32
- c6a:	09 f0       	breq	.+2      	; 0xc6e <main+0x126>
- c6c:	9e cf       	rjmp	.-196    	; 0xbaa <main+0x62>
- c6e:	80 91 69 00 	lds	r24, 0x0069
- c72:	90 91 6a 00 	lds	r25, 0x006A
- c76:	27 e2       	ldi	r18, 0x27	; 39
- c78:	80 31       	cpi	r24, 0x10	; 16
- c7a:	92 07       	cpc	r25, r18
- c7c:	09 f0       	breq	.+2      	; 0xc80 <main+0x138>
- c7e:	95 cf       	rjmp	.-214    	; 0xbaa <main+0x62>
+ c12:	80 91 71 00 	lds	r24, 0x0071
+ c16:	80 32       	cpi	r24, 0x20	; 32
+ c18:	09 f0       	breq	.+2      	; 0xc1c <main+0x12a>
+ c1a:	9e cf       	rjmp	.-196    	; 0xb58 <main+0x66>
+ c1c:	80 91 69 00 	lds	r24, 0x0069
+ c20:	90 91 6a 00 	lds	r25, 0x006A
+ c24:	27 e2       	ldi	r18, 0x27	; 39
+ c26:	80 31       	cpi	r24, 0x10	; 16
+ c28:	92 07       	cpc	r25, r18
+ c2a:	09 f0       	breq	.+2      	; 0xc2e <main+0x13c>
+ c2c:	95 cf       	rjmp	.-214    	; 0xb58 <main+0x66>
     return 1;
 }
 
 static __inline__ uint8_t __iCliRetVal(void)
 {
     cli();
- c80:	f8 94       	cli
+ c2e:	f8 94       	cli
 		{
 			ATOMIC_BLOCK(ATOMIC_FORCEON)
 			{
 				eeprom_update_byte(&ppk_mode_save, DELAY_IN);// Обновляем состояние ППК в EEPROM
- c82:	80 e0       	ldi	r24, 0x00	; 0
- c84:	90 e0       	ldi	r25, 0x00	; 0
- c86:	60 e2       	ldi	r22, 0x20	; 32
- c88:	29 d0       	rcall	.+82     	; 0xcdc <__eeupd_byte_m8>
+ c30:	80 e0       	ldi	r24, 0x00	; 0
+ c32:	90 e0       	ldi	r25, 0x00	; 0
+ c34:	60 e2       	ldi	r22, 0x20	; 32
+ c36:	29 d0       	rcall	.+82     	; 0xc8a <__eeupd_byte_m8>
     return 1;
 }
 
 static __inline__ void __iSeiParam(const uint8_t *__s)
 {
     sei();
- c8a:	78 94       	sei
+ c38:	78 94       	sei
     __asm__ volatile ("" ::: "memory");
- c8c:	8e cf       	rjmp	.-228    	; 0xbaa <main+0x62>
+ c3a:	8e cf       	rjmp	.-228    	; 0xb58 <main+0x66>
 
-00000c8e <__eerd_block_m8>:
- c8e:	dc 01       	movw	r26, r24
- c90:	cb 01       	movw	r24, r22
+00000c3c <__eerd_block_m8>:
+ c3c:	dc 01       	movw	r26, r24
+ c3e:	cb 01       	movw	r24, r22
 
-00000c92 <__eerd_blraw_m8>:
- c92:	fc 01       	movw	r30, r24
- c94:	e1 99       	sbic	0x1c, 1	; 28
- c96:	fe cf       	rjmp	.-4      	; 0xc94 <__eerd_blraw_m8+0x2>
- c98:	06 c0       	rjmp	.+12     	; 0xca6 <__eerd_blraw_m8+0x14>
- c9a:	ff bb       	out	0x1f, r31	; 31
- c9c:	ee bb       	out	0x1e, r30	; 30
- c9e:	e0 9a       	sbi	0x1c, 0	; 28
- ca0:	31 96       	adiw	r30, 0x01	; 1
- ca2:	0d b2       	in	r0, 0x1d	; 29
- ca4:	0d 92       	st	X+, r0
- ca6:	41 50       	subi	r20, 0x01	; 1
- ca8:	50 40       	sbci	r21, 0x00	; 0
- caa:	b8 f7       	brcc	.-18     	; 0xc9a <__eerd_blraw_m8+0x8>
- cac:	08 95       	ret
+00000c40 <__eerd_blraw_m8>:
+ c40:	fc 01       	movw	r30, r24
+ c42:	e1 99       	sbic	0x1c, 1	; 28
+ c44:	fe cf       	rjmp	.-4      	; 0xc42 <__eerd_blraw_m8+0x2>
+ c46:	06 c0       	rjmp	.+12     	; 0xc54 <__eerd_blraw_m8+0x14>
+ c48:	ff bb       	out	0x1f, r31	; 31
+ c4a:	ee bb       	out	0x1e, r30	; 30
+ c4c:	e0 9a       	sbi	0x1c, 0	; 28
+ c4e:	31 96       	adiw	r30, 0x01	; 1
+ c50:	0d b2       	in	r0, 0x1d	; 29
+ c52:	0d 92       	st	X+, r0
+ c54:	41 50       	subi	r20, 0x01	; 1
+ c56:	50 40       	sbci	r21, 0x00	; 0
+ c58:	b8 f7       	brcc	.-18     	; 0xc48 <__eerd_blraw_m8+0x8>
+ c5a:	08 95       	ret
 
-00000cae <__eerd_byte_m8>:
- cae:	e1 99       	sbic	0x1c, 1	; 28
- cb0:	fe cf       	rjmp	.-4      	; 0xcae <__eerd_byte_m8>
- cb2:	9f bb       	out	0x1f, r25	; 31
- cb4:	8e bb       	out	0x1e, r24	; 30
- cb6:	e0 9a       	sbi	0x1c, 0	; 28
- cb8:	99 27       	eor	r25, r25
- cba:	8d b3       	in	r24, 0x1d	; 29
- cbc:	08 95       	ret
+00000c5c <__eerd_byte_m8>:
+ c5c:	e1 99       	sbic	0x1c, 1	; 28
+ c5e:	fe cf       	rjmp	.-4      	; 0xc5c <__eerd_byte_m8>
+ c60:	9f bb       	out	0x1f, r25	; 31
+ c62:	8e bb       	out	0x1e, r24	; 30
+ c64:	e0 9a       	sbi	0x1c, 0	; 28
+ c66:	99 27       	eor	r25, r25
+ c68:	8d b3       	in	r24, 0x1d	; 29
+ c6a:	08 95       	ret
 
-00000cbe <__eeupd_block_m8>:
- cbe:	dc 01       	movw	r26, r24
- cc0:	a4 0f       	add	r26, r20
- cc2:	b5 1f       	adc	r27, r21
- cc4:	41 50       	subi	r20, 0x01	; 1
- cc6:	50 40       	sbci	r21, 0x00	; 0
- cc8:	40 f0       	brcs	.+16     	; 0xcda <__eeupd_block_m8+0x1c>
- cca:	cb 01       	movw	r24, r22
- ccc:	84 0f       	add	r24, r20
- cce:	95 1f       	adc	r25, r21
- cd0:	2e 91       	ld	r18, -X
- cd2:	05 d0       	rcall	.+10     	; 0xcde <__eeupd_r18_m8>
- cd4:	41 50       	subi	r20, 0x01	; 1
- cd6:	50 40       	sbci	r21, 0x00	; 0
- cd8:	d8 f7       	brcc	.-10     	; 0xcd0 <__eeupd_block_m8+0x12>
- cda:	08 95       	ret
+00000c6c <__eeupd_block_m8>:
+ c6c:	dc 01       	movw	r26, r24
+ c6e:	a4 0f       	add	r26, r20
+ c70:	b5 1f       	adc	r27, r21
+ c72:	41 50       	subi	r20, 0x01	; 1
+ c74:	50 40       	sbci	r21, 0x00	; 0
+ c76:	40 f0       	brcs	.+16     	; 0xc88 <__eeupd_block_m8+0x1c>
+ c78:	cb 01       	movw	r24, r22
+ c7a:	84 0f       	add	r24, r20
+ c7c:	95 1f       	adc	r25, r21
+ c7e:	2e 91       	ld	r18, -X
+ c80:	05 d0       	rcall	.+10     	; 0xc8c <__eeupd_r18_m8>
+ c82:	41 50       	subi	r20, 0x01	; 1
+ c84:	50 40       	sbci	r21, 0x00	; 0
+ c86:	d8 f7       	brcc	.-10     	; 0xc7e <__eeupd_block_m8+0x12>
+ c88:	08 95       	ret
 
-00000cdc <__eeupd_byte_m8>:
- cdc:	26 2f       	mov	r18, r22
+00000c8a <__eeupd_byte_m8>:
+ c8a:	26 2f       	mov	r18, r22
 
-00000cde <__eeupd_r18_m8>:
- cde:	e1 99       	sbic	0x1c, 1	; 28
- ce0:	fe cf       	rjmp	.-4      	; 0xcde <__eeupd_r18_m8>
- ce2:	9f bb       	out	0x1f, r25	; 31
- ce4:	8e bb       	out	0x1e, r24	; 30
- ce6:	e0 9a       	sbi	0x1c, 0	; 28
- ce8:	01 97       	sbiw	r24, 0x01	; 1
- cea:	0d b2       	in	r0, 0x1d	; 29
- cec:	02 16       	cp	r0, r18
- cee:	31 f0       	breq	.+12     	; 0xcfc <__eeupd_r18_m8+0x1e>
- cf0:	2d bb       	out	0x1d, r18	; 29
- cf2:	0f b6       	in	r0, 0x3f	; 63
- cf4:	f8 94       	cli
- cf6:	e2 9a       	sbi	0x1c, 2	; 28
- cf8:	e1 9a       	sbi	0x1c, 1	; 28
- cfa:	0f be       	out	0x3f, r0	; 63
- cfc:	08 95       	ret
+00000c8c <__eeupd_r18_m8>:
+ c8c:	e1 99       	sbic	0x1c, 1	; 28
+ c8e:	fe cf       	rjmp	.-4      	; 0xc8c <__eeupd_r18_m8>
+ c90:	9f bb       	out	0x1f, r25	; 31
+ c92:	8e bb       	out	0x1e, r24	; 30
+ c94:	e0 9a       	sbi	0x1c, 0	; 28
+ c96:	01 97       	sbiw	r24, 0x01	; 1
+ c98:	0d b2       	in	r0, 0x1d	; 29
+ c9a:	02 16       	cp	r0, r18
+ c9c:	31 f0       	breq	.+12     	; 0xcaa <__eeupd_r18_m8+0x1e>
+ c9e:	2d bb       	out	0x1d, r18	; 29
+ ca0:	0f b6       	in	r0, 0x3f	; 63
+ ca2:	f8 94       	cli
+ ca4:	e2 9a       	sbi	0x1c, 2	; 28
+ ca6:	e1 9a       	sbi	0x1c, 1	; 28
+ ca8:	0f be       	out	0x3f, r0	; 63
+ caa:	08 95       	ret
 
-00000cfe <_exit>:
- cfe:	f8 94       	cli
+00000cac <_exit>:
+ cac:	f8 94       	cli
 
-00000d00 <__stop_program>:
- d00:	ff cf       	rjmp	.-2      	; 0xd00 <__stop_program>
+00000cae <__stop_program>:
+ cae:	ff cf       	rjmp	.-2      	; 0xcae <__stop_program>
