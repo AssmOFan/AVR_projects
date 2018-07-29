@@ -1,0 +1,1266 @@
+
+Multi_Function_Shield_Lib.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000056c  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000001a  00800060  0000056c  00000600  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000009  0080007a  0080007a  0000061a  2**0
+                  ALLOC
+  3 .stab         000006cc  00000000  00000000  0000061c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000085  00000000  00000000  00000ce8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 00000040  00000000  00000000  00000d6d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_pubnames 000001e7  00000000  00000000  00000dad  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_info   00000b83  00000000  00000000  00000f94  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 00000338  00000000  00000000  00001b17  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_line   00000a30  00000000  00000000  00001e4f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_frame  00000120  00000000  00000000  00002880  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    000002c9  00000000  00000000  000029a0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_loc    0000055f  00000000  00000000  00002c69  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_pubtypes 00000070  00000000  00000000  000031c8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 14 .debug_ranges 00000018  00000000  00000000  00003238  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	2c c0       	rjmp	.+88     	; 0x5c <__bad_interrupt>
+   4:	2b c0       	rjmp	.+86     	; 0x5c <__bad_interrupt>
+   6:	2a c0       	rjmp	.+84     	; 0x5c <__bad_interrupt>
+   8:	29 c0       	rjmp	.+82     	; 0x5c <__bad_interrupt>
+   a:	28 c0       	rjmp	.+80     	; 0x5c <__bad_interrupt>
+   c:	11 c1       	rjmp	.+546    	; 0x230 <__vector_6>
+   e:	26 c0       	rjmp	.+76     	; 0x5c <__bad_interrupt>
+  10:	25 c0       	rjmp	.+74     	; 0x5c <__bad_interrupt>
+  12:	24 c0       	rjmp	.+72     	; 0x5c <__bad_interrupt>
+  14:	23 c0       	rjmp	.+70     	; 0x5c <__bad_interrupt>
+  16:	22 c0       	rjmp	.+68     	; 0x5c <__bad_interrupt>
+  18:	21 c0       	rjmp	.+66     	; 0x5c <__bad_interrupt>
+  1a:	20 c0       	rjmp	.+64     	; 0x5c <__bad_interrupt>
+  1c:	c2 c0       	rjmp	.+388    	; 0x1a2 <__vector_14>
+  1e:	1e c0       	rjmp	.+60     	; 0x5c <__bad_interrupt>
+  20:	1d c0       	rjmp	.+58     	; 0x5c <__bad_interrupt>
+  22:	1c c0       	rjmp	.+56     	; 0x5c <__bad_interrupt>
+  24:	1b c0       	rjmp	.+54     	; 0x5c <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+
+00000032 <__do_copy_data>:
+  32:	10 e0       	ldi	r17, 0x00	; 0
+  34:	a0 e6       	ldi	r26, 0x60	; 96
+  36:	b0 e0       	ldi	r27, 0x00	; 0
+  38:	ec e6       	ldi	r30, 0x6C	; 108
+  3a:	f5 e0       	ldi	r31, 0x05	; 5
+  3c:	02 c0       	rjmp	.+4      	; 0x42 <__SREG__+0x3>
+  3e:	05 90       	lpm	r0, Z+
+  40:	0d 92       	st	X+, r0
+  42:	aa 37       	cpi	r26, 0x7A	; 122
+  44:	b1 07       	cpc	r27, r17
+  46:	d9 f7       	brne	.-10     	; 0x3e <__SP_H__>
+
+00000048 <__do_clear_bss>:
+  48:	10 e0       	ldi	r17, 0x00	; 0
+  4a:	aa e7       	ldi	r26, 0x7A	; 122
+  4c:	b0 e0       	ldi	r27, 0x00	; 0
+  4e:	01 c0       	rjmp	.+2      	; 0x52 <.do_clear_bss_start>
+
+00000050 <.do_clear_bss_loop>:
+  50:	1d 92       	st	X+, r1
+
+00000052 <.do_clear_bss_start>:
+  52:	a3 38       	cpi	r26, 0x83	; 131
+  54:	b1 07       	cpc	r27, r17
+  56:	e1 f7       	brne	.-8      	; 0x50 <.do_clear_bss_loop>
+  58:	25 d2       	rcall	.+1098   	; 0x4a4 <main>
+  5a:	86 c2       	rjmp	.+1292   	; 0x568 <_exit>
+
+0000005c <__bad_interrupt>:
+  5c:	d1 cf       	rjmp	.-94     	; 0x0 <__vectors>
+
+0000005e <Init>:
+//=====================================================================================================================================================
+// Секция инициализации. Содержит инициализацию базовых возможностей платы расширения MultiFunction_Shield. При необходимости можно дополнить базовую инициализацию
+//=====================================================================================================================================================
+void Init(void)
+{
+	OUTS_DDR_0_7 = 1<<BUZZER|1<<SPI_CLK_PIN|1<<SPI_LATCH_PIN;// BUZZER, SPI_CLK_PIN and SPI_LATCH_PIN as output
+  5e:	28 e9       	ldi	r18, 0x98	; 152
+  60:	21 bb       	out	0x11, r18	; 17
+	OUTS_PORT_0_7 = 1<<BUZZER;								// BUZZER off
+  62:	88 e0       	ldi	r24, 0x08	; 8
+  64:	82 bb       	out	0x12, r24	; 18
+	OUTS_DDR_8_13 = 1<<LED_4|1<<LED_3|1<<LED_2|1<<LED_1|1<<SPI_DATA_PIN;// LEDs and SPI_DATA_PIN as outputs
+  66:	8d e3       	ldi	r24, 0x3D	; 61
+  68:	87 bb       	out	0x17, r24	; 23
+	OUTS_PORT_8_13 = 1<<LED_4|1<<LED_3|1<<LED_2;			// LEDs off
+  6a:	8c e1       	ldi	r24, 0x1C	; 28
+  6c:	88 bb       	out	0x18, r24	; 24
+	ANALOG_PORT = _BV(BUTTON_3_PIN)|_BV(BUTTON_2_PIN)|_BV(BUTTON_1_PIN);// Enable pull-ups on Buttons
+  6e:	8e e0       	ldi	r24, 0x0E	; 14
+  70:	85 bb       	out	0x15, r24	; 21
+	UBRRL = LO(bauddivider);								// Инициализация UART
+  72:	83 e3       	ldi	r24, 0x33	; 51
+  74:	89 b9       	out	0x09, r24	; 9
+	UBRRH = HI(bauddivider);
+  76:	10 bc       	out	0x20, r1	; 32
+	UCSRA = 0;
+  78:	1b b8       	out	0x0b, r1	; 11
+	UCSRB = 0<<RXCIE|0<<TXCIE|0<<UDRIE|1<<RXEN|1<<TXEN;		// Прерывание UDRIE сразу никогда не разрешаем, иначе контроллер сразу входит в это прерывание
+  7a:	88 e1       	ldi	r24, 0x18	; 24
+  7c:	8a b9       	out	0x0a, r24	; 10
+	UCSRC = 1<<URSEL|1<<UCSZ1|1<<UCSZ0;
+  7e:	86 e8       	ldi	r24, 0x86	; 134
+  80:	80 bd       	out	0x20, r24	; 32
+	// Инициализация Таймеров. Предделитель подбираеться экспериментально, для достижения периода прерывания Timer1 каждую мс
+															// Везде вкл. режим прерывания Timer1 по совпадению (1<<WGM12)
+	TCCR1B = 1<<WGM12|0<<CS12|0<<CS11|1<<CS10;				// Запуск таймера без предделителя
+  82:	89 e0       	ldi	r24, 0x09	; 9
+  84:	8e bd       	out	0x2e, r24	; 46
+//	TCCR1B = 1<<WGM12|0<<CS12|1<<CS11|0<<CS10;				// Запуск таймера с предделителем 8
+//	TCCR1B = 1<<WGM12|0<<CS12|1<<CS11|1<<CS10;				// Запуск таймера с предделителем 64
+//	TCCR1B = 1<<WGM12|1<<CS12|0<<CS11|0<<CS10;				// Запуск таймера с предделителем 256
+//	TCCR1B = 1<<WGM12|1<<CS12|0<<CS11|1<<CS10;				// Запуск таймера с предделителем 1024				
+	OCR1A = 7999;											// Значение подбираеться экспериментально, для достижения периода прерывания Timer1 каждую мс
+  86:	8f e3       	ldi	r24, 0x3F	; 63
+  88:	9f e1       	ldi	r25, 0x1F	; 31
+  8a:	9b bd       	out	0x2b, r25	; 43
+  8c:	8a bd       	out	0x2a, r24	; 42
+	TIMSK = 1<<OCIE1A;										// Разрешаем прерывание по совпадению значения OCR1A с заданым ранее
+  8e:	80 e1       	ldi	r24, 0x10	; 16
+  90:	89 bf       	out	0x39, r24	; 57
+	TIFR = 1<<OCF1A;										// Сбросим флаг, чтобы прерывание не выскочило сразу
+  92:	88 bf       	out	0x38, r24	; 56
+	// Настройка АЦП
+	ADMUX = 0<<REFS1|1<<REFS1|1<<ADLAR|0<<MUX3|0<<MUX2|0<<MUX1|0<<MUX0;	// AVCC в качестве ИОН, выравнивание по левому краю (8 старших бит результата), 0 канал АЦП
+  94:	80 ea       	ldi	r24, 0xA0	; 160
+  96:	87 b9       	out	0x07, r24	; 7
+	ADCSRA = 1<<ADEN|0<<ADSC|0<<ADFR|1<<ADIF|1<<ADIE|0<<ADPS2|0<<ADPS1|0<<ADPS0;// ADC Enable, no start conversion, no ADC Free Running Select, ADC Interrupt enable, ADC Prescaler = 2
+  98:	26 b9       	out	0x06, r18	; 6
+	// Настройка энергосбережения и спящего режима
+	MCUCR = 1<<SE|0<<SM2|0<<SM1|1<<SM0|1<<ISC01;			// Sleep Enable, Sleep Mode - ADC Noise Reduction, The falling edge of INT0 generates an interrupt request
+  9a:	82 e9       	ldi	r24, 0x92	; 146
+  9c:	85 bf       	out	0x35, r24	; 53
+/*	#ifdef	USE_INTERRUPT_4_TSOP							// Если используем внешнее прерывание INT0 для получения кода RC5 - Все равно есть разрешение прерывания в обработчике таймера
+	GIFR = 1<<INTF0;										// Clear External Interrupt Flag 0
+	GICR = 1<<INT0;											// External Interrupt Request 0 Enable
+	#endif */
+}
+  9e:	08 95       	ret
+
+000000a0 <Write_74HC595>:
+//=====================================================================================================================================================
+// Секция работы с индикатором через 2 шт. 74HC595
+//=====================================================================================================================================================
+void Write_74HC595(uint8_t byte)							// Функция записи 1 байта в 74HC595
+{    
+  a0:	98 e0       	ldi	r25, 0x08	; 8
+	uint8_t i;	
+	for (i = 0; i < 8; i++, byte <<= 1)
+	{        
+		if(byte & 0x80) SPI_DATA_HIGH();		
+  a2:	87 ff       	sbrs	r24, 7
+  a4:	02 c0       	rjmp	.+4      	; 0xaa <Write_74HC595+0xa>
+  a6:	c0 9a       	sbi	0x18, 0	; 24
+  a8:	01 c0       	rjmp	.+2      	; 0xac <Write_74HC595+0xc>
+		else			SPI_DATA_LOW();		
+  aa:	c0 98       	cbi	0x18, 0	; 24
+		asm("nop");
+  ac:	00 00       	nop
+		SPI_CLK_HIGH();
+  ae:	97 9a       	sbi	0x12, 7	; 18
+		asm("nop");
+  b0:	00 00       	nop
+		SPI_CLK_LOW();  
+  b2:	97 98       	cbi	0x12, 7	; 18
+  b4:	91 50       	subi	r25, 0x01	; 1
+// Секция работы с индикатором через 2 шт. 74HC595
+//=====================================================================================================================================================
+void Write_74HC595(uint8_t byte)							// Функция записи 1 байта в 74HC595
+{    
+	uint8_t i;	
+	for (i = 0; i < 8; i++, byte <<= 1)
+  b6:	11 f0       	breq	.+4      	; 0xbc <Write_74HC595+0x1c>
+  b8:	88 0f       	add	r24, r24
+  ba:	f3 cf       	rjmp	.-26     	; 0xa2 <Write_74HC595+0x2>
+		asm("nop");
+		SPI_CLK_HIGH();
+		asm("nop");
+		SPI_CLK_LOW();  
+	}
+	asm("nop");
+  bc:	00 00       	nop
+	SPI_LATCH_HIGH(); 
+  be:	94 9a       	sbi	0x12, 4	; 18
+	asm("nop");
+  c0:	00 00       	nop
+	SPI_LATCH_LOW();
+  c2:	94 98       	cbi	0x12, 4	; 18
+}
+  c4:	08 95       	ret
+
+000000c6 <Shield_set_display_value>:
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+void Shield_set_display_value(uint16_t value)				// Функция установки значения для вывода на индикатор
+{
+	value2digits[0] = 0;									// Обнуляем тысячи			
+  c6:	10 92 7f 00 	sts	0x007F, r1
+	value2digits[1] = 0;									// сотни
+  ca:	10 92 80 00 	sts	0x0080, r1
+	value2digits[2] = 0;									// десятки
+  ce:	10 92 81 00 	sts	0x0081, r1
+	value2digits[3] = 0;									// и единицы
+  d2:	10 92 82 00 	sts	0x0082, r1
+	while (value >= 1000)									// вычисляем тысячи
+  d6:	07 c0       	rjmp	.+14     	; 0xe6 <Shield_set_display_value+0x20>
+	{
+		value -= 1000;
+  d8:	88 5e       	subi	r24, 0xE8	; 232
+  da:	93 40       	sbci	r25, 0x03	; 3
+		value2digits[0]++;
+  dc:	20 91 7f 00 	lds	r18, 0x007F
+  e0:	2f 5f       	subi	r18, 0xFF	; 255
+  e2:	20 93 7f 00 	sts	0x007F, r18
+{
+	value2digits[0] = 0;									// Обнуляем тысячи			
+	value2digits[1] = 0;									// сотни
+	value2digits[2] = 0;									// десятки
+	value2digits[3] = 0;									// и единицы
+	while (value >= 1000)									// вычисляем тысячи
+  e6:	23 e0       	ldi	r18, 0x03	; 3
+  e8:	88 3e       	cpi	r24, 0xE8	; 232
+  ea:	92 07       	cpc	r25, r18
+  ec:	a8 f7       	brcc	.-22     	; 0xd8 <Shield_set_display_value+0x12>
+  ee:	07 c0       	rjmp	.+14     	; 0xfe <Shield_set_display_value+0x38>
+		value -= 1000;
+		value2digits[0]++;
+	} 	
+	while (value >= 100)									// сотни
+	{
+		value -= 100;
+  f0:	84 56       	subi	r24, 0x64	; 100
+  f2:	90 40       	sbci	r25, 0x00	; 0
+		value2digits[1]++;
+  f4:	20 91 80 00 	lds	r18, 0x0080
+  f8:	2f 5f       	subi	r18, 0xFF	; 255
+  fa:	20 93 80 00 	sts	0x0080, r18
+	while (value >= 1000)									// вычисляем тысячи
+	{
+		value -= 1000;
+		value2digits[0]++;
+	} 	
+	while (value >= 100)									// сотни
+  fe:	84 36       	cpi	r24, 0x64	; 100
+ 100:	91 05       	cpc	r25, r1
+ 102:	b0 f7       	brcc	.-20     	; 0xf0 <Shield_set_display_value+0x2a>
+ 104:	06 c0       	rjmp	.+12     	; 0x112 <Shield_set_display_value+0x4c>
+		value -= 100;
+		value2digits[1]++;
+	} 
+	while (value >= 10)										// десятки
+	{
+		value -= 10;
+ 106:	0a 97       	sbiw	r24, 0x0a	; 10
+		value2digits[2]++;
+ 108:	20 91 81 00 	lds	r18, 0x0081
+ 10c:	2f 5f       	subi	r18, 0xFF	; 255
+ 10e:	20 93 81 00 	sts	0x0081, r18
+	while (value >= 100)									// сотни
+	{
+		value -= 100;
+		value2digits[1]++;
+	} 
+	while (value >= 10)										// десятки
+ 112:	8a 30       	cpi	r24, 0x0A	; 10
+ 114:	91 05       	cpc	r25, r1
+ 116:	b8 f7       	brcc	.-18     	; 0x106 <Shield_set_display_value+0x40>
+ 118:	06 c0       	rjmp	.+12     	; 0x126 <Shield_set_display_value+0x60>
+		value -= 10;
+		value2digits[2]++;
+	} 
+	while (value > 0)										// и единицы
+	{
+		value -= 1;
+ 11a:	01 97       	sbiw	r24, 0x01	; 1
+		value2digits[3]++;
+ 11c:	20 91 82 00 	lds	r18, 0x0082
+ 120:	2f 5f       	subi	r18, 0xFF	; 255
+ 122:	20 93 82 00 	sts	0x0082, r18
+	while (value >= 10)										// десятки
+	{
+		value -= 10;
+		value2digits[2]++;
+	} 
+	while (value > 0)										// и единицы
+ 126:	00 97       	sbiw	r24, 0x00	; 0
+ 128:	c1 f7       	brne	.-16     	; 0x11a <Shield_set_display_value+0x54>
+	{
+		value -= 1;
+		value2digits[3]++;
+	}
+}
+ 12a:	08 95       	ret
+
+0000012c <Shield_display_digit>:
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+void Shield_display_digit(uint8_t addr, uint8_t digit)		// Функция вывода 1 разряда на индикатор
+{
+ 12c:	1f 93       	push	r17
+ 12e:	18 2f       	mov	r17, r24
+	Write_74HC595(digit < sizeof(digit2segments) ? digit2segments[digit] : 0xFF);// Если входит в диапазон 0-0x0F - отображаем знакоместо, иначе - гасим (лог.1)
+ 130:	64 31       	cpi	r22, 0x14	; 20
+ 132:	30 f4       	brcc	.+12     	; 0x140 <Shield_display_digit+0x14>
+ 134:	e6 2f       	mov	r30, r22
+ 136:	f0 e0       	ldi	r31, 0x00	; 0
+ 138:	ea 59       	subi	r30, 0x9A	; 154
+ 13a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 13c:	80 81       	ld	r24, Z
+ 13e:	01 c0       	rjmp	.+2      	; 0x142 <Shield_display_digit+0x16>
+ 140:	8f ef       	ldi	r24, 0xFF	; 255
+ 142:	ae df       	rcall	.-164    	; 0xa0 <Write_74HC595>
+	Write_74HC595(1 << addr);								// И зажигаем нужный разряд
+ 144:	21 e0       	ldi	r18, 0x01	; 1
+ 146:	30 e0       	ldi	r19, 0x00	; 0
+ 148:	02 c0       	rjmp	.+4      	; 0x14e <Shield_display_digit+0x22>
+ 14a:	22 0f       	add	r18, r18
+ 14c:	33 1f       	adc	r19, r19
+ 14e:	1a 95       	dec	r17
+ 150:	e2 f7       	brpl	.-8      	; 0x14a <Shield_display_digit+0x1e>
+ 152:	82 2f       	mov	r24, r18
+ 154:	a5 df       	rcall	.-182    	; 0xa0 <Write_74HC595>
+}
+ 156:	1f 91       	pop	r17
+ 158:	08 95       	ret
+
+0000015a <Shield_display_value>:
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+void Shield_display_value(void)								// Функция вывода значения на индикатор в основном цикле программы
+{
+ 15a:	cf 93       	push	r28
+ 15c:	df 93       	push	r29
+ 15e:	c0 e0       	ldi	r28, 0x00	; 0
+ 160:	d0 e0       	ldi	r29, 0x00	; 0
+	uint8_t i;
+	for (i = 0; i < 4; i++)									// Перебираем все разряды индикатора
+	{
+		Shield_display_digit(i,value2digits[i]);			// Отображая нужный 7-сегментный код в нужном разряде
+ 162:	fe 01       	movw	r30, r28
+ 164:	e1 58       	subi	r30, 0x81	; 129
+ 166:	ff 4f       	sbci	r31, 0xFF	; 255
+ 168:	60 81       	ld	r22, Z
+ 16a:	8c 2f       	mov	r24, r28
+ 16c:	df df       	rcall	.-66     	; 0x12c <Shield_display_digit>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 16e:	8f e0       	ldi	r24, 0x0F	; 15
+ 170:	97 e2       	ldi	r25, 0x27	; 39
+ 172:	01 97       	sbiw	r24, 0x01	; 1
+ 174:	f1 f7       	brne	.-4      	; 0x172 <Shield_display_value+0x18>
+ 176:	00 c0       	rjmp	.+0      	; 0x178 <Shield_display_value+0x1e>
+ 178:	00 00       	nop
+ 17a:	21 96       	adiw	r28, 0x01	; 1
+}
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+void Shield_display_value(void)								// Функция вывода значения на индикатор в основном цикле программы
+{
+	uint8_t i;
+	for (i = 0; i < 4; i++)									// Перебираем все разряды индикатора
+ 17c:	c4 30       	cpi	r28, 0x04	; 4
+ 17e:	d1 05       	cpc	r29, r1
+ 180:	81 f7       	brne	.-32     	; 0x162 <Shield_display_value+0x8>
+	{
+		Shield_display_digit(i,value2digits[i]);			// Отображая нужный 7-сегментный код в нужном разряде
+		_delay_ms(5);										// Максимально допустимая пауза
+	}
+}
+ 182:	df 91       	pop	r29
+ 184:	cf 91       	pop	r28
+ 186:	08 95       	ret
+
+00000188 <Shield_display_Err>:
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+void Shield_display_Err(void)								// Вывод признака ошибки на индикатор
+{
+	for (uint8_t i = 0; i<4; i++)
+	{
+		value2digits[i] = i+16;
+ 188:	80 e1       	ldi	r24, 0x10	; 16
+ 18a:	80 93 7f 00 	sts	0x007F, r24
+ 18e:	81 e1       	ldi	r24, 0x11	; 17
+ 190:	80 93 80 00 	sts	0x0080, r24
+ 194:	82 e1       	ldi	r24, 0x12	; 18
+ 196:	80 93 81 00 	sts	0x0081, r24
+ 19a:	83 e1       	ldi	r24, 0x13	; 19
+ 19c:	80 93 82 00 	sts	0x0082, r24
+	}
+}
+ 1a0:	08 95       	ret
+
+000001a2 <__vector_14>:
+//=====================================================================================================================================================
+ISR (ADC_vect)												// Прерывания по окончанию преобразования АЦП
+{
+ 1a2:	1f 92       	push	r1
+ 1a4:	0f 92       	push	r0
+ 1a6:	0f b6       	in	r0, 0x3f	; 63
+ 1a8:	0f 92       	push	r0
+ 1aa:	11 24       	eor	r1, r1
+ 1ac:	8f 93       	push	r24
+	adc_result = ADCH;										// Проснулись по окончанию преобразования. Заберем результат преобразования
+ 1ae:	85 b1       	in	r24, 0x05	; 5
+ 1b0:	80 93 7b 00 	sts	0x007B, r24
+}
+ 1b4:	8f 91       	pop	r24
+ 1b6:	0f 90       	pop	r0
+ 1b8:	0f be       	out	0x3f, r0	; 63
+ 1ba:	0f 90       	pop	r0
+ 1bc:	1f 90       	pop	r1
+ 1be:	18 95       	reti
+
+000001c0 <Get_RC5_code>:
+#else														// Если используем функцию для получения кода RC5
+uint16_t Get_RC5_code(void)									
+{
+	uint16_t code = 0;
+
+	if (TSOP_PIN != 0)										// Только при отсутствии уже начавшегося приема
+ 1c0:	82 99       	sbic	0x10, 2	; 16
+ 1c2:	05 c0       	rjmp	.+10     	; 0x1ce <Get_RC5_code+0xe>
+ 1c4:	25 c0       	rjmp	.+74     	; 0x210 <Get_RC5_code+0x50>
+	{
+		while (TSOP_PIN != 0)								// Ждем начала стартового импульса
+		{
+			if (mode != 1) return code;						// Если режим был изменен, на выход
+ 1c6:	80 91 7e 00 	lds	r24, 0x007E
+ 1ca:	81 30       	cpi	r24, 0x01	; 1
+ 1cc:	09 f5       	brne	.+66     	; 0x210 <Get_RC5_code+0x50>
+{
+	uint16_t code = 0;
+
+	if (TSOP_PIN != 0)										// Только при отсутствии уже начавшегося приема
+	{
+		while (TSOP_PIN != 0)								// Ждем начала стартового импульса
+ 1ce:	82 99       	sbic	0x10, 2	; 16
+ 1d0:	fa cf       	rjmp	.-12     	; 0x1c6 <Get_RC5_code+0x6>
+		{
+			if (mode != 1) return code;						// Если режим был изменен, на выход
+		}
+		while (TSOP_PIN == 0);								// Ждем окончания стартового импульса
+ 1d2:	82 9b       	sbis	0x10, 2	; 16
+ 1d4:	fe cf       	rjmp	.-4      	; 0x1d2 <Get_RC5_code+0x12>
+		cli();												// Запрещаем прерывания ради точности задержек
+ 1d6:	f8 94       	cli
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 1d8:	89 e6       	ldi	r24, 0x69	; 105
+ 1da:	9a e0       	ldi	r25, 0x0A	; 10
+ 1dc:	01 97       	sbiw	r24, 0x01	; 1
+ 1de:	f1 f7       	brne	.-4      	; 0x1dc <Get_RC5_code+0x1c>
+ 1e0:	00 c0       	rjmp	.+0      	; 0x1e2 <Get_RC5_code+0x22>
+ 1e2:	00 00       	nop
+ 1e4:	8d e0       	ldi	r24, 0x0D	; 13
+}
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+#else														// Если используем функцию для получения кода RC5
+uint16_t Get_RC5_code(void)									
+{
+	uint16_t code = 0;
+ 1e6:	20 e0       	ldi	r18, 0x00	; 0
+ 1e8:	30 e0       	ldi	r19, 0x00	; 0
+		while (TSOP_PIN == 0);								// Ждем окончания стартового импульса
+		cli();												// Запрещаем прерывания ради точности задержек
+		_delay_us(START_DELAY);								// Выжидаем первый интервал
+		for (uint8_t i=0; i<CODE_LEN; i++)					// Организуем цикл приема битов кода
+		{
+			code <<= 1;										// Сдвигаем код влево 
+ 1ea:	22 0f       	add	r18, r18
+ 1ec:	33 1f       	adc	r19, r19
+			if (TSOP_PIN == 0)								// Если на выходе приемника 0,
+ 1ee:	82 9b       	sbis	0x10, 2	; 16
+			code |= 1;										// это означает прием лог.1		
+ 1f0:	21 60       	ori	r18, 0x01	; 1
+ 1f2:	e3 ee       	ldi	r30, 0xE3	; 227
+ 1f4:	fd e0       	ldi	r31, 0x0D	; 13
+ 1f6:	31 97       	sbiw	r30, 0x01	; 1
+ 1f8:	f1 f7       	brne	.-4      	; 0x1f6 <Get_RC5_code+0x36>
+ 1fa:	00 c0       	rjmp	.+0      	; 0x1fc <Get_RC5_code+0x3c>
+ 1fc:	00 00       	nop
+ 1fe:	81 50       	subi	r24, 0x01	; 1
+			if (mode != 1) return code;						// Если режим был изменен, на выход
+		}
+		while (TSOP_PIN == 0);								// Ждем окончания стартового импульса
+		cli();												// Запрещаем прерывания ради точности задержек
+		_delay_us(START_DELAY);								// Выжидаем первый интервал
+		for (uint8_t i=0; i<CODE_LEN; i++)					// Организуем цикл приема битов кода
+ 200:	a1 f7       	brne	.-24     	; 0x1ea <Get_RC5_code+0x2a>
+			code <<= 1;										// Сдвигаем код влево 
+			if (TSOP_PIN == 0)								// Если на выходе приемника 0,
+			code |= 1;										// это означает прием лог.1		
+			_delay_us(BIT_DELAY);							// Ждем следующий момент опроса
+		}
+		sei();												// Считывание кода RC5 завершено, разрешаем прерывания
+ 202:	78 94       	sei
+		rc5_delay--;
+ 204:	80 91 7d 00 	lds	r24, 0x007D
+ 208:	81 50       	subi	r24, 0x01	; 1
+ 20a:	80 93 7d 00 	sts	0x007D, r24
+ 20e:	02 c0       	rjmp	.+4      	; 0x214 <Get_RC5_code+0x54>
+
+	if (TSOP_PIN != 0)										// Только при отсутствии уже начавшегося приема
+	{
+		while (TSOP_PIN != 0)								// Ждем начала стартового импульса
+		{
+			if (mode != 1) return code;						// Если режим был изменен, на выход
+ 210:	20 e0       	ldi	r18, 0x00	; 0
+ 212:	30 e0       	ldi	r19, 0x00	; 0
+		}
+		sei();												// Считывание кода RC5 завершено, разрешаем прерывания
+		rc5_delay--;
+	}
+	return code;											// Возвращаем полученный код
+}
+ 214:	c9 01       	movw	r24, r18
+ 216:	08 95       	ret
+
+00000218 <Buzer_Beep>:
+#endif
+//=====================================================================================================================================================
+void Buzer_Beep(void)										// Функция вызова 1 короткого звукового сигнала
+{
+	BUZZER_ON();
+ 218:	93 98       	cbi	0x12, 3	; 18
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 21a:	8f e7       	ldi	r24, 0x7F	; 127
+ 21c:	98 e3       	ldi	r25, 0x38	; 56
+ 21e:	a1 e0       	ldi	r26, 0x01	; 1
+ 220:	81 50       	subi	r24, 0x01	; 1
+ 222:	90 40       	sbci	r25, 0x00	; 0
+ 224:	a0 40       	sbci	r26, 0x00	; 0
+ 226:	e1 f7       	brne	.-8      	; 0x220 <Buzer_Beep+0x8>
+ 228:	00 c0       	rjmp	.+0      	; 0x22a <Buzer_Beep+0x12>
+ 22a:	00 00       	nop
+	_delay_ms(50);
+	BUZZER_OFF();
+ 22c:	93 9a       	sbi	0x12, 3	; 18
+}
+ 22e:	08 95       	ret
+
+00000230 <__vector_6>:
+void Shield_display_value(void);							// Вывод значения на индикатор
+//=====================================================================================================================================================
+// Секция работы с обработчиком прывания по совпадению. Период вызова - 1 мс. При необходимости добавить сюда код, требующий циклического выполнения
+//=====================================================================================================================================================
+ISR (TIMER1_COMPA_vect)
+{
+ 230:	1f 92       	push	r1
+ 232:	0f 92       	push	r0
+ 234:	0f b6       	in	r0, 0x3f	; 63
+ 236:	0f 92       	push	r0
+ 238:	11 24       	eor	r1, r1
+ 23a:	2f 93       	push	r18
+ 23c:	3f 93       	push	r19
+ 23e:	4f 93       	push	r20
+ 240:	5f 93       	push	r21
+ 242:	6f 93       	push	r22
+ 244:	7f 93       	push	r23
+ 246:	8f 93       	push	r24
+ 248:	9f 93       	push	r25
+ 24a:	af 93       	push	r26
+ 24c:	bf 93       	push	r27
+ 24e:	ef 93       	push	r30
+ 250:	ff 93       	push	r31
+	if (ind_delay != 0) ind_delay--;						// Отсчет времени отображения 1 разряда индикатора
+ 252:	80 91 64 00 	lds	r24, 0x0064
+ 256:	88 23       	and	r24, r24
+ 258:	21 f0       	breq	.+8      	; 0x262 <__vector_6+0x32>
+ 25a:	80 91 64 00 	lds	r24, 0x0064
+ 25e:	81 50       	subi	r24, 0x01	; 1
+ 260:	16 c0       	rjmp	.+44     	; 0x28e <__vector_6+0x5e>
+	else
+	{
+		if (digit_counter < 4)								// Если счетчик разрядов в пределах 4 знакомест
+ 262:	80 91 7a 00 	lds	r24, 0x007A
+ 266:	84 30       	cpi	r24, 0x04	; 4
+ 268:	78 f4       	brcc	.+30     	; 0x288 <__vector_6+0x58>
+		{
+			Shield_display_digit(digit_counter,value2digits[digit_counter]);// Отображаем в текущем разряде необходимый 7-сегментный код
+ 26a:	80 91 7a 00 	lds	r24, 0x007A
+ 26e:	e0 91 7a 00 	lds	r30, 0x007A
+ 272:	f0 e0       	ldi	r31, 0x00	; 0
+ 274:	e1 58       	subi	r30, 0x81	; 129
+ 276:	ff 4f       	sbci	r31, 0xFF	; 255
+ 278:	60 81       	ld	r22, Z
+ 27a:	58 df       	rcall	.-336    	; 0x12c <Shield_display_digit>
+			digit_counter++;								// Выбираем следующий разряд индикатора
+ 27c:	80 91 7a 00 	lds	r24, 0x007A
+ 280:	8f 5f       	subi	r24, 0xFF	; 255
+ 282:	80 93 7a 00 	sts	0x007A, r24
+ 286:	02 c0       	rjmp	.+4      	; 0x28c <__vector_6+0x5c>
+		}
+		else digit_counter = 0;								// Иначе установим счетчик разрядов на 1 знакоместо
+ 288:	10 92 7a 00 	sts	0x007A, r1
+		ind_delay = 3;
+ 28c:	83 e0       	ldi	r24, 0x03	; 3
+ 28e:	80 93 64 00 	sts	0x0064, r24
+	}
+//-----------------------------------------------------------------------------------------------------------------------------------------------------	
+	adc_delay--;											// Отсчет времени обновления показаний АЦП
+ 292:	80 91 7c 00 	lds	r24, 0x007C
+ 296:	81 50       	subi	r24, 0x01	; 1
+ 298:	80 93 7c 00 	sts	0x007C, r24
+//-----------------------------------------------------------------------------------------------------------------------------------------------------	
+	if (led_delay != 0) led_delay--;						// Отсчет времени мигания светодиодов
+ 29c:	80 91 60 00 	lds	r24, 0x0060
+ 2a0:	90 91 61 00 	lds	r25, 0x0061
+ 2a4:	00 97       	sbiw	r24, 0x00	; 0
+ 2a6:	31 f0       	breq	.+12     	; 0x2b4 <__vector_6+0x84>
+ 2a8:	80 91 60 00 	lds	r24, 0x0060
+ 2ac:	90 91 61 00 	lds	r25, 0x0061
+ 2b0:	01 97       	sbiw	r24, 0x01	; 1
+ 2b2:	06 c0       	rjmp	.+12     	; 0x2c0 <__vector_6+0x90>
+	else
+	{
+		OUTS_PORT_8_13 ^= 1<<LED_1;
+ 2b4:	88 b3       	in	r24, 0x18	; 24
+ 2b6:	90 e2       	ldi	r25, 0x20	; 32
+ 2b8:	89 27       	eor	r24, r25
+ 2ba:	88 bb       	out	0x18, r24	; 24
+		led_delay = 500;
+ 2bc:	84 ef       	ldi	r24, 0xF4	; 244
+ 2be:	91 e0       	ldi	r25, 0x01	; 1
+ 2c0:	90 93 61 00 	sts	0x0061, r25
+ 2c4:	80 93 60 00 	sts	0x0060, r24
+	}
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+	if (temperature_delay != 0) temperature_delay--;		// Отсчет времени обновления показаний температуры
+ 2c8:	80 91 62 00 	lds	r24, 0x0062
+ 2cc:	90 91 63 00 	lds	r25, 0x0063
+ 2d0:	00 97       	sbiw	r24, 0x00	; 0
+ 2d2:	31 f0       	breq	.+12     	; 0x2e0 <__vector_6+0xb0>
+ 2d4:	80 91 62 00 	lds	r24, 0x0062
+ 2d8:	90 91 63 00 	lds	r25, 0x0063
+ 2dc:	01 97       	sbiw	r24, 0x01	; 1
+ 2de:	02 c0       	rjmp	.+4      	; 0x2e4 <__vector_6+0xb4>
+	else temperature_delay = 2000;
+ 2e0:	80 ed       	ldi	r24, 0xD0	; 208
+ 2e2:	97 e0       	ldi	r25, 0x07	; 7
+ 2e4:	90 93 63 00 	sts	0x0063, r25
+ 2e8:	80 93 62 00 	sts	0x0062, r24
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+	if (rc5_delay != 0) rc5_delay--;						// Отсчет задержки повторного приема кода RC5
+ 2ec:	80 91 7d 00 	lds	r24, 0x007D
+ 2f0:	88 23       	and	r24, r24
+ 2f2:	29 f0       	breq	.+10     	; 0x2fe <__vector_6+0xce>
+ 2f4:	80 91 7d 00 	lds	r24, 0x007D
+ 2f8:	81 50       	subi	r24, 0x01	; 1
+ 2fa:	80 93 7d 00 	sts	0x007D, r24
+		GIFR = 1<<INTF0;									// Clear External Interrupt Flag 0
+		GICR = 1<<INT0;										// External Interrupt Request 0 Enable
+	}
+
+#else														// Если не используем внешнее прерывание INT0 для получения кода RC5
+	if (key_delay != 0) key_delay--;
+ 2fe:	80 91 65 00 	lds	r24, 0x0065
+ 302:	88 23       	and	r24, r24
+ 304:	31 f0       	breq	.+12     	; 0x312 <__vector_6+0xe2>
+ 306:	80 91 65 00 	lds	r24, 0x0065
+ 30a:	81 50       	subi	r24, 0x01	; 1
+ 30c:	80 93 65 00 	sts	0x0065, r24
+ 310:	22 c0       	rjmp	.+68     	; 0x356 <__vector_6+0x126>
+	else													// Раз в 256 мс
+	{
+		if (BUTTON_1 == 0)									// Опрашиваем кнопки в прерывании таймера
+ 312:	99 99       	sbic	0x13, 1	; 19
+ 314:	08 c0       	rjmp	.+16     	; 0x326 <__vector_6+0xf6>
+		{
+			OUTS_PORT_8_13 |= _BV(LED_4)|_BV(LED_3);
+ 316:	88 b3       	in	r24, 0x18	; 24
+ 318:	8c 60       	ori	r24, 0x0C	; 12
+ 31a:	88 bb       	out	0x18, r24	; 24
+			OUTS_PORT_8_13 &= ~_BV(LED_2);
+ 31c:	c4 98       	cbi	0x18, 4	; 24
+			Buzer_Beep();
+ 31e:	7c df       	rcall	.-264    	; 0x218 <Buzer_Beep>
+			mode = 0;
+ 320:	10 92 7e 00 	sts	0x007E, r1
+ 324:	18 c0       	rjmp	.+48     	; 0x356 <__vector_6+0x126>
+		}
+		else if (BUTTON_2 == 0)
+ 326:	9a 99       	sbic	0x13, 2	; 19
+ 328:	0c c0       	rjmp	.+24     	; 0x342 <__vector_6+0x112>
+		{
+			OUTS_PORT_8_13 |= _BV(LED_4)|_BV(LED_2);
+ 32a:	88 b3       	in	r24, 0x18	; 24
+ 32c:	84 61       	ori	r24, 0x14	; 20
+ 32e:	88 bb       	out	0x18, r24	; 24
+			OUTS_PORT_8_13 &= ~_BV(LED_3);
+ 330:	c3 98       	cbi	0x18, 3	; 24
+			Buzer_Beep();
+ 332:	72 df       	rcall	.-284    	; 0x218 <Buzer_Beep>
+			mode = 1;
+ 334:	81 e0       	ldi	r24, 0x01	; 1
+ 336:	80 93 7e 00 	sts	0x007E, r24
+			Shield_set_display_value(0);
+ 33a:	80 e0       	ldi	r24, 0x00	; 0
+ 33c:	90 e0       	ldi	r25, 0x00	; 0
+ 33e:	c3 de       	rcall	.-634    	; 0xc6 <Shield_set_display_value>
+ 340:	0a c0       	rjmp	.+20     	; 0x356 <__vector_6+0x126>
+		}
+		else if (BUTTON_3 == 0)
+ 342:	9b 99       	sbic	0x13, 3	; 19
+ 344:	08 c0       	rjmp	.+16     	; 0x356 <__vector_6+0x126>
+		{		
+			OUTS_PORT_8_13 |= _BV(LED_3)|_BV(LED_2);
+ 346:	88 b3       	in	r24, 0x18	; 24
+ 348:	88 61       	ori	r24, 0x18	; 24
+ 34a:	88 bb       	out	0x18, r24	; 24
+			OUTS_PORT_8_13 &= ~_BV(LED_4);
+ 34c:	c2 98       	cbi	0x18, 2	; 24
+			Buzer_Beep();
+ 34e:	64 df       	rcall	.-312    	; 0x218 <Buzer_Beep>
+			mode = 2;
+ 350:	82 e0       	ldi	r24, 0x02	; 2
+ 352:	80 93 7e 00 	sts	0x007E, r24
+		}
+	}
+#endif
+}
+ 356:	ff 91       	pop	r31
+ 358:	ef 91       	pop	r30
+ 35a:	bf 91       	pop	r27
+ 35c:	af 91       	pop	r26
+ 35e:	9f 91       	pop	r25
+ 360:	8f 91       	pop	r24
+ 362:	7f 91       	pop	r23
+ 364:	6f 91       	pop	r22
+ 366:	5f 91       	pop	r21
+ 368:	4f 91       	pop	r20
+ 36a:	3f 91       	pop	r19
+ 36c:	2f 91       	pop	r18
+ 36e:	0f 90       	pop	r0
+ 370:	0f be       	out	0x3f, r0	; 63
+ 372:	0f 90       	pop	r0
+ 374:	1f 90       	pop	r1
+ 376:	18 95       	reti
+
+00000378 <Send_Byte>:
+	BUZZER_OFF();
+}
+//=====================================================================================================================================================
+void Send_Byte(uint8_t byte)								// Функция отправки одного байта по UART
+{
+	while (!(UCSRA & (1<<UDRE))){};							// Ждем флага готовности UART
+ 378:	5d 9b       	sbis	0x0b, 5	; 11
+ 37a:	fe cf       	rjmp	.-4      	; 0x378 <Send_Byte>
+	UDR = byte;												// Засылаем байт в регистр передатчика
+ 37c:	8c b9       	out	0x0c, r24	; 12
+}
+ 37e:	08 95       	ret
+
+00000380 <Reset_1_wire>:
+//=====================================================================================================================================================	
+// Секция работы с шиной 1-wire
+//=====================================================================================================================================================	
+uint8_t Reset_1_wire(void)									// Функция инициализации обмена (Reset-Presence)
+{
+	ONE_WIRE_PIN_LOW();										// Опускаем линию в 0
+ 380:	a4 9a       	sbi	0x14, 4	; 20
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 382:	8f eb       	ldi	r24, 0xBF	; 191
+ 384:	93 e0       	ldi	r25, 0x03	; 3
+ 386:	01 97       	sbiw	r24, 0x01	; 1
+ 388:	f1 f7       	brne	.-4      	; 0x386 <Reset_1_wire+0x6>
+ 38a:	00 c0       	rjmp	.+0      	; 0x38c <Reset_1_wire+0xc>
+ 38c:	00 00       	nop
+	_delay_us(480);											// Удерживаем линию в низком состоянии на протяжении 480 мкс
+	ONE_WIRE_PIN_HIGH();									// Отпускаем линию
+ 38e:	a4 98       	cbi	0x14, 4	; 20
+	uint8_t i=38;											// Засекаем счетчик на 60 мкс
+ 390:	86 e2       	ldi	r24, 0x26	; 38
+ 392:	92 e0       	ldi	r25, 0x02	; 2
+ 394:	9a 95       	dec	r25
+ 396:	f1 f7       	brne	.-4      	; 0x394 <Reset_1_wire+0x14>
+ 398:	00 c0       	rjmp	.+0      	; 0x39a <Reset_1_wire+0x1a>
+	for (; i>0; i--)							
+	{
+		_delay_us(1);											
+		if (ONE_WIRE_LINE != 0) break;						// Линия поднялась, продолжаем	
+ 39a:	9c 99       	sbic	0x13, 4	; 19
+ 39c:	0a c0       	rjmp	.+20     	; 0x3b2 <Reset_1_wire+0x32>
+{
+	ONE_WIRE_PIN_LOW();										// Опускаем линию в 0
+	_delay_us(480);											// Удерживаем линию в низком состоянии на протяжении 480 мкс
+	ONE_WIRE_PIN_HIGH();									// Отпускаем линию
+	uint8_t i=38;											// Засекаем счетчик на 60 мкс
+	for (; i>0; i--)							
+ 39e:	81 50       	subi	r24, 0x01	; 1
+ 3a0:	c1 f7       	brne	.-16     	; 0x392 <Reset_1_wire+0x12>
+ 3a2:	07 c0       	rjmp	.+14     	; 0x3b2 <Reset_1_wire+0x32>
+ 3a4:	92 e0       	ldi	r25, 0x02	; 2
+ 3a6:	9a 95       	dec	r25
+ 3a8:	f1 f7       	brne	.-4      	; 0x3a6 <Reset_1_wire+0x26>
+ 3aa:	00 c0       	rjmp	.+0      	; 0x3ac <Reset_1_wire+0x2c>
+		else if (i==0) return 0;							// Задержка закончена, линия не поднялась - неисправность на линии 
+	}
+	for (; i>0; i--)										// Продолжаем отсчет 60 мкс
+	{
+		_delay_us(1);											
+		if (ONE_WIRE_LINE == 0) break;						// Сигнал Presence обнаружен
+ 3ac:	9c 9b       	sbis	0x13, 4	; 19
+ 3ae:	03 c0       	rjmp	.+6      	; 0x3b6 <Reset_1_wire+0x36>
+	{
+		_delay_us(1);											
+		if (ONE_WIRE_LINE != 0) break;						// Линия поднялась, продолжаем	
+		else if (i==0) return 0;							// Задержка закончена, линия не поднялась - неисправность на линии 
+	}
+	for (; i>0; i--)										// Продолжаем отсчет 60 мкс
+ 3b0:	81 50       	subi	r24, 0x01	; 1
+ 3b2:	88 23       	and	r24, r24
+ 3b4:	b9 f7       	brne	.-18     	; 0x3a4 <Reset_1_wire+0x24>
+ 3b6:	82 e9       	ldi	r24, 0x92	; 146
+ 3b8:	8a 95       	dec	r24
+ 3ba:	f1 f7       	brne	.-4      	; 0x3b8 <Reset_1_wire+0x38>
+ 3bc:	00 c0       	rjmp	.+0      	; 0x3be <Reset_1_wire+0x3e>
+		_delay_us(1);											
+		if (ONE_WIRE_LINE == 0) break;						// Сигнал Presence обнаружен
+		else if (i==0) return 0;							// Задержка закончена, сигнал Presence не обнаружен
+	}	
+	_delay_us(55);											// Ждем 55 мкс (Presence>=60)
+	if (ONE_WIRE_LINE != 0) return 0;						// Проверяем линию. Если опущена - можем продолжать
+ 3be:	9c 99       	sbic	0x13, 4	; 19
+ 3c0:	0b c0       	rjmp	.+22     	; 0x3d8 <Reset_1_wire+0x58>
+ 3c2:	86 e7       	ldi	r24, 0x76	; 118
+ 3c4:	92 e0       	ldi	r25, 0x02	; 2
+ 3c6:	9a 95       	dec	r25
+ 3c8:	f1 f7       	brne	.-4      	; 0x3c6 <Reset_1_wire+0x46>
+ 3ca:	00 c0       	rjmp	.+0      	; 0x3cc <Reset_1_wire+0x4c>
+	for (i=118; i>0; i--)									// Засекаем счетчик на 190 мкс
+	{
+		_delay_us(1);											
+		if (ONE_WIRE_LINE != 0) break;						// Линия поднялась - фиксируем конец Presence 						
+ 3cc:	9c 99       	sbic	0x13, 4	; 19
+ 3ce:	06 c0       	rjmp	.+12     	; 0x3dc <Reset_1_wire+0x5c>
+ 3d0:	81 50       	subi	r24, 0x01	; 1
+		if (ONE_WIRE_LINE == 0) break;						// Сигнал Presence обнаружен
+		else if (i==0) return 0;							// Задержка закончена, сигнал Presence не обнаружен
+	}	
+	_delay_us(55);											// Ждем 55 мкс (Presence>=60)
+	if (ONE_WIRE_LINE != 0) return 0;						// Проверяем линию. Если опущена - можем продолжать
+	for (i=118; i>0; i--)									// Засекаем счетчик на 190 мкс
+ 3d2:	c1 f7       	brne	.-16     	; 0x3c4 <Reset_1_wire+0x44>
+	{
+		_delay_us(1);											
+		if (ONE_WIRE_LINE != 0) break;						// Линия поднялась - фиксируем конец Presence 						
+		else if (i==0) return 0;							// Задержка закончена, линия не поднялась, неисправность на линии
+	}
+	return 1;												// Полученный ответ соответствует временным рамкам
+ 3d4:	81 e0       	ldi	r24, 0x01	; 1
+ 3d6:	08 95       	ret
+		_delay_us(1);											
+		if (ONE_WIRE_LINE == 0) break;						// Сигнал Presence обнаружен
+		else if (i==0) return 0;							// Задержка закончена, сигнал Presence не обнаружен
+	}	
+	_delay_us(55);											// Ждем 55 мкс (Presence>=60)
+	if (ONE_WIRE_LINE != 0) return 0;						// Проверяем линию. Если опущена - можем продолжать
+ 3d8:	80 e0       	ldi	r24, 0x00	; 0
+ 3da:	08 95       	ret
+	{
+		_delay_us(1);											
+		if (ONE_WIRE_LINE != 0) break;						// Линия поднялась - фиксируем конец Presence 						
+		else if (i==0) return 0;							// Задержка закончена, линия не поднялась, неисправность на линии
+	}
+	return 1;												// Полученный ответ соответствует временным рамкам
+ 3dc:	81 e0       	ldi	r24, 0x01	; 1
+}
+ 3de:	08 95       	ret
+
+000003e0 <Send_1_wire_byte>:
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+void Send_1_wire_byte(uint8_t byte)							// Отправка 1 байта по шине 1-wire
+{
+ 3e0:	20 e0       	ldi	r18, 0x00	; 0
+ 3e2:	30 e0       	ldi	r19, 0x00	; 0
+	for (uint8_t i=0; i<8; i++)								// Организуем цикл отправки 1 байта
+	{
+		if((byte & (1<<i)) == 1<<i)							// Send 1
+ 3e4:	41 e0       	ldi	r20, 0x01	; 1
+ 3e6:	50 e0       	ldi	r21, 0x00	; 0
+ 3e8:	90 e0       	ldi	r25, 0x00	; 0
+ 3ea:	ba 01       	movw	r22, r20
+ 3ec:	02 2e       	mov	r0, r18
+ 3ee:	02 c0       	rjmp	.+4      	; 0x3f4 <Send_1_wire_byte+0x14>
+ 3f0:	66 0f       	add	r22, r22
+ 3f2:	77 1f       	adc	r23, r23
+ 3f4:	0a 94       	dec	r0
+ 3f6:	e2 f7       	brpl	.-8      	; 0x3f0 <Send_1_wire_byte+0x10>
+ 3f8:	fb 01       	movw	r30, r22
+ 3fa:	e8 23       	and	r30, r24
+ 3fc:	f9 23       	and	r31, r25
+ 3fe:	e6 17       	cp	r30, r22
+ 400:	f7 07       	cpc	r31, r23
+ 402:	51 f4       	brne	.+20     	; 0x418 <Send_1_wire_byte+0x38>
+		{
+			ONE_WIRE_PIN_LOW();								// Опускаем линию в 0
+ 404:	a4 9a       	sbi	0x14, 4	; 20
+ 406:	62 e0       	ldi	r22, 0x02	; 2
+ 408:	6a 95       	dec	r22
+ 40a:	f1 f7       	brne	.-4      	; 0x408 <Send_1_wire_byte+0x28>
+ 40c:	00 c0       	rjmp	.+0      	; 0x40e <Send_1_wire_byte+0x2e>
+			_delay_us(1);		
+			ONE_WIRE_PIN_HIGH();							// Отпускаем линию
+ 40e:	a4 98       	cbi	0x14, 4	; 20
+ 410:	60 ea       	ldi	r22, 0xA0	; 160
+ 412:	6a 95       	dec	r22
+ 414:	f1 f7       	brne	.-4      	; 0x412 <Send_1_wire_byte+0x32>
+ 416:	09 c0       	rjmp	.+18     	; 0x42a <Send_1_wire_byte+0x4a>
+			_delay_us(60);									// Ждем 60 мкс	
+		}
+		else												// Send 0
+		{
+			ONE_WIRE_PIN_LOW();								// Опускаем линию в 0		
+ 418:	a4 9a       	sbi	0x14, 4	; 20
+ 41a:	60 ea       	ldi	r22, 0xA0	; 160
+ 41c:	6a 95       	dec	r22
+ 41e:	f1 f7       	brne	.-4      	; 0x41c <Send_1_wire_byte+0x3c>
+			_delay_us(60);									// Ждем 60 мкс
+			ONE_WIRE_PIN_HIGH();							// Отпускаем линию
+ 420:	a4 98       	cbi	0x14, 4	; 20
+ 422:	62 e0       	ldi	r22, 0x02	; 2
+ 424:	6a 95       	dec	r22
+ 426:	f1 f7       	brne	.-4      	; 0x424 <Send_1_wire_byte+0x44>
+ 428:	00 c0       	rjmp	.+0      	; 0x42a <Send_1_wire_byte+0x4a>
+ 42a:	2f 5f       	subi	r18, 0xFF	; 255
+ 42c:	3f 4f       	sbci	r19, 0xFF	; 255
+	return 1;												// Полученный ответ соответствует временным рамкам
+}
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+void Send_1_wire_byte(uint8_t byte)							// Отправка 1 байта по шине 1-wire
+{
+	for (uint8_t i=0; i<8; i++)								// Организуем цикл отправки 1 байта
+ 42e:	28 30       	cpi	r18, 0x08	; 8
+ 430:	31 05       	cpc	r19, r1
+ 432:	d9 f6       	brne	.-74     	; 0x3ea <Send_1_wire_byte+0xa>
+			_delay_us(60);									// Ждем 60 мкс
+			ONE_WIRE_PIN_HIGH();							// Отпускаем линию
+			_delay_us(1);
+		}
+	}
+}
+ 434:	08 95       	ret
+
+00000436 <One_wire_receive_byte>:
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+uint8_t One_wire_receive_byte(void)							// Прием 1 байта по шине 1-wire
+{	
+ 436:	20 e0       	ldi	r18, 0x00	; 0
+ 438:	30 e0       	ldi	r19, 0x00	; 0
+	uint8_t one_wire_byte = 0;
+ 43a:	80 e0       	ldi	r24, 0x00	; 0
+		_delay_us(1);
+		ONE_WIRE_PIN_HIGH();								// Отпускаем линию
+		_delay_us(12);										// Ждем 12 мкс
+		if (ONE_WIRE_LINE == 0)
+			one_wire_byte &=~(1<<i);
+		else one_wire_byte |= 1<<i;
+ 43c:	41 e0       	ldi	r20, 0x01	; 1
+ 43e:	50 e0       	ldi	r21, 0x00	; 0
+uint8_t One_wire_receive_byte(void)							// Прием 1 байта по шине 1-wire
+{	
+	uint8_t one_wire_byte = 0;
+	for (uint8_t i=0; i<8; i++)								// Организуем цикл отправки 1 байта
+	{
+		ONE_WIRE_PIN_LOW();									// Опускаем линию в 0		
+ 440:	a4 9a       	sbi	0x14, 4	; 20
+ 442:	92 e0       	ldi	r25, 0x02	; 2
+ 444:	9a 95       	dec	r25
+ 446:	f1 f7       	brne	.-4      	; 0x444 <One_wire_receive_byte+0xe>
+ 448:	00 c0       	rjmp	.+0      	; 0x44a <One_wire_receive_byte+0x14>
+		_delay_us(1);
+		ONE_WIRE_PIN_HIGH();								// Отпускаем линию
+ 44a:	a4 98       	cbi	0x14, 4	; 20
+ 44c:	90 e2       	ldi	r25, 0x20	; 32
+ 44e:	9a 95       	dec	r25
+ 450:	f1 f7       	brne	.-4      	; 0x44e <One_wire_receive_byte+0x18>
+		_delay_us(12);										// Ждем 12 мкс
+		if (ONE_WIRE_LINE == 0)
+ 452:	9c 99       	sbic	0x13, 4	; 19
+ 454:	0a c0       	rjmp	.+20     	; 0x46a <__stack+0xb>
+			one_wire_byte &=~(1<<i);
+ 456:	ba 01       	movw	r22, r20
+ 458:	02 2e       	mov	r0, r18
+ 45a:	02 c0       	rjmp	.+4      	; 0x460 <__stack+0x1>
+ 45c:	66 0f       	add	r22, r22
+ 45e:	77 1f       	adc	r23, r23
+ 460:	0a 94       	dec	r0
+ 462:	e2 f7       	brpl	.-8      	; 0x45c <One_wire_receive_byte+0x26>
+ 464:	60 95       	com	r22
+ 466:	86 23       	and	r24, r22
+ 468:	08 c0       	rjmp	.+16     	; 0x47a <__stack+0x1b>
+		else one_wire_byte |= 1<<i;
+ 46a:	ba 01       	movw	r22, r20
+ 46c:	02 2e       	mov	r0, r18
+ 46e:	02 c0       	rjmp	.+4      	; 0x474 <__stack+0x15>
+ 470:	66 0f       	add	r22, r22
+ 472:	77 1f       	adc	r23, r23
+ 474:	0a 94       	dec	r0
+ 476:	e2 f7       	brpl	.-8      	; 0x470 <__stack+0x11>
+ 478:	86 2b       	or	r24, r22
+ 47a:	9d e7       	ldi	r25, 0x7D	; 125
+ 47c:	9a 95       	dec	r25
+ 47e:	f1 f7       	brne	.-4      	; 0x47c <__stack+0x1d>
+ 480:	00 00       	nop
+ 482:	2f 5f       	subi	r18, 0xFF	; 255
+ 484:	3f 4f       	sbci	r19, 0xFF	; 255
+}
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+uint8_t One_wire_receive_byte(void)							// Прием 1 байта по шине 1-wire
+{	
+	uint8_t one_wire_byte = 0;
+	for (uint8_t i=0; i<8; i++)								// Организуем цикл отправки 1 байта
+ 486:	28 30       	cpi	r18, 0x08	; 8
+ 488:	31 05       	cpc	r19, r1
+ 48a:	d1 f6       	brne	.-76     	; 0x440 <One_wire_receive_byte+0xa>
+			one_wire_byte &=~(1<<i);
+		else one_wire_byte |= 1<<i;
+		_delay_us(47);										// Ждем 47 мкс (60-12-1) до конца тайм-слота
+	}
+	return one_wire_byte;
+}
+ 48c:	08 95       	ret
+
+0000048e <Read_Temperature>:
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+uint8_t Read_Temperature(void)								// Чтение температуры
+{
+ 48e:	1f 93       	push	r17
+	uint8_t temperature = 0;
+	temperature = One_wire_receive_byte()>>4;				// Читаем младший байт температуры, перемещая целую часть в младшую тетраду
+ 490:	d2 df       	rcall	.-92     	; 0x436 <One_wire_receive_byte>
+ 492:	18 2f       	mov	r17, r24
+	return (temperature | (One_wire_receive_byte() << 4));	// Читаем старший байт температуры, перемещая значащую часть в старшую тетраду, совмещаем тетрады 2 принятых байт, и возвращаем результат
+ 494:	d0 df       	rcall	.-96     	; 0x436 <One_wire_receive_byte>
+ 496:	82 95       	swap	r24
+ 498:	80 7f       	andi	r24, 0xF0	; 240
+}
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+uint8_t Read_Temperature(void)								// Чтение температуры
+{
+	uint8_t temperature = 0;
+	temperature = One_wire_receive_byte()>>4;				// Читаем младший байт температуры, перемещая целую часть в младшую тетраду
+ 49a:	12 95       	swap	r17
+ 49c:	1f 70       	andi	r17, 0x0F	; 15
+	return (temperature | (One_wire_receive_byte() << 4));	// Читаем старший байт температуры, перемещая значащую часть в старшую тетраду, совмещаем тетрады 2 принятых байт, и возвращаем результат
+}
+ 49e:	81 2b       	or	r24, r17
+ 4a0:	1f 91       	pop	r17
+ 4a2:	08 95       	ret
+
+000004a4 <main>:
+//=====================================================================================================================================================
+// Обьявляем прототипы функций
+
+//=====================================================================================================================================================
+int main(void)
+{
+ 4a4:	ef 92       	push	r14
+ 4a6:	ff 92       	push	r15
+ 4a8:	0f 93       	push	r16
+ 4aa:	1f 93       	push	r17
+ 4ac:	cf 93       	push	r28
+ 4ae:	df 93       	push	r29
+	#ifdef	USE_INTERRUPT_4_TSOP							// Если используем внешнее прерывание INT0 для получения кода RC5
+	uint8_t	mode = 0;
+	#endif	
+	Init();													// Инициализация портов и периферии
+ 4b0:	d6 dd       	rcall	.-1108   	; 0x5e <Init>
+	sei();
+ 4b2:	78 94       	sei
+					if (one_wire_state == 1)
+					{
+						Send_1_wire_byte(0xCC);				// Повторная команда "skip ROM"
+						Send_1_wire_byte(0xBE);				// Будем читать значение температуры		
+						Shield_set_display_value(Read_Temperature());// Читаем и сразу преобразуем для вывода на индикатор
+						temperature_delay = 1000;			// Устанавливаем задержку до следующего обновления показаний температуры
+ 4b4:	08 ee       	ldi	r16, 0xE8	; 232
+ 4b6:	13 e0       	ldi	r17, 0x03	; 3
+			OUTS_PORT_8_13 &= ~_BV(LED_4);
+			Buzer_Beep();
+			mode = 2;
+		}
+	#endif
+		if (mode == 0)
+ 4b8:	80 91 7e 00 	lds	r24, 0x007E
+ 4bc:	88 23       	and	r24, r24
+ 4be:	79 f4       	brne	.+30     	; 0x4de <main+0x3a>
+		{
+			if (adc_delay == 0)								// Если пришло время обновить показания АЦП																		 
+ 4c0:	80 91 7c 00 	lds	r24, 0x007C
+ 4c4:	88 23       	and	r24, r24
+ 4c6:	c1 f7       	brne	.-16     	; 0x4b8 <main+0x14>
+			{	
+				asm("sleep");								// Sleep and start new conversion
+ 4c8:	88 95       	sleep
+				Shield_set_display_value(adc_result);		// Set new ADC result for indication
+ 4ca:	80 91 7b 00 	lds	r24, 0x007B
+ 4ce:	90 e0       	ldi	r25, 0x00	; 0
+ 4d0:	fa dd       	rcall	.-1036   	; 0xc6 <Shield_set_display_value>
+				adc_delay--;								// Set new conversion delay
+ 4d2:	80 91 7c 00 	lds	r24, 0x007C
+ 4d6:	81 50       	subi	r24, 0x01	; 1
+ 4d8:	80 93 7c 00 	sts	0x007C, r24
+ 4dc:	ed cf       	rjmp	.-38     	; 0x4b8 <main+0x14>
+			}
+		}		
+		else if (mode == 1)
+ 4de:	80 91 7e 00 	lds	r24, 0x007E
+ 4e2:	81 30       	cpi	r24, 0x01	; 1
+ 4e4:	91 f4       	brne	.+36     	; 0x50a <main+0x66>
+		{
+			#ifndef	USE_INTERRUPT_4_TSOP					// Если не используем внешнее прерывание INT0 для получения кода RC5			
+			uint16_t rc5_code = 0;			
+			if (rc5_delay == 0) rc5_code = Get_RC5_code();	// И нет запрета на повторное считывания кода, используем функцию для получения кода RC5	
+ 4e6:	80 91 7d 00 	lds	r24, 0x007D
+ 4ea:	88 23       	and	r24, r24
+ 4ec:	29 f7       	brne	.-54     	; 0x4b8 <main+0x14>
+ 4ee:	68 de       	rcall	.-816    	; 0x1c0 <Get_RC5_code>
+ 4f0:	ec 01       	movw	r28, r24
+			#endif
+									
+			if (rc5_code != 0)
+ 4f2:	00 97       	sbiw	r24, 0x00	; 0
+ 4f4:	09 f3       	breq	.-62     	; 0x4b8 <main+0x14>
+			{
+				Shield_set_display_value(rc5_code & 0x07FF);// Выводим на индикатор, маскируя 2-й стартовый бит и toggle-бит
+ 4f6:	97 70       	andi	r25, 0x07	; 7
+ 4f8:	e6 dd       	rcall	.-1076   	; 0xc6 <Shield_set_display_value>
+				Send_Byte((rc5_code>>8) & 0x07);			// Выводим в UART, маскируя 2-й стартовый бит и toggle-бит
+ 4fa:	7e 01       	movw	r14, r28
+ 4fc:	8f 2d       	mov	r24, r15
+ 4fe:	87 70       	andi	r24, 0x07	; 7
+ 500:	3b df       	rcall	.-394    	; 0x378 <Send_Byte>
+				Send_Byte(rc5_code);
+ 502:	8c 2f       	mov	r24, r28
+ 504:	39 df       	rcall	.-398    	; 0x378 <Send_Byte>
+				rc5_code = 0;
+				Buzer_Beep();
+ 506:	88 de       	rcall	.-752    	; 0x218 <Buzer_Beep>
+ 508:	d7 cf       	rjmp	.-82     	; 0x4b8 <main+0x14>
+			}
+		}
+		else if (mode == 2)
+ 50a:	80 91 7e 00 	lds	r24, 0x007E
+ 50e:	82 30       	cpi	r24, 0x02	; 2
+ 510:	99 f6       	brne	.-90     	; 0x4b8 <main+0x14>
+		{
+			if (temperature_delay == 0)						// Если пришло время обновить показания температуры
+ 512:	80 91 62 00 	lds	r24, 0x0062
+ 516:	90 91 63 00 	lds	r25, 0x0063
+ 51a:	00 97       	sbiw	r24, 0x00	; 0
+ 51c:	69 f6       	brne	.-102    	; 0x4b8 <main+0x14>
+			{
+				uint8_t one_wire_state = 0;	
+				cli();										// Запрещаем прерывания ради точности задержек
+ 51e:	f8 94       	cli
+				one_wire_state = Reset_1_wire();			// Инициализация обмена (Reset-Presence)			
+ 520:	2f df       	rcall	.-418    	; 0x380 <Reset_1_wire>
+				if (one_wire_state == 1)
+ 522:	81 30       	cpi	r24, 0x01	; 1
+ 524:	f1 f4       	brne	.+60     	; 0x562 <main+0xbe>
+				{
+					Send_1_wire_byte(0xCC);					// Команда "skip ROM"
+ 526:	8c ec       	ldi	r24, 0xCC	; 204
+ 528:	5b df       	rcall	.-330    	; 0x3e0 <Send_1_wire_byte>
+					Send_1_wire_byte(0x44);					// Начать преобразование	
+ 52a:	84 e4       	ldi	r24, 0x44	; 68
+ 52c:	59 df       	rcall	.-334    	; 0x3e0 <Send_1_wire_byte>
+					sei();									// Задержка на преобразование очень длинная и не строгая, разрешим прерывания
+ 52e:	78 94       	sei
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 530:	8f e7       	ldi	r24, 0x7F	; 127
+ 532:	9f e4       	ldi	r25, 0x4F	; 79
+ 534:	a2 e1       	ldi	r26, 0x12	; 18
+ 536:	81 50       	subi	r24, 0x01	; 1
+ 538:	90 40       	sbci	r25, 0x00	; 0
+ 53a:	a0 40       	sbci	r26, 0x00	; 0
+ 53c:	e1 f7       	brne	.-8      	; 0x536 <main+0x92>
+ 53e:	00 c0       	rjmp	.+0      	; 0x540 <main+0x9c>
+ 540:	00 00       	nop
+					_delay_ms(750);							// Задержка на время преобразования
+					cli();									// Запрещаем прерывания ради точности задержек
+ 542:	f8 94       	cli
+					one_wire_state = Reset_1_wire();		// Повторная инициализация обмена (Reset-Presence)
+ 544:	1d df       	rcall	.-454    	; 0x380 <Reset_1_wire>
+					if (one_wire_state == 1)
+ 546:	81 30       	cpi	r24, 0x01	; 1
+ 548:	61 f4       	brne	.+24     	; 0x562 <main+0xbe>
+					{
+						Send_1_wire_byte(0xCC);				// Повторная команда "skip ROM"
+ 54a:	8c ec       	ldi	r24, 0xCC	; 204
+ 54c:	49 df       	rcall	.-366    	; 0x3e0 <Send_1_wire_byte>
+						Send_1_wire_byte(0xBE);				// Будем читать значение температуры		
+ 54e:	8e eb       	ldi	r24, 0xBE	; 190
+ 550:	47 df       	rcall	.-370    	; 0x3e0 <Send_1_wire_byte>
+						Shield_set_display_value(Read_Temperature());// Читаем и сразу преобразуем для вывода на индикатор
+ 552:	9d df       	rcall	.-198    	; 0x48e <Read_Temperature>
+ 554:	90 e0       	ldi	r25, 0x00	; 0
+ 556:	b7 dd       	rcall	.-1170   	; 0xc6 <Shield_set_display_value>
+						temperature_delay = 1000;			// Устанавливаем задержку до следующего обновления показаний температуры
+ 558:	10 93 63 00 	sts	0x0063, r17
+ 55c:	00 93 62 00 	sts	0x0062, r16
+ 560:	01 c0       	rjmp	.+2      	; 0x564 <main+0xc0>
+					}
+					else Shield_display_Err();
+				}
+				else Shield_display_Err();
+ 562:	12 de       	rcall	.-988    	; 0x188 <Shield_display_Err>
+				sei();
+ 564:	78 94       	sei
+ 566:	a8 cf       	rjmp	.-176    	; 0x4b8 <main+0x14>
+
+00000568 <_exit>:
+ 568:	f8 94       	cli
+
+0000056a <__stop_program>:
+ 56a:	ff cf       	rjmp	.-2      	; 0x56a <__stop_program>
