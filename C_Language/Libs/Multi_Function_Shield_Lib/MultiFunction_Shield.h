@@ -5,11 +5,23 @@
  * Author : User007
  */ 
 //=====================================================================================================================================================
+//#define USE_INTERRUPT_4_TSOP								// Использовать прием кода RC5 в прерывании. Если закоментировано - опрос (поллинг) инфракрасного приемника производится в главном цикле программы
+
+#ifndef USE_INTERRUPT_4_TSOP
+#define USE_KEY_POLLING_INTERRUPT							// Использовать опроса клавиатуры в прерывании. Если закоментировано - опрос (поллинг) кнопок производится в главном цикле программы
+#endif
+
+#define NUM_OF_MODES		3								// Количество режимов в "Меню"
+
+#define ADC_MODE			1
+#define TSOP_MODE			2
+#define DS18B20_MODE		3
+//=====================================================================================================================================================
 // Объявляем стандартные используемые хидеры
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
-//#include <avr/eeprom.h>
+#include <avr/eeprom.h>
 //#include <util/atomic.h>
 //#include <avr/pgmspace.h>
 
@@ -54,46 +66,45 @@
 #define	SPI_LATCH_HIGH()	(PORTD |= _BV(SPI_LATCH_PIN))
 #define	SPI_LATCH_LOW()		(PORTD &=~_BV(SPI_LATCH_PIN))
 
-#define TSOP_PIN			(PIND & _BV(PD2))
-#define BIT_DELAY			1778
-#define START_DELAY			(BIT_DELAY*3/4)
-#define CODE_LEN			13								// количество принимаемых битов кода
-//#define USE_INTERRUPT_4_TSOP								// Способ приема кода RC5. Если закоментировано - поллинг (обработку кнопок и смену режимов придется обрабатывать в прерывании таймера)
-
 #define ONE_WIRE_PIN		PC4
 #define ONE_WIRE_PIN_LOW()	(DDRC |=_BV(ONE_WIRE_PIN))
 #define ONE_WIRE_PIN_HIGH()	(DDRC &=~_BV(ONE_WIRE_PIN))
 #define ONE_WIRE_LINE		(ANALOG_PINS & _BV(ONE_WIRE_PIN))
 
+#define TSOP_PIN			(PIND & _BV(PD2))
+#define BIT_DELAY			1778							// Задержка между битами кода RC5
+#define START_DELAY			(BIT_DELAY*3/4)					// Задержка между окончанием старт-бита и серединой 1 бита кода RC5
+#define CODE_LEN			13								// Количество принимаемых битов кода
+
 //=====================================================================================================================================================
-// Объявляем глобальные переменные БЕЗ ПРИСВАИВАНИЯ ЗНАЧЕНИЙ !!!
-extern volatile	uint16_t temperature_delay;					// Задержка до следующего считывания температуры с датчика DS18B20
-extern volatile	uint16_t led_delay;							// Задежка до изменения состояние светодиодов
+// Объявляем глобальные (с квалификатором extern) переменные БЕЗ ПРИСВАИВАНИЯ ЗНАЧЕНИЙ !!!
+extern volatile	uint8_t  mode;								// Заводим глобальную переменную для текущего режима
 extern volatile	uint8_t  digit_counter;						// Установим счетчик разрядов на 1 знакоместо
 extern volatile	uint8_t  adc_result;						// Результат преобразования ADC0
+extern volatile	uint16_t temperature_delay;					// Задержка до следующего считывания температуры с датчика DS18B20
+extern volatile	uint16_t led_delay;							// Задежка до изменения состояние светодиодов
 extern volatile	uint8_t  adc_delay;							// Задержка до следующего получения показаний АЦП
 extern volatile	uint8_t  rc5_delay;							// Задержка до следующего получения кода RC5
 
 #ifdef	USE_INTERRUPT_4_TSOP								// Если используем внешнее прерывание INT0 для получения кода RC5
-extern volatile	uint16_t rc5_code;							// Заводим глобальную переменную 
-
-#else														// Если не используем внешнее прерывание INT0 для получения кода RC5
-extern volatile	uint8_t  key_delay;							// Опрос кнопок придется производить в прерывании по таймеру
-extern volatile	uint8_t  mode;								// Смену режимов придеться производить в прерывании по таймеру
+extern volatile	uint16_t rc5_code;							// Заводим глобальную переменную для принимаемого кода
 #endif
+
+extern uint8_t EEMEM eeprom_mode;
 //=====================================================================================================================================================
 // Обьявляем глобальные прототипы функций
 void Init(void);
-void Buzer_Beep(void);										// Вызов 1 короткого звукового сигнала
 void Send_Byte(uint8_t byte);								// Отправка одного байта по UART
+void Buzer_Beep(uint8_t beep_time);							// Вызов звукового сигнала, длительность в мс
 void Shield_display_Err(void);								// Вывод признака ошибки на индикатор
 void Shield_display_value(void);							// Вывод значения на индикатор
 void Shield_set_display_value(uint16_t value);				// Установка значения для вывода на индикатор
 void Send_1_wire_byte(uint8_t);								// Отправка 1 байта по шине 1-wire
 uint8_t Read_Temperature(void);								// Чтение температуры
 uint8_t Reset_1_wire(void);									// Инициализации обмена (Reset-Presence)
+void Switch_Mode(void);										// Выбор действия для нового режима
+void Key_Press(void);										// Опрос кнопок
 
 #ifndef	USE_INTERRUPT_4_TSOP								// Если не используем внешнее прерывание INT0 для получения кода RC5
 uint16_t Get_RC5_code(void);								// Обьявляем функцию получения кода RC5
 #endif
-
