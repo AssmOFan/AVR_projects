@@ -15,7 +15,7 @@ COMMON = -mmcu=$(MCU)
 
 ## Compile options common for all C compilation units.
 CFLAGS = $(COMMON)
-CFLAGS += -Wall -gdwarf-2 -std=gnu99           -DF_CPU=8000000UL -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums
+CFLAGS += -Wall -gdwarf-2 -std=gnu99                                             -DF_CPU=8000000UL -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums
 CFLAGS += -MD -MP -MT $(*F).o -MF dep/$(@F).d 
 
 ## Assembly specific flags
@@ -40,7 +40,7 @@ HEX_EEPROM_FLAGS += --change-section-lma .eeprom=0 --no-change-warnings
 INCLUDES = -I"D:\Docs\Dropbox\Embed\AVR\Libs\C\Multi_Function_Shield_Lib\." 
 
 ## Objects that must be built in order to link
-OBJECTS = Multi_Function_Shield_Lib.o Main.o 
+OBJECTS = Multi_Function_Shield_Lib.o Main.o tick.o 
 
 ## Objects explicitly added by the user
 LINKONLYOBJECTS = 
@@ -53,6 +53,9 @@ Multi_Function_Shield_Lib.o: ../Multi_Function_Shield_Lib.c
 	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
 
 Main.o: ../Main.c
+	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
+
+tick.o: ../tick.c
 	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
 
 ##Link
